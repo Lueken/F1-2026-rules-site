@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>F1 2026 Watch Party Guide</title>
     <script>
         // Randomly select a design on page load
@@ -14,6 +17,12 @@
 
         // Apply design class to html element immediately to prevent flash
         document.documentElement.className = selectedDesign;
+
+        // Debug logging
+        console.log('🎲 Random selection process:');
+        console.log('  Available designs:', designs);
+        console.log('  Selected design:', selectedDesign);
+        console.log('  Applied class to html:', document.documentElement.className);
     </script>
     <style>
         /* Hide all designs by default */
@@ -43,37 +52,37 @@
 <body>
     <!-- Design 1: Modern Dark Racing -->
     <div id="design1-container" class="design-container">
-        <iframe src="index.html" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; border: none;"></iframe>
+        <iframe id="iframe1" src="" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; border: none;"></iframe>
     </div>
 
     <!-- Design 2: Clean Editorial -->
     <div id="design2-container" class="design-container">
-        <iframe src="index2.html" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; border: none;"></iframe>
+        <iframe id="iframe2" src="" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; border: none;"></iframe>
     </div>
 
     <!-- Design 3: Retro Golden Era -->
     <div id="design3-container" class="design-container">
-        <iframe src="index3.html" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; border: none;"></iframe>
+        <iframe id="iframe3" src="" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; border: none;"></iframe>
     </div>
 
     <!-- Design 4: Neon Cyberpunk -->
     <div id="design4-container" class="design-container">
-        <iframe src="index4.html" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; border: none;"></iframe>
+        <iframe id="iframe4" src="" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; border: none;"></iframe>
     </div>
 
     <!-- Design 5: Brutalist/Industrial -->
     <div id="design5-container" class="design-container">
-        <iframe src="index5.html" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; border: none;"></iframe>
+        <iframe id="iframe5" src="" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; border: none;"></iframe>
     </div>
 
     <!-- Design 6: Art Deco Luxury -->
     <div id="design6-container" class="design-container">
-        <iframe src="index6.html" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; border: none;"></iframe>
+        <iframe id="iframe6" src="" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; border: none;"></iframe>
     </div>
 
     <!-- Design 7: Comic Pop Art -->
     <div id="design7-container" class="design-container">
-        <iframe src="index7.html" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; border: none;"></iframe>
+        <iframe id="iframe7" src="" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; border: none;"></iframe>
     </div>
 
     <!-- Design indicator (optional - can be removed) -->
@@ -93,7 +102,28 @@
             'design7': 'Comic Pop Art'
         };
 
+        const designFiles = {
+            'design1': 'index.html',
+            'design2': 'index2.html',
+            'design3': 'index3.html',
+            'design4': 'index4.html',
+            'design5': 'index5.html',
+            'design6': 'index6.html',
+            'design7': 'index7.html'
+        };
+
         document.getElementById('design-name').textContent = designNames[window.selectedDesign];
+
+        // Load the selected design's iframe with cache-busting timestamp
+        const designNumber = window.selectedDesign.replace('design', '');
+        const iframe = document.getElementById(`iframe${designNumber}`);
+        const timestamp = new Date().getTime();
+        iframe.src = `${designFiles[window.selectedDesign]}?v=${timestamp}`;
+
+        console.log(`🎨 Loaded: ${designNames[window.selectedDesign]}`);
+        console.log(`📄 File: ${designFiles[window.selectedDesign]}`);
+        console.log(`🔗 iframe src: ${iframe.src}`);
+        console.log('💡 Press R to reload and see a different design!');
 
         // Optional: Add reload button functionality
         // You can press 'R' key to reload and see a different random design
@@ -102,9 +132,6 @@
                 location.reload();
             }
         });
-
-        console.log(`🎨 Loaded: ${designNames[window.selectedDesign]}`);
-        console.log('💡 Press R to reload and see a different design!');
     </script>
 </body>
 </html>
