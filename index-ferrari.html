@@ -31,6 +31,13 @@
             color: var(--bianco);
             overflow-x: hidden;
             position: relative;
+            width: 100%;
+            max-width: 100vw;
+        }
+
+        .container {
+            max-width: 100%;
+            overflow-x: hidden;
         }
 
         /* Vertical racing stripes - Italian flag inspired */
@@ -372,8 +379,14 @@
 
         .terms-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .terms-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .term-card {
