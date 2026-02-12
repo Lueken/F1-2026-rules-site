@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F1 2026 POW!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Luckiest+Guy&family=
+
+Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --comic-yellow: #ffed4e;
+            --comic-red: #ff3838;
+            --comic-blue: #3d5afe;
+            --comic-cyan: #00e5ff;
+            --comic-pink: #ff4081;
+            --comic-purple: #651fff;
+            --white: #ffffff;
+            --black: #000000;
+
+            /* Team Colors */
+            --mclaren: #ff8700;
+            --mercedes: #00e5ff;
+            --williams: #3d5afe;
+            --alpine: #00b0ff;
+            --ferrari: #ff3838;
+            --haas: #9e9e9e;
+            --cadillac: #757575;
+            --redbull: #304ffe;
+            --aston: #00c853;
+            --audi: #ff1744;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Fredoka', sans-serif;
+            background: var(--comic-yellow);
+            color: var(--black);
+            line-height: 1.5;
+            position: relative;
+        }
+
+        /* Halftone Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(circle, var(--black) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.1;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 3rem 0;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .hero::before {
+            content: 'BOOM!';
+            position: absolute;
+            top: -50px;
+            right: 10%;
+            font-family: 'Bangers', cursive;
+            font-size: 4rem;
+            color: var(--comic-red);
+            transform: rotate(15deg);
+            text-shadow:
+                3px 3px 0 var(--white),
+                3px 3px 0 var(--black) inset,
+                6px 6px 0 var(--black);
+            opacity: 0.3;
+        }
+
+        h1 {
+            font-family: 'Luckiest Guy', cursive;
+            font-size: clamp(3rem, 10vw, 8rem);
+            color: var(--comic-red);
+            text-transform: uppercase;
+            line-height: 0.9;
+            margin-bottom: 1rem;
+            text-shadow:
+                5px 5px 0 var(--white),
+                5px 5px 0 var(--black) inset,
+                8px 8px 0 var(--black);
+            transform: rotate(-2deg);
+        }
+
+        .tagline {
+            font-family: 'Bangers', cursive;
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            color: var(--black);
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            text-shadow: 3px 3px 0 var(--white);
+        }
+
+        .race-bubble {
+            display: inline-block;
+            background: var(--white);
+            border: 5px solid var(--black);
+            border-radius: 50px;
+            padding: 1.5rem 3rem;
+            font-family: 'Bangers', cursive;
+            font-size: 1.5rem;
+            box-shadow: 8px 8px 0 var(--black);
+            transform: rotate(2deg);
+        }
+
+        .race-bubble span {
+            color: var(--comic-red);
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 5rem;
+        }
+
+        .section-title {
+            font-family: 'Luckiest Guy', cursive;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            color: var(--comic-blue);
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 3rem;
+            text-shadow:
+                4px 4px 0 var(--white),
+                4px 4px 0 var(--black) inset,
+                7px 7px 0 var(--black);
+            transform: rotate(-1deg);
+        }
+
+        /* Power Units Table */
+        .pu-container {
+            background: var(--white);
+            border: 6px solid var(--black);
+            box-shadow: 12px 12px 0 var(--black);
+        }
+
+        .pu-header {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            background: var(--comic-red);
+            color: var(--white);
+            padding: 1.5rem 2rem;
+            font-family: 'Bangers', cursive;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            border-bottom: 5px solid var(--black);
+        }
+
+        .pu-header div:last-child {
+            text-align: right;
+        }
+
+        .pu-row {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            padding: 1.5rem 2rem;
+            border-bottom: 3px solid var(--black);
+            transition: all 0.2s ease;
+        }
+
+        .pu-row:last-child {
+            border-bottom: none;
+        }
+
+        .pu-row:hover {
+            background: var(--comic-yellow);
+            transform: translateX(5px);
+        }
+
+        .team-badge {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: var(--white);
+            border: 4px solid var(--black);
+            font-family: 'Bangers', cursive;
+            font-size: 1.1rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            color: currentColor;
+            box-shadow: 4px 4px 0 var(--black);
+            transform: rotate(-2deg);
+        }
+
+        .engine-name {
+            text-align: right;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--black);
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        /* Team Colors */
+        .team-mclaren { color: var(--mclaren); }
+        .team-mercedes { color: var(--mercedes); }
+        .team-williams { color: var(--williams); }
+        .team-alpine { color: var(--alpine); }
+        .team-ferrari { color: var(--ferrari); }
+        .team-haas { color: var(--haas); }
+        .team-cadillac { color: var(--cadillac); }
+        .team-redbull { color: var(--redbull); }
+        .team-aston { color: var(--aston); }
+        .team-audi { color: var(--audi); }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .comic-card {
+            background: var(--white);
+            border: 5px solid var(--black);
+            padding: 2.5rem;
+            box-shadow: 8px 8px 0 var(--black);
+            transform: rotate(1deg);
+            transition: transform 0.2s ease;
+        }
+
+        .comic-card:nth-child(even) {
+            transform: rotate(-1deg);
+        }
+
+        .comic-card:hover {
+            transform: rotate(0deg) scale(1.05);
+        }
+
+        .comic-card h3 {
+            font-family: 'Bangers', cursive;
+            font-size: 2rem;
+            color: var(--comic-purple);
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 0 var(--comic-yellow);
+        }
+
+        .comic-card ul {
+            list-style: none;
+        }
+
+        .comic-card li {
+            padding: 0.75rem;
+            margin-bottom: 0.75rem;
+            background: var(--comic-yellow);
+            border: 3px solid var(--black);
+            font-weight: 600;
+        }
+
+        .comic-card strong {
+            color: var(--comic-red);
+            font-weight: 700;
+        }
+
+        /* Speech Bubble Panel */
+        .speech-panel {
+            background: var(--white);
+            border: 6px solid var(--black);
+            border-radius: 50px;
+            padding: 4rem 3rem;
+            margin: 5rem 0;
+            position: relative;
+            box-shadow: 12px 12px 0 var(--black);
+        }
+
+        .speech-panel::after {
+            content: '';
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-top: 40px solid var(--black);
+        }
+
+        .speech-panel::before {
+            content: '';
+            position: absolute;
+            bottom: -34px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 26px solid transparent;
+            border-right: 26px solid transparent;
+            border-top: 36px solid var(--white);
+            z-index: 1;
+        }
+
+        .speech-panel h3 {
+            font-family: 'Luckiest Guy', cursive;
+            font-size: 3rem;
+            color: var(--comic-red);
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 2rem;
+            text-shadow: 3px 3px 0 var(--comic-yellow);
+        }
+
+        .terms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .term-bubble {
+            background: var(--comic-cyan);
+            border: 4px solid var(--black);
+            border-radius: 30px;
+            padding: 1.5rem;
+            box-shadow: 5px 5px 0 var(--black);
+        }
+
+        .term-bubble strong {
+            display: block;
+            font-family: 'Bangers', cursive;
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        /* GP Panel */
+        .gp-panel {
+            background: var(--comic-blue);
+            color: var(--white);
+            border: 8px solid var(--black);
+            padding: 4rem 3rem;
+            text-align: center;
+            margin: 5rem 0;
+            box-shadow: 15px 15px 0 var(--black);
+            transform: rotate(-1deg);
+        }
+
+        .gp-panel h3 {
+            font-family: 'Luckiest Guy', cursive;
+            font-size: 4rem;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            text-shadow:
+                4px 4px 0 var(--comic-yellow),
+                4px 4px 0 var(--black) inset,
+                8px 8px 0 var(--black);
+        }
+
+        .gp-stats {
+            display: flex;
+            justify-content: center;
+            gap: 5rem;
+            margin: 2rem 0;
+        }
+
+        .gp-stat {
+            background: var(--comic-yellow);
+            color: var(--black);
+            border: 5px solid var(--black);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 6px 6px 0 var(--black);
+        }
+
+        .gp-stat-label {
+            font-family: 'Bangers', cursive;
+            font-size: 1rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .gp-stat-value {
+            font-family: 'Luckiest Guy', cursive;
+            font-size: 3rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            font-family: 'Bangers', cursive;
+            font-size: 2rem;
+            color: var(--black);
+            text-transform: uppercase;
+            text-shadow: 2px 2px 0 var(--white);
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+
+            .tagline {
+                font-size: 1.5rem;
+            }
+
+            .race-bubble {
+                padding: 1rem 2rem;
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .pu-header {
+                padding: 1.25rem 1.5rem;
+                font-size: 1.1rem;
+                grid-template-columns: 1.1fr 1fr;
+            }
+
+            .pu-row {
+                padding: 1.25rem 1.5rem;
+                grid-template-columns: 1.1fr 1fr;
+            }
+
+            .team-badge {
+                padding: 0.6rem 1.25rem;
+                font-size: 0.95rem;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .speech-panel {
+                padding: 3rem 1.5rem;
+                border-radius: 30px;
+            }
+
+            .speech-panel h3 {
+                font-size: 2rem;
+            }
+
+            .terms-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gp-panel {
+                padding: 3rem 1.5rem;
+            }
+
+            .gp-panel h3 {
+                font-size: 2.5rem;
+            }
+
+            .gp-stats {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .gp-stat-value {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="hero">
+            <h1>THE NEW ERA!</h1>
+            <div class="tagline">Everything You Need to Know</div>
+            <div class="race-bubble">
+                AUSTRALIAN GP • <span>58 LAPS</span> • ~90 MIN
+            </div>
+        </header>
+
+        <section class="section">
+            <h2 class="section-title">2026 Power Units!</h2>
+            <div class="pu-container">
+                <div class="pu-header">
+                    <div>Team</div>
+                    <div>Power Unit</div>
+                </div>
+
+                <div class="pu-row">
+                    <div><div class="team-badge team-mclaren">McLaren</div></div>
+                    <div class="engine-name">Mercedes</div>
+                </div>
+
+                <div class="pu-row">
+                    <div><div class="team-badge team-mercedes">Mercedes</div></div>
+                    <div class="engine-name">Mercedes</div>
+                </div>
+
+                <div class="pu-row">
+                    <div><div class="team-badge team-williams">Williams</div></div>
+                    <div class="engine-name">Mercedes</div>
+                </div>
+
+                <div class="pu-row">
+                    <div><div class="team-badge team-alpine">Alpine</div></div>
+                    <div class="engine-name">Mercedes</div>
+                </div>
+
+                <div class="pu-row">
+                    <div><div class="team-badge team-ferrari">Ferrari</div></div>
+                    <div class="engine-name">Ferrari</div>
+                </div>
+
+                <div class="pu-row">
+                    <div><div class="team-badge team-haas">Haas</div></div>
+                    <div class="engine-name">Ferrari</div>
+                </div>
+
+                <div class="pu-row">
+                    <div><div class="team-badge team-cadillac">Cadillac</div></div>
+                    <div class="engine-name">Ferrari</div>
+                </div>
+
+                <div class="pu-row">
+                    <div><div class="team-badge team-redbull">Red Bull</div></div>
+                    <div class="engine-name">Red Bull Ford</div>
+                </div>
+
+                <div class="pu-row">
+                    <div><div class="team-badge team-redbull">RB</div></div>
+                    <div class="engine-name">Red Bull Ford</div>
+                </div>
+
+                <div class="pu-row">
+                    <div><div class="team-badge team-aston">Aston Martin</div></div>
+                    <div class="engine-name">Honda</div>
+                </div>
+
+                <div class="pu-row">
+                    <div><div class="team-badge team-audi">Audi</div></div>
+                    <div class="engine-name">Audi</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="speech-panel">
+            <h3>Basic F1 Terms!</h3>
+            <div class="terms-grid">
+                <div class="term-bubble">
+                    <strong>Constructor</strong>
+                    The team that builds the car (Ferrari, Mercedes, Red Bull, etc.). Teams score points separately from drivers.
+                </div>
+                <div class="term-bubble">
+                    <strong>Pole Position</strong>
+                    Starting first on the grid because you had the fastest qualifying lap.
+                </div>
+                <div class="term-bubble">
+                    <strong>Pit Stop</strong>
+                    Pulling into the pits during the race to change tires, fix damage, or adjust the car. Takes 2-3 seconds for a tire change.
+                </div>
+                <div class="term-bubble">
+                    <strong>Qualifying</strong>
+                    Saturday session where drivers compete for grid position. Fastest lap wins pole position.
+                </div>
+                <div class="term-bubble">
+                    <strong>Grid</strong>
+                    The starting lineup formation. Better qualifying performance means starting closer to the front.
+                </div>
+                <div class="term-bubble">
+                    <strong>Undercut/Overcut</strong>
+                    Pit strategy where you either pit earlier than your rival (undercut) or stay out longer (overcut) to gain track position.
+                </div>
+                <div class="term-bubble">
+                    <strong>Safety Car</strong>
+                    Pace car deployed after crashes or debris. Field bunches up, no overtaking allowed until it leaves the track.
+                </div>
+            </div>
+        </div>
+
+        <section class="section">
+            <h2 class="section-title">New 2026 Terminology!</h2>
+            <div class="card-grid">
+                <div class="comic-card">
+                    <h3>Active Aero!</h3>
+                    <p>Replaces DRS. The driver now dynamically adjusts the wings between two modes:</p>
+                    <ul>
+                        <li><strong>Z-Mode (Cornering):</strong> High downforce for grip in corners</li>
+                        <li><strong>X-Mode (Straight):</strong> Low drag for top speed on straights</li>
+                    </ul>
+                </div>
+
+                <div class="comic-card">
+                    <h3>Boost Mode!</h3>
+                    <p>Driver-controlled power bursts adding <strong>470 HP</strong> instantly. Available anytime for creative attacks/defense, not just on straights. Drains battery quickly.</p>
+                </div>
+
+                <div class="comic-card">
+                    <h3>Overtake Mode (OT)!</h3>
+                    <p>A system "unlock" that triggers automatically when within <strong>1 second</strong> of the car ahead at the detection point.</p>
+                    <ul>
+                        <li><strong>The Effect:</strong> Raises the speed limit where electric power is throttled from 180 mph to 209 mph</li>
+                        <li><strong>Availability:</strong> Lasts the entire lap once triggered. Freely available during Practice and Qualifying</li>
+                    </ul>
+                </div>
+
+                <div class="comic-card">
+                    <h3>Recharge (4 Ways)!</h3>
+                    <p>Drivers now harvest energy in four distinct ways:</p>
+                    <ul>
+                        <li><strong>Braking:</strong> Standard harvesting</li>
+                        <li><strong>Lifting Early:</strong> Coasting into corners</li>
+                        <li><strong>Corner Overloading:</strong> Managing throttle in corners to charge</li>
+                        <li><strong>Super Clipping:</strong> Harvesting at 100% throttle (end of straights)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">What's Different in 2026!</h2>
+            <div class="card-grid">
+                <div class="comic-card">
+                    <h3>Power Changes!</h3>
+                    <ul>
+                        <li><strong>Power Split:</strong> Cars now run 50/50 electric and combustion engine power</li>
+                        <li><strong>MGU-K Upgrade:</strong> Power output increased from 120kW to 350kW (~160.9 HP to ~469.4 HP)</li>
+                        <li><strong>No More MGU-H:</strong> The heat recovery system is gone</li>
+                        <li><strong>Sustainable Fuel:</strong> First year running 100% advanced sustainable fuel</li>
+                    </ul>
+                </div>
+
+                <div class="comic-card">
+                    <h3>Chassis Changes!</h3>
+                    <ul>
+                        <li><strong>Smaller:</strong> 20cm shorter and 10cm narrower</li>
+                        <li><strong>Lighter:</strong> Minimum weight reduced by ~30kg</li>
+                        <li><strong>Narrower Tires:</strong> Front tires reduced by 25mm, rears by 30mm to reduce drag</li>
+                    </ul>
+                </div>
+
+                <div class="comic-card">
+                    <h3>New Features!</h3>
+                    <ul>
+                        <li><strong>Driver Cooling:</strong> Mandatory cooling system (vest/shirt) active when ambient temp hits ~31°C (88°F)</li>
+                        <li><strong>Safety Lights:</strong> New lights on rear wing endplates to signal if the car is electrically safe to touch</li>
+                    </ul>
+                </div>
+
+                <div class="comic-card">
+                    <h3>Race Day Changes!</h3>
+                    <ul>
+                        <li><strong>DRS Zones Gone:</strong> Old system restricted passing aids to specific zones. Now, drivers manage Active Aero and Boost constantly around the whole track</li>
+                        <li><strong>Fastest Lap:</strong> Bonus point awarded to whoever sets the fastest single lap. Must finish in top 10 to claim it</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="gp-panel">
+            <h3>AUSTRALIAN GRAND PRIX!</h3>
+            <div class="gp-stats">
+                <div class="gp-stat">
+                    <div class="gp-stat-label">Lap Count</div>
+                    <div class="gp-stat-value">58</div>
+                </div>
+                <div class="gp-stat">
+                    <div class="gp-stat-label">Race Length</div>
+                    <div class="gp-stat-value">~90min</div>
+                </div>
+            </div>
+            <p style="font-family: 'Bangers', cursive; font-size: 1.3rem; margin-top: 2rem;"><strong>Track Note:</strong> High evolution track; grip improves significantly as the race goes on.</p>
+        </div>
+
+        <footer>
+            <p>Lights Out and Away We Go!</p>
+        </footer>
+    </div>
+</body>
+</html>

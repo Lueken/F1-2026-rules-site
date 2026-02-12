@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F1.2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Brutalist Palette */
+            --concrete: #e5e5e5;
+            --steel: #a8a8a8;
+            --iron: #666666;
+            --asphalt: #2a2a2a;
+            --void: #0a0a0a;
+            --warning-yellow: #ffcc00;
+            --danger-red: #ff0000;
+            --white: #ffffff;
+            --black: #000000;
+
+            /* Team Colors */
+            --mclaren: #ff8700;
+            --mercedes: #00d2be;
+            --williams: #005aff;
+            --alpine: #0090ff;
+            --ferrari: #dc0000;
+            --haas: #999999;
+            --cadillac: #666666;
+            --redbull: #0600ef;
+            --aston: #006f62;
+            --audi: #ff1e00;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: var(--concrete);
+            color: var(--void);
+            line-height: 1.4;
+            position: relative;
+        }
+
+        /* Concrete Texture */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        /* Warning Stripe */
+        .warning-stripe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: repeating-linear-gradient(
+                45deg,
+                var(--warning-yellow),
+                var(--warning-yellow) 20px,
+                var(--void) 20px,
+                var(--void) 40px
+            );
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Hero */
+        .hero {
+            background: var(--void);
+            color: var(--white);
+            padding: 6rem 3rem 4rem;
+            margin-bottom: 0;
+            position: relative;
+            border-bottom: 8px solid var(--warning-yellow);
+        }
+
+        .grid-number {
+            font-family: 'Unbounded', sans-serif;
+            font-size: clamp(10rem, 25vw, 20rem);
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.05);
+            position: absolute;
+            top: 50%;
+            right: 2rem;
+            transform: translateY(-50%);
+            line-height: 1;
+            user-select: none;
+        }
+
+        h1 {
+            font-family: 'Unbounded', sans-serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 0.85;
+            margin-bottom: 2rem;
+            letter-spacing: -4px;
+        }
+
+        .status-bar {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 1rem 0;
+            border-top: 2px solid var(--steel);
+            border-bottom: 2px solid var(--steel);
+            margin-top: 2rem;
+        }
+
+        .status-bar span {
+            color: var(--warning-yellow);
+        }
+
+        /* Section */
+        .section {
+            padding: 4rem 3rem;
+            border-bottom: 4px solid var(--void);
+        }
+
+        .section:nth-child(even) {
+            background: var(--white);
+        }
+
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--iron);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Unbounded', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 0.9;
+            margin-bottom: 3rem;
+            letter-spacing: -2px;
+        }
+
+        /* Power Units Table */
+        .pu-structure {
+            background: var(--void);
+            border: 4px solid var(--void);
+        }
+
+        .pu-head {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            background: var(--warning-yellow);
+            padding: 1.5rem 2rem;
+            font-family: 'Unbounded', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--void);
+        }
+
+        .pu-head div:last-child {
+            text-align: right;
+        }
+
+        .pu-line {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            padding: 1.5rem 2rem;
+            border-bottom: 2px solid var(--asphalt);
+            background: var(--void);
+            transition: all 0.2s ease;
+        }
+
+        .pu-line:last-child {
+            border-bottom: none;
+        }
+
+        .pu-line:hover {
+            background: var(--asphalt);
+            padding-left: 2.5rem;
+        }
+
+        .team-block {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: var(--void);
+            border: 3px solid currentColor;
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 800;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: currentColor;
+            transition: all 0.2s ease;
+        }
+
+        .pu-line:hover .team-block {
+            background: currentColor;
+            color: var(--void);
+        }
+
+        .engine-type {
+            text-align: right;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--steel);
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        /* Team Colors */
+        .team-mclaren { color: var(--mclaren); }
+        .team-mercedes { color: var(--mercedes); }
+        .team-williams { color: var(--williams); }
+        .team-alpine { color: var(--alpine); }
+        .team-ferrari { color: var(--ferrari); }
+        .team-haas { color: var(--haas); }
+        .team-cadillac { color: var(--cadillac); }
+        .team-redbull { color: var(--redbull); }
+        .team-aston { color: var(--aston); }
+        .team-audi { color: var(--audi); }
+
+        /* Info Modules */
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0;
+            margin-top: 3rem;
+        }
+
+        .info-module {
+            background: var(--white);
+            border: 4px solid var(--void);
+            border-right: none;
+            border-bottom: none;
+            padding: 2.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .module-grid .info-module:nth-child(2n) {
+            border-right: 4px solid var(--void);
+        }
+
+        .module-grid .info-module:nth-last-child(-n+2) {
+            border-bottom: 4px solid var(--void);
+        }
+
+        .info-module:hover {
+            background: var(--warning-yellow);
+        }
+
+        .info-module h3 {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            line-height: 1;
+        }
+
+        .info-module ul {
+            list-style: none;
+        }
+
+        .info-module li {
+            padding: 0.75rem 0;
+            padding-left: 1.5rem;
+            border-left: 4px solid var(--void);
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .info-module strong {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        /* Alert Panel */
+        .alert-panel {
+            background: var(--void);
+            color: var(--white);
+            padding: 4rem 3rem;
+            margin: 0;
+            border-top: 8px solid var(--danger-red);
+            border-bottom: 8px solid var(--danger-red);
+        }
+
+        .alert-panel h3 {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 2.5rem;
+            line-height: 0.9;
+            letter-spacing: -2px;
+        }
+
+        .term-blocks {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .term-block {
+            background: var(--asphalt);
+            padding: 2rem;
+            border-left: 6px solid var(--warning-yellow);
+        }
+
+        .term-block strong {
+            display: block;
+            font-family: 'Unbounded', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            color: var(--warning-yellow);
+        }
+
+        /* GP Module */
+        .gp-module {
+            background: var(--void);
+            color: var(--white);
+            padding: 4rem 3rem;
+            text-align: center;
+            border-top: 4px solid var(--void);
+            border-bottom: 20px solid var(--warning-yellow);
+        }
+
+        .gp-module h3 {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 0.9;
+            margin-bottom: 3rem;
+            letter-spacing: -2px;
+        }
+
+        .gp-data {
+            display: flex;
+            justify-content: center;
+            gap: 5rem;
+            margin: 2rem 0;
+        }
+
+        .data-point {
+            text-align: center;
+        }
+
+        .data-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--steel);
+            margin-bottom: 0.75rem;
+        }
+
+        .data-value {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--warning-yellow);
+            line-height: 1;
+        }
+
+        .gp-note {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--asphalt);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--void);
+            color: var(--steel);
+            padding: 3rem;
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .warning-stripe {
+                height: 15px;
+            }
+
+            .hero {
+                padding: 4rem 1.5rem 3rem;
+            }
+
+            .grid-number {
+                font-size: 8rem;
+                right: 1rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+                margin-bottom: 1.5rem;
+                letter-spacing: -2px;
+            }
+
+            .status-bar {
+                font-size: 0.85rem;
+                padding: 0.75rem 0;
+            }
+
+            .section {
+                padding: 3rem 1.5rem;
+            }
+
+            .section-label {
+                font-size: 0.7rem;
+                letter-spacing: 3px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+                letter-spacing: -1px;
+            }
+
+            .pu-head {
+                padding: 1.25rem 1.5rem;
+                font-size: 0.75rem;
+                grid-template-columns: 1.1fr 1fr;
+            }
+
+            .pu-line {
+                padding: 1.25rem 1.5rem;
+                grid-template-columns: 1.1fr 1fr;
+            }
+
+            .team-block {
+                padding: 0.6rem 1.25rem;
+                font-size: 0.85rem;
+                border-width: 2px;
+            }
+
+            .engine-type {
+                font-size: 0.85rem;
+            }
+
+            .module-grid {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .info-module {
+                border-right: 4px solid var(--void);
+                border-bottom: none;
+                padding: 2rem 1.5rem;
+            }
+
+            .module-grid .info-module:last-child {
+                border-bottom: 4px solid var(--void);
+            }
+
+            .info-module h3 {
+                font-size: 1.5rem;
+                margin-bottom: 1.25rem;
+            }
+
+            .info-module li {
+                padding: 0.6rem 0;
+                padding-left: 1.25rem;
+                border-left-width: 3px;
+            }
+
+            .alert-panel {
+                padding: 3rem 1.5rem;
+            }
+
+            .alert-panel h3 {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+                letter-spacing: -1px;
+            }
+
+            .term-blocks {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .term-block {
+                padding: 1.5rem;
+                border-left-width: 4px;
+            }
+
+            .term-block strong {
+                font-size: 1rem;
+            }
+
+            .gp-module {
+                padding: 3rem 1.5rem;
+                border-bottom-width: 15px;
+            }
+
+            .gp-module h3 {
+                font-size: 2.5rem;
+                margin-bottom: 2rem;
+                letter-spacing: -1px;
+            }
+
+            .gp-data {
+                flex-direction: column;
+                gap: 2.5rem;
+            }
+
+            .data-value {
+                font-size: 3rem;
+            }
+
+            .gp-note {
+                font-size: 0.85rem;
+                margin-top: 1.5rem;
+                padding-top: 1.5rem;
+            }
+
+            .footer {
+                padding: 2.5rem 1.5rem;
+                font-size: 0.8rem;
+                letter-spacing: 2px;
+            }
+        }
+
+        /* Utility */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .module-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .module-grid .info-module:nth-child(odd) {
+                border-right: none;
+            }
+
+            .module-grid .info-module:nth-child(even) {
+                border-right: 4px solid var(--void);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="warning-stripe"></div>
+
+    <div class="container">
+        <header class="hero">
+            <div class="grid-number">26</div>
+            <h1>THE<br>NEW<br>ERA</h1>
+            <div class="status-bar">
+                EVERYTHING YOU NEED TO KNOW <span>//</span> AUSTRALIAN GP <span>//</span> 58 LAPS <span>//</span> ~90 MINUTES
+            </div>
+        </header>
+
+        <section class="section">
+            <div class="section-label">GRID.01</div>
+            <h2 class="section-title">2026<br>POWER<br>UNITS</h2>
+
+            <div class="pu-structure">
+                <div class="pu-head">
+                    <div>TEAM</div>
+                    <div>POWER UNIT</div>
+                </div>
+
+                <div class="pu-line">
+                    <div>
+                        <div class="team-block team-mclaren">MCLAREN</div>
+                    </div>
+                    <div class="engine-type">MERCEDES</div>
+                </div>
+
+                <div class="pu-line">
+                    <div>
+                        <div class="team-block team-mercedes">MERCEDES</div>
+                    </div>
+                    <div class="engine-type">MERCEDES</div>
+                </div>
+
+                <div class="pu-line">
+                    <div>
+                        <div class="team-block team-williams">WILLIAMS</div>
+                    </div>
+                    <div class="engine-type">MERCEDES</div>
+                </div>
+
+                <div class="pu-line">
+                    <div>
+                        <div class="team-block team-alpine">ALPINE</div>
+                    </div>
+                    <div class="engine-type">MERCEDES</div>
+                </div>
+
+                <div class="pu-line">
+                    <div>
+                        <div class="team-block team-ferrari">FERRARI</div>
+                    </div>
+                    <div class="engine-type">FERRARI</div>
+                </div>
+
+                <div class="pu-line">
+                    <div>
+                        <div class="team-block team-haas">HAAS</div>
+                    </div>
+                    <div class="engine-type">FERRARI</div>
+                </div>
+
+                <div class="pu-line">
+                    <div>
+                        <div class="team-block team-cadillac">CADILLAC</div>
+                    </div>
+                    <div class="engine-type">FERRARI</div>
+                </div>
+
+                <div class="pu-line">
+                    <div>
+                        <div class="team-block team-redbull">RED BULL</div>
+                    </div>
+                    <div class="engine-type">RED BULL FORD</div>
+                </div>
+
+                <div class="pu-line">
+                    <div>
+                        <div class="team-block team-redbull">RB</div>
+                    </div>
+                    <div class="engine-type">RED BULL FORD</div>
+                </div>
+
+                <div class="pu-line">
+                    <div>
+                        <div class="team-block team-aston">ASTON MARTIN</div>
+                    </div>
+                    <div class="engine-type">HONDA</div>
+                </div>
+
+                <div class="pu-line">
+                    <div>
+                        <div class="team-block team-audi">AUDI</div>
+                    </div>
+                    <div class="engine-type">AUDI</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="alert-panel">
+            <h3>BASIC<br>F1<br>TERMS</h3>
+            <div class="term-blocks">
+                <div class="term-block">
+                    <strong>Constructor</strong>
+                    The team that builds the car (Ferrari, Mercedes, Red Bull, etc.). Teams score points separately from drivers.
+                </div>
+                <div class="term-block">
+                    <strong>Pole Position</strong>
+                    Starting first on the grid because you had the fastest qualifying lap.
+                </div>
+                <div class="term-block">
+                    <strong>Pit Stop</strong>
+                    Pulling into the pits during the race to change tires, fix damage, or adjust the car. Takes 2-3 seconds for a tire change.
+                </div>
+                <div class="term-block">
+                    <strong>Qualifying</strong>
+                    Saturday session where drivers compete for grid position. Fastest lap wins pole position.
+                </div>
+                <div class="term-block">
+                    <strong>Grid</strong>
+                    The starting lineup formation. Better qualifying performance means starting closer to the front.
+                </div>
+                <div class="term-block">
+                    <strong>Undercut/Overcut</strong>
+                    Pit strategy where you either pit earlier than your rival (undercut) or stay out longer (overcut) to gain track position.
+                </div>
+                <div class="term-block">
+                    <strong>Safety Car</strong>
+                    Pace car deployed after crashes or debris. Field bunches up, no overtaking allowed until it leaves the track.
+                </div>
+            </div>
+        </div>
+
+        <section class="section">
+            <div class="section-label">GRID.02</div>
+            <h2 class="section-title">NEW 2026<br>TERMINOLOGY</h2>
+
+            <div class="module-grid">
+                <div class="info-module">
+                    <h3>ACTIVE<br>AERO</h3>
+                    <p>Replaces DRS. The driver now dynamically adjusts the wings between two modes:</p>
+                    <ul>
+                        <li><strong>Z-Mode (Cornering):</strong> High downforce for grip in corners</li>
+                        <li><strong>X-Mode (Straight):</strong> Low drag for top speed on straights</li>
+                    </ul>
+                </div>
+
+                <div class="info-module">
+                    <h3>BOOST<br>MODE</h3>
+                    <p>Driver-controlled power bursts adding <strong>470 HP</strong> instantly. Available anytime for creative attacks/defense, not just on straights. Drains battery quickly.</p>
+                </div>
+
+                <div class="info-module">
+                    <h3>OVERTAKE<br>MODE (OT)</h3>
+                    <p>A system "unlock" that triggers automatically when within <strong>1 second</strong> of the car ahead at the detection point.</p>
+                    <ul>
+                        <li><strong>The Effect:</strong> Raises the speed limit where electric power is throttled from 180 mph to 209 mph</li>
+                        <li><strong>Availability:</strong> Lasts the entire lap once triggered. Freely available during Practice and Qualifying</li>
+                    </ul>
+                </div>
+
+                <div class="info-module">
+                    <h3>RECHARGE<br>(4 WAYS)</h3>
+                    <p>Drivers now harvest energy in four distinct ways:</p>
+                    <ul>
+                        <li><strong>Braking:</strong> Standard harvesting</li>
+                        <li><strong>Lifting Early:</strong> Coasting into corners</li>
+                        <li><strong>Corner Overloading:</strong> Managing throttle in corners to charge</li>
+                        <li><strong>Super Clipping:</strong> Harvesting at 100% throttle (end of straights)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-label">GRID.03</div>
+            <h2 class="section-title">WHAT'S<br>DIFFERENT<br>IN 2026</h2>
+
+            <div class="module-grid">
+                <div class="info-module">
+                    <h3>POWER<br>CHANGES</h3>
+                    <ul>
+                        <li><strong>Power Split:</strong> Cars now run 50/50 electric and combustion engine power</li>
+                        <li><strong>MGU-K Upgrade:</strong> Power output increased from 120kW to 350kW (~160.9 HP to ~469.4 HP)</li>
+                        <li><strong>No More MGU-H:</strong> The heat recovery system is gone</li>
+                        <li><strong>Sustainable Fuel:</strong> First year running 100% advanced sustainable fuel</li>
+                    </ul>
+                </div>
+
+                <div class="info-module">
+                    <h3>CHASSIS<br>CHANGES</h3>
+                    <ul>
+                        <li><strong>Smaller:</strong> 20cm shorter and 10cm narrower</li>
+                        <li><strong>Lighter:</strong> Minimum weight reduced by ~30kg</li>
+                        <li><strong>Narrower Tires:</strong> Front tires reduced by 25mm, rears by 30mm to reduce drag</li>
+                    </ul>
+                </div>
+
+                <div class="info-module">
+                    <h3>NEW<br>FEATURES</h3>
+                    <ul>
+                        <li><strong>Driver Cooling:</strong> Mandatory cooling system (vest/shirt) active when ambient temp hits ~31°C (88°F)</li>
+                        <li><strong>Safety Lights:</strong> New lights on rear wing endplates to signal if the car is electrically safe to touch</li>
+                    </ul>
+                </div>
+
+                <div class="info-module">
+                    <h3>RACE DAY<br>CHANGES</h3>
+                    <ul>
+                        <li><strong>DRS Zones Gone:</strong> Old system restricted passing aids to specific zones. Now, drivers manage Active Aero and Boost constantly around the whole track</li>
+                        <li><strong>Fastest Lap:</strong> Bonus point awarded to whoever sets the fastest single lap. Must finish in top 10 to claim it</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="gp-module">
+            <h3>AUSTRALIAN<br>GRAND PRIX</h3>
+            <div class="gp-data">
+                <div class="data-point">
+                    <div class="data-label">LAP COUNT</div>
+                    <div class="data-value">58</div>
+                </div>
+                <div class="data-point">
+                    <div class="data-label">RACE LENGTH</div>
+                    <div class="data-value">~90MIN</div>
+                </div>
+            </div>
+            <div class="gp-note"><strong>TRACK NOTE:</strong> HIGH EVOLUTION TRACK; GRIP IMPROVES SIGNIFICANTLY AS THE RACE GOES ON.</div>
+        </div>
+
+        <div class="footer">
+            <p>LIGHTS OUT AND AWAY WE GO!</p>
+        </div>
+    </div>
+</body>
+</html>

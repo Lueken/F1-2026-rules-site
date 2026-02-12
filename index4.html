@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F1 2026 // NEON GRID</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700;800;900&family=Audiowide&family=Saira+Condensed:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Neon Palette */
+            --void: #0a0a0f;
+            --grid-dark: #1a1a2e;
+            --neon-pink: #ff006e;
+            --neon-cyan: #00f5ff;
+            --neon-purple: #a855f7;
+            --neon-blue: #3b82f6;
+            --electric-yellow: #fbbf24;
+            --white: #ffffff;
+
+            /* Team Neon Colors */
+            --mclaren: #ff8700;
+            --mercedes: #00d2be;
+            --williams: #005aff;
+            --alpine: #0090ff;
+            --ferrari: #ff006e;
+            --haas: #b6babd;
+            --cadillac: #9ca3af;
+            --redbull: #3b82f6;
+            --aston: #10b981;
+            --audi: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background: var(--void);
+            color: var(--white);
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated Grid Background */
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(255, 0, 110, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 245, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(50px); }
+        }
+
+        /* Glow effect overlay */
+        .glow-overlay {
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 0, 110, 0.1) 0%, transparent 50%);
+            animation: glowPulse 8s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.1); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            margin-bottom: 5rem;
+            position: relative;
+        }
+
+        .neon-line {
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon-cyan), var(--neon-pink), transparent);
+            margin-bottom: 3rem;
+            box-shadow: 0 0 20px var(--neon-cyan);
+            animation: neonFlicker 3s infinite;
+        }
+
+        @keyframes neonFlicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        h1 {
+            font-family: 'Audiowide', sans-serif;
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-weight: 400;
+            background: linear-gradient(135deg, var(--neon-cyan) 0%, var(--neon-pink) 50%, var(--neon-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-transform: uppercase;
+            line-height: 1;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 30px var(--neon-cyan));
+            animation: glowText 3s ease-in-out infinite;
+        }
+
+        @keyframes glowText {
+            0%, 100% { filter: drop-shadow(0 0 30px var(--neon-cyan)); }
+            50% { filter: drop-shadow(0 0 50px var(--neon-pink)); }
+        }
+
+        .cyber-tag {
+            font-family: 'Saira Condensed', sans-serif;
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            font-weight: 700;
+            color: var(--neon-pink);
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            margin-bottom: 2.5rem;
+            text-shadow: 0 0 20px var(--neon-pink);
+        }
+
+        .race-chip {
+            display: inline-flex;
+            gap: 2rem;
+            padding: 1.25rem 2.5rem;
+            background: rgba(255, 0, 110, 0.1);
+            border: 2px solid var(--neon-pink);
+            font-family: 'Saira Condensed', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 0 30px rgba(255, 0, 110, 0.5), inset 0 0 30px rgba(255, 0, 110, 0.1);
+            position: relative;
+        }
+
+        .race-chip::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-pink), var(--neon-purple), var(--neon-cyan));
+            background-size: 300% 300%;
+            animation: borderGlow 3s linear infinite;
+            z-index: -1;
+            opacity: 0.5;
+            filter: blur(10px);
+        }
+
+        @keyframes borderGlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 300% 50%; }
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 5rem;
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-family: 'Audiowide', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 400;
+            color: var(--neon-cyan);
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+            text-shadow: 0 0 30px var(--neon-cyan);
+            line-height: 1;
+        }
+
+        .section-subtitle {
+            font-family: 'Saira Condensed', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        /* Power Units Table */
+        .pu-frame {
+            background: rgba(26, 26, 46, 0.6);
+            border: 2px solid var(--neon-cyan);
+            box-shadow: 0 0 40px rgba(0, 245, 255, 0.3);
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+        }
+
+        .pu-table-header {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            background: linear-gradient(135deg, rgba(255, 0, 110, 0.2), rgba(0, 245, 255, 0.2));
+            padding: 1.25rem 2rem;
+            font-family: 'Saira Condensed', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            border-bottom: 1px solid var(--neon-pink);
+        }
+
+        .pu-table-header div:last-child {
+            text-align: right;
+        }
+
+        .pu-table-row {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .pu-table-row:last-child {
+            border-bottom: none;
+        }
+
+        .pu-table-row::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: currentColor;
+            box-shadow: 0 0 10px currentColor;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .pu-table-row:hover::before {
+            opacity: 1;
+        }
+
+        .pu-table-row:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .cyber-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1.25rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid currentColor;
+            font-family: 'Saira Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 1.05rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: currentColor;
+            box-shadow: 0 0 15px currentColor, inset 0 0 15px rgba(255, 255, 255, 0.1);
+            clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+            transition: all 0.3s ease;
+        }
+
+        .pu-table-row:hover .cyber-badge {
+            box-shadow: 0 0 25px currentColor, inset 0 0 25px rgba(255, 255, 255, 0.2);
+        }
+
+        .engine-label {
+            text-align: right;
+            font-family: 'Saira Condensed', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        /* Team Colors */
+        .team-mclaren { color: var(--mclaren); }
+        .team-mercedes { color: var(--mercedes); }
+        .team-williams { color: var(--williams); }
+        .team-alpine { color: var(--alpine); }
+        .team-ferrari { color: var(--ferrari); }
+        .team-haas { color: var(--haas); }
+        .team-cadillac { color: var(--cadillac); }
+        .team-redbull { color: var(--redbull); }
+        .team-aston { color: var(--aston); }
+        .team-audi { color: var(--audi); }
+
+        /* Info Cards */
+        .cyber-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .cyber-card {
+            background: rgba(26, 26, 46, 0.6);
+            border: 1px solid var(--neon-purple);
+            padding: 2.5rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cyber-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cyber-card:hover::before {
+            left: 100%;
+        }
+
+        .cyber-card:hover {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 50px rgba(0, 245, 255, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .cyber-card h3 {
+            font-family: 'Audiowide', sans-serif;
+            font-size: 1.8rem;
+            color: var(--neon-pink);
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 20px var(--neon-pink);
+        }
+
+        .cyber-card ul {
+            list-style: none;
+        }
+
+        .cyber-card li {
+            padding: 0.75rem 0;
+            padding-left: 1.5rem;
+            border-left: 2px solid var(--neon-cyan);
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+
+        .cyber-card li:hover {
+            border-left-color: var(--neon-pink);
+            padding-left: 2rem;
+        }
+
+        .cyber-card strong {
+            color: var(--neon-cyan);
+            font-weight: 700;
+        }
+
+        /* Feature Panel */
+        .neon-panel {
+            background: linear-gradient(135deg, rgba(255, 0, 110, 0.1), rgba(0, 245, 255, 0.1));
+            border: 2px solid var(--neon-pink);
+            padding: 3rem;
+            margin: 4rem 0;
+            box-shadow: 0 0 50px rgba(255, 0, 110, 0.3);
+            position: relative;
+        }
+
+        .neon-panel::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-pink), var(--neon-purple), var(--neon-cyan));
+            background-size: 300% 300%;
+            animation: borderGlow 3s linear infinite;
+            z-index: -1;
+            opacity: 0.3;
+            filter: blur(20px);
+        }
+
+        .neon-panel h3 {
+            font-family: 'Audiowide', sans-serif;
+            font-size: 2.5rem;
+            color: var(--neon-cyan);
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 30px var(--neon-cyan);
+        }
+
+        .terms-flex {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .term-chip {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--neon-purple);
+            padding: 1.5rem;
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .term-chip:hover {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 30px rgba(0, 245, 255, 0.4);
+        }
+
+        .term-chip strong {
+            display: block;
+            font-family: 'Saira Condensed', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--neon-pink);
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+            text-shadow: 0 0 15px var(--neon-pink);
+        }
+
+        /* GP Showcase */
+        .gp-showcase {
+            background: rgba(0, 0, 0, 0.8);
+            border: 3px solid var(--electric-yellow);
+            padding: 3rem;
+            text-align: center;
+            margin: 4rem 0;
+            box-shadow: 0 0 60px rgba(251, 191, 36, 0.5);
+            position: relative;
+        }
+
+        .gp-showcase::after {
+            content: '';
+            position: absolute;
+            inset: 10px;
+            border: 1px solid var(--electric-yellow);
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .gp-showcase h3 {
+            font-family: 'Audiowide', sans-serif;
+            font-size: 3rem;
+            color: var(--electric-yellow);
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 40px var(--electric-yellow);
+        }
+
+        .gp-metrics {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin: 2rem 0;
+        }
+
+        .gp-metric {
+            text-align: center;
+        }
+
+        .metric-label {
+            font-family: 'Saira Condensed', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-value {
+            font-family: 'Audiowide', sans-serif;
+            font-size: 3rem;
+            color: var(--electric-yellow);
+            text-shadow: 0 0 30px var(--electric-yellow);
+        }
+
+        .gp-note {
+            font-family: 'Saira Condensed', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 5rem;
+            border-top: 2px solid var(--neon-cyan);
+            font-family: 'Saira Condensed', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--neon-pink);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 0 0 20px var(--neon-pink);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+            }
+
+            .hero {
+                padding: 3rem 0;
+                margin-bottom: 3.5rem;
+            }
+
+            .neon-line {
+                margin-bottom: 2rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .cyber-tag {
+                font-size: 1rem;
+                letter-spacing: 4px;
+                margin-bottom: 2rem;
+            }
+
+            .race-chip {
+                flex-direction: column;
+                gap: 0.75rem;
+                padding: 1rem 1.5rem;
+                font-size: 0.95rem;
+                letter-spacing: 1px;
+            }
+
+            .section {
+                margin-bottom: 3.5rem;
+            }
+
+            .section-header {
+                margin-bottom: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .section-subtitle {
+                font-size: 1rem;
+                letter-spacing: 2px;
+            }
+
+            .pu-table-header {
+                padding: 1rem 1.25rem;
+                font-size: 0.75rem;
+                letter-spacing: 2px;
+                grid-template-columns: 1.1fr 1fr;
+            }
+
+            .pu-table-row {
+                padding: 0.875rem 1.25rem;
+                grid-template-columns: 1.1fr 1fr;
+            }
+
+            .cyber-badge {
+                padding: 0.4rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .engine-label {
+                font-size: 0.95rem;
+            }
+
+            .cyber-grid {
+                grid-template-columns: 1fr;
+                gap: 1.75rem;
+            }
+
+            .cyber-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .cyber-card h3 {
+                font-size: 1.5rem;
+                margin-bottom: 1.25rem;
+            }
+
+            .neon-panel {
+                padding: 2rem 1.5rem;
+                margin: 3rem 0;
+            }
+
+            .neon-panel h3 {
+                font-size: 2rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .terms-flex {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .term-chip {
+                padding: 1.25rem;
+            }
+
+            .gp-showcase {
+                padding: 2rem 1.5rem;
+                margin: 3rem 0;
+            }
+
+            .gp-showcase h3 {
+                font-size: 2rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .gp-metrics {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .metric-value {
+                font-size: 2.5rem;
+            }
+
+            .gp-note {
+                font-size: 1rem;
+            }
+
+            footer {
+                padding: 2.5rem 0;
+                margin-top: 4rem;
+                font-size: 1rem;
+                letter-spacing: 2px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-bg"></div>
+    <div class="glow-overlay"></div>
+
+    <div class="container">
+        <header class="hero">
+            <div class="neon-line"></div>
+            <h1>THE NEW ERA</h1>
+            <div class="cyber-tag">Everything You Need to Know</div>
+            <div class="race-chip">
+                <span>Australian GP</span>
+                <span>//</span>
+                <span>58 Laps</span>
+                <span>//</span>
+                <span>~90 Min</span>
+            </div>
+        </header>
+
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">2026 Power Units</h2>
+                <div class="section-subtitle">New engine partnerships for the most radical regulation change in F1 history</div>
+            </div>
+
+            <div class="pu-frame">
+                <div class="pu-table-header">
+                    <div>Team</div>
+                    <div>Power Unit</div>
+                </div>
+
+                <div class="pu-table-row">
+                    <div>
+                        <div class="cyber-badge team-mclaren">McLaren</div>
+                    </div>
+                    <div class="engine-label">Mercedes</div>
+                </div>
+
+                <div class="pu-table-row">
+                    <div>
+                        <div class="cyber-badge team-mercedes">Mercedes</div>
+                    </div>
+                    <div class="engine-label">Mercedes</div>
+                </div>
+
+                <div class="pu-table-row">
+                    <div>
+                        <div class="cyber-badge team-williams">Williams</div>
+                    </div>
+                    <div class="engine-label">Mercedes</div>
+                </div>
+
+                <div class="pu-table-row">
+                    <div>
+                        <div class="cyber-badge team-alpine">Alpine</div>
+                    </div>
+                    <div class="engine-label">Mercedes</div>
+                </div>
+
+                <div class="pu-table-row">
+                    <div>
+                        <div class="cyber-badge team-ferrari">Ferrari</div>
+                    </div>
+                    <div class="engine-label">Ferrari</div>
+                </div>
+
+                <div class="pu-table-row">
+                    <div>
+                        <div class="cyber-badge team-haas">Haas</div>
+                    </div>
+                    <div class="engine-label">Ferrari</div>
+                </div>
+
+                <div class="pu-table-row">
+                    <div>
+                        <div class="cyber-badge team-cadillac">Cadillac</div>
+                    </div>
+                    <div class="engine-label">Ferrari</div>
+                </div>
+
+                <div class="pu-table-row">
+                    <div>
+                        <div class="cyber-badge team-redbull">Red Bull</div>
+                    </div>
+                    <div class="engine-label">Red Bull Ford</div>
+                </div>
+
+                <div class="pu-table-row">
+                    <div>
+                        <div class="cyber-badge team-redbull">RB</div>
+                    </div>
+                    <div class="engine-label">Red Bull Ford</div>
+                </div>
+
+                <div class="pu-table-row">
+                    <div>
+                        <div class="cyber-badge team-aston">Aston Martin</div>
+                    </div>
+                    <div class="engine-label">Honda</div>
+                </div>
+
+                <div class="pu-table-row">
+                    <div>
+                        <div class="cyber-badge team-audi">Audi</div>
+                    </div>
+                    <div class="engine-label">Audi</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="neon-panel">
+            <h3>Basic F1 Terms</h3>
+            <div class="terms-flex">
+                <div class="term-chip">
+                    <strong>Constructor</strong>
+                    The team that builds the car (Ferrari, Mercedes, Red Bull, etc.). Teams score points separately from drivers.
+                </div>
+                <div class="term-chip">
+                    <strong>Pole Position</strong>
+                    Starting first on the grid because you had the fastest qualifying lap.
+                </div>
+                <div class="term-chip">
+                    <strong>Pit Stop</strong>
+                    Pulling into the pits during the race to change tires, fix damage, or adjust the car. Takes 2-3 seconds for a tire change.
+                </div>
+                <div class="term-chip">
+                    <strong>Qualifying</strong>
+                    Saturday session where drivers compete for grid position. Fastest lap wins pole position.
+                </div>
+                <div class="term-chip">
+                    <strong>Grid</strong>
+                    The starting lineup formation. Better qualifying performance means starting closer to the front.
+                </div>
+                <div class="term-chip">
+                    <strong>Undercut/Overcut</strong>
+                    Pit strategy where you either pit earlier than your rival (undercut) or stay out longer (overcut) to gain track position.
+                </div>
+                <div class="term-chip">
+                    <strong>Safety Car</strong>
+                    Pace car deployed after crashes or debris. Field bunches up, no overtaking allowed until it leaves the track.
+                </div>
+            </div>
+        </div>
+
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">New 2026 Terminology</h2>
+                <div class="section-subtitle"></div>
+            </div>
+
+            <div class="cyber-grid">
+                <div class="cyber-card">
+                    <h3>Active Aero</h3>
+                    <p>Replaces DRS. The driver now dynamically adjusts the wings between two modes:</p>
+                    <ul>
+                        <li><strong>Z-Mode (Cornering):</strong> High downforce for grip in corners</li>
+                        <li><strong>X-Mode (Straight):</strong> Low drag for top speed on straights</li>
+                    </ul>
+                </div>
+
+                <div class="cyber-card">
+                    <h3>Boost Mode</h3>
+                    <p>Driver-controlled power bursts adding <strong>470 HP</strong> instantly. Available anytime for creative attacks/defense, not just on straights. Drains battery quickly.</p>
+                </div>
+
+                <div class="cyber-card">
+                    <h3>Overtake Mode (OT)</h3>
+                    <p>A system "unlock" that triggers automatically when within <strong>1 second</strong> of the car ahead at the detection point.</p>
+                    <ul>
+                        <li><strong>The Effect:</strong> Raises the speed limit where electric power is throttled from 180 mph to 209 mph</li>
+                        <li><strong>Availability:</strong> Lasts the entire lap once triggered. Freely available during Practice and Qualifying</li>
+                    </ul>
+                </div>
+
+                <div class="cyber-card">
+                    <h3>Recharge (4 Ways)</h3>
+                    <p>Drivers now harvest energy in four distinct ways:</p>
+                    <ul>
+                        <li><strong>Braking:</strong> Standard harvesting</li>
+                        <li><strong>Lifting Early:</strong> Coasting into corners</li>
+                        <li><strong>Corner Overloading:</strong> Managing throttle in corners to charge</li>
+                        <li><strong>Super Clipping:</strong> Harvesting at 100% throttle (end of straights)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">What's Different in 2026</h2>
+                <div class="section-subtitle"></div>
+            </div>
+
+            <div class="cyber-grid">
+                <div class="cyber-card">
+                    <h3>Power Changes</h3>
+                    <ul>
+                        <li><strong>Power Split:</strong> Cars now run 50/50 electric and combustion engine power</li>
+                        <li><strong>MGU-K Upgrade:</strong> Power output increased from 120kW to 350kW (~160.9 HP to ~469.4 HP)</li>
+                        <li><strong>No More MGU-H:</strong> The heat recovery system is gone</li>
+                        <li><strong>Sustainable Fuel:</strong> First year running 100% advanced sustainable fuel</li>
+                    </ul>
+                </div>
+
+                <div class="cyber-card">
+                    <h3>Chassis Changes</h3>
+                    <ul>
+                        <li><strong>Smaller:</strong> 20cm shorter and 10cm narrower</li>
+                        <li><strong>Lighter:</strong> Minimum weight reduced by ~30kg</li>
+                        <li><strong>Narrower Tires:</strong> Front tires reduced by 25mm, rears by 30mm to reduce drag</li>
+                    </ul>
+                </div>
+
+                <div class="cyber-card">
+                    <h3>New Features</h3>
+                    <ul>
+                        <li><strong>Driver Cooling:</strong> Mandatory cooling system (vest/shirt) active when ambient temp hits ~31°C (88°F)</li>
+                        <li><strong>Safety Lights:</strong> New lights on rear wing endplates to signal if the car is electrically safe to touch</li>
+                    </ul>
+                </div>
+
+                <div class="cyber-card">
+                    <h3>Race Day Changes</h3>
+                    <ul>
+                        <li><strong>DRS Zones Gone:</strong> Old system restricted passing aids to specific zones. Now, drivers manage Active Aero and Boost constantly around the whole track</li>
+                        <li><strong>Fastest Lap:</strong> Bonus point awarded to whoever sets the fastest single lap. Must finish in top 10 to claim it</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="gp-showcase">
+            <h3>Australian Grand Prix</h3>
+            <div class="gp-metrics">
+                <div class="gp-metric">
+                    <div class="metric-label">Lap Count</div>
+                    <div class="metric-value">58</div>
+                </div>
+                <div class="gp-metric">
+                    <div class="metric-label">Race Length</div>
+                    <div class="metric-value">~90min</div>
+                </div>
+            </div>
+            <div class="gp-note"><strong>Track Note:</strong> High evolution track; grip improves significantly as the race goes on.</div>
+        </div>
+
+        <footer>
+            <p>Lights Out and Away We Go!</p>
+        </footer>
+    </div>
+</body>
+</html>
