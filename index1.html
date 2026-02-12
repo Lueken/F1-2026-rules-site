@@ -735,6 +735,153 @@
         .fade-in:nth-child(4) { animation-delay: 0.4s; }
         .fade-in:nth-child(5) { animation-delay: 0.5s; }
         .fade-in:nth-child(6) { animation-delay: 0.6s; }
+
+        /* Floating Quick Nav */
+        .quick-nav-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--race-red), var(--speed-yellow));
+            border: none;
+            border-radius: 50%;
+            color: var(--white);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 4px 20px rgba(225, 6, 0, 0.5);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+        }
+
+        .quick-nav-btn:hover {
+            transform: scale(1.1) rotate(45deg);
+            box-shadow: 0 6px 30px rgba(225, 6, 0, 0.8);
+        }
+
+        .quick-nav-btn.active {
+            transform: rotate(45deg);
+        }
+
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .nav-menu {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--pit-dark);
+            border: 3px solid var(--race-red);
+            clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+            padding: 2rem;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(0.8) translateY(20px);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(225, 6, 0, 0.5);
+            min-width: 280px;
+        }
+
+        .nav-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1) translateY(0);
+        }
+
+        .nav-menu h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: var(--speed-yellow);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-menu li {
+            margin-bottom: 0.75rem;
+        }
+
+        .nav-menu a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: var(--white);
+            text-decoration: none;
+            font-family: 'Chakra Petch', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            background: var(--carbon-fiber);
+            transition: all 0.2s ease;
+            border-left: 3px solid var(--race-red);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-menu a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(225, 6, 0, 0.3), transparent);
+            transition: left 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            background: var(--race-red);
+            padding-left: 1.5rem;
+            color: var(--speed-yellow);
+        }
+
+        .nav-menu a:hover::before {
+            left: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .quick-nav-btn {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            .nav-menu {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                left: 1.5rem;
+                min-width: auto;
+            }
+        }
     </style>
 </head>
 <body>
@@ -753,7 +900,7 @@
             </div>
         </header>
 
-        <section class="section">
+        <section class="section" id="power-units">
             <h2 class="section-title">2026 Power Units</h2>
             <div class="power-units-table fade-in">
                 <div class="pu-table-header">
@@ -862,7 +1009,7 @@
             </div>
         </section>
 
-        <div class="highlight-section fade-in">
+        <div class="highlight-section fade-in" id="basic-terms">
             <h3>⚡ Basic F1 Terms</h3>
             <div class="terms-list">
                 <div class="term-item">
@@ -874,8 +1021,8 @@
                     Starting first on the grid because you had the fastest qualifying lap.
                 </div>
                 <div class="term-item">
-                    <strong>Pit Stop</strong>
-                    Pulling into the pits during the race to change tires, fix damage, or adjust the car. Takes 2-3 seconds for a tire change.
+                    <strong>Box, Box</strong>
+                    Pulling into the pits during the race to change tires, fix damage, or adjust the car. Takes 2-3 seconds for a tire change. The fastest pit stop record is 1.8 seconds!
                 </div>
                 <div class="term-item">
                     <strong>Qualifying</strong>
@@ -896,7 +1043,7 @@
             </div>
         </div>
 
-        <section class="section">
+        <section class="section" id="new-terminology">
             <h2 class="section-title">New 2026 Terminology</h2>
             <div class="content-grid">
                 <div class="info-card fade-in">
@@ -935,7 +1082,7 @@
             </div>
         </section>
 
-        <section class="section">
+        <section class="section" id="whats-different">
             <h2 class="section-title">What's Different in 2026</h2>
             <div class="content-grid">
                 <div class="info-card fade-in">
@@ -975,7 +1122,7 @@
             </div>
         </section>
 
-        <div class="gp-callout fade-in">
+        <div class="gp-callout fade-in" id="australian-gp">
             <h3>🏁 Australian Grand Prix</h3>
             <div class="gp-details">
                 <div class="gp-detail">
@@ -1000,6 +1147,20 @@
             <p>🏁 Lights Out and Away We Go! 🏁</p>
         </footer>
     </div>
+
+    <!-- Quick Nav Button and Menu -->
+    <button class="quick-nav-btn" id="quickNavBtn" aria-label="Quick Navigation">☰</button>
+    <div class="nav-overlay" id="navOverlay"></div>
+    <nav class="nav-menu" id="navMenu">
+        <h3>Quick Nav</h3>
+        <ul>
+            <li><a href="#power-units">2026 Power Units</a></li>
+            <li><a href="#basic-terms">Basic F1 Terms</a></li>
+            <li><a href="#new-terminology">New 2026 Terminology</a></li>
+            <li><a href="#whats-different">What's Different in 2026</a></li>
+            <li><a href="#australian-gp">Australian GP</a></li>
+        </ul>
+    </nav>
 
     <script>
         // Add intersection observer for fade-in animations on scroll
@@ -1034,6 +1195,37 @@
             }
 
             lastScroll = currentScroll;
+        });
+
+        // Quick Nav functionality
+        const quickNavBtn = document.getElementById('quickNavBtn');
+        const navOverlay = document.getElementById('navOverlay');
+        const navMenu = document.getElementById('navMenu');
+
+        // Smooth scrolling
+        document.documentElement.style.scrollBehavior = 'smooth';
+
+        function toggleNav() {
+            quickNavBtn.classList.toggle('active');
+            navOverlay.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        }
+
+        quickNavBtn.addEventListener('click', toggleNav);
+        navOverlay.addEventListener('click', toggleNav);
+
+        // Close menu when clicking a link
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                toggleNav();
+            });
+        });
+
+        // Close menu on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                toggleNav();
+            }
         });
     </script>
 </body>

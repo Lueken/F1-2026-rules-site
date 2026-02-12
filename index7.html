@@ -486,6 +486,135 @@ Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
                 font-size: 2.5rem;
             }
         }
+
+        /* Floating Quick Nav */
+        .quick-nav-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 65px;
+            height: 65px;
+            background: var(--comic-red);
+            border: 5px solid var(--black);
+            border-radius: 50%;
+            color: var(--white);
+            font-family: 'Bangers', cursive;
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 8px 8px 0 var(--black);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(-5deg);
+        }
+
+        .quick-nav-btn:hover {
+            background: var(--comic-blue);
+            transform: rotate(5deg) scale(1.1);
+            box-shadow: 12px 12px 0 var(--black);
+        }
+
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .nav-menu {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--white);
+            border: 6px solid var(--black);
+            border-radius: 30px;
+            padding: 2rem;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px) rotate(-3deg);
+            transition: all 0.3s ease;
+            box-shadow: 12px 12px 0 var(--black);
+            min-width: 300px;
+        }
+
+        .nav-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) rotate(0deg);
+        }
+
+        .nav-menu h3 {
+            font-family: 'Luckiest Guy', cursive;
+            font-size: 2rem;
+            color: var(--comic-red);
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 0 var(--comic-yellow);
+        }
+
+        .nav-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-menu a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: var(--black);
+            text-decoration: none;
+            font-family: 'Bangers', cursive;
+            font-weight: 400;
+            font-size: 1.1rem;
+            background: var(--comic-cyan);
+            transition: all 0.2s ease;
+            border: 4px solid var(--black);
+            border-radius: 15px;
+            text-transform: uppercase;
+            box-shadow: 4px 4px 0 var(--black);
+        }
+
+        .nav-menu a:hover {
+            background: var(--comic-pink);
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 var(--black);
+        }
+
+        @media (max-width: 768px) {
+            .quick-nav-btn {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                width: 55px;
+                height: 55px;
+                font-size: 1.5rem;
+            }
+
+            .nav-menu {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                left: 1.5rem;
+                min-width: auto;
+                border-radius: 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -498,7 +627,7 @@ Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
             </div>
         </header>
 
-        <section class="section">
+        <section class="section" id="power-units">
             <h2 class="section-title">2026 Power Units!</h2>
             <div class="pu-container">
                 <div class="pu-header">
@@ -563,7 +692,7 @@ Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
             </div>
         </section>
 
-        <div class="speech-panel">
+        <div class="speech-panel" id="basic-terms">
             <h3>Basic F1 Terms!</h3>
             <div class="terms-grid">
                 <div class="term-bubble">
@@ -575,8 +704,8 @@ Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
                     Starting first on the grid because you had the fastest qualifying lap.
                 </div>
                 <div class="term-bubble">
-                    <strong>Pit Stop</strong>
-                    Pulling into the pits during the race to change tires, fix damage, or adjust the car. Takes 2-3 seconds for a tire change.
+                    <strong>Box, Box</strong>
+                    Pulling into the pits during the race to change tires, fix damage, or adjust the car. Takes 2-3 seconds for a tire change. The fastest pit stop record is 1.8 seconds!
                 </div>
                 <div class="term-bubble">
                     <strong>Qualifying</strong>
@@ -597,7 +726,7 @@ Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
             </div>
         </div>
 
-        <section class="section">
+        <section class="section" id="new-terminology">
             <h2 class="section-title">New 2026 Terminology!</h2>
             <div class="card-grid">
                 <div class="comic-card">
@@ -636,7 +765,7 @@ Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
             </div>
         </section>
 
-        <section class="section">
+        <section class="section" id="whats-different">
             <h2 class="section-title">What's Different in 2026!</h2>
             <div class="card-grid">
                 <div class="comic-card">
@@ -676,7 +805,7 @@ Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
             </div>
         </section>
 
-        <div class="gp-panel">
+        <div class="gp-panel" id="australian-gp">
             <h3>AUSTRALIAN GRAND PRIX!</h3>
             <div class="gp-stats">
                 <div class="gp-stat">
@@ -695,5 +824,52 @@ Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
             <p>Lights Out and Away We Go!</p>
         </footer>
     </div>
+
+    <!-- Quick Nav Button and Menu -->
+    <button class="quick-nav-btn" id="quickNavBtn" aria-label="Quick Navigation">☰</button>
+    <div class="nav-overlay" id="navOverlay"></div>
+    <nav class="nav-menu" id="navMenu">
+        <h3>Quick Nav!</h3>
+        <ul>
+            <li><a href="#power-units">2026 Power Units</a></li>
+            <li><a href="#basic-terms">Basic F1 Terms</a></li>
+            <li><a href="#new-terminology">New 2026 Terminology</a></li>
+            <li><a href="#whats-different">What's Different in 2026</a></li>
+            <li><a href="#australian-gp">Australian GP</a></li>
+        </ul>
+    </nav>
+
+    <script>
+        // Smooth scrolling
+        document.documentElement.style.scrollBehavior = 'smooth';
+
+        // Quick Nav functionality
+        const quickNavBtn = document.getElementById('quickNavBtn');
+        const navOverlay = document.getElementById('navOverlay');
+        const navMenu = document.getElementById('navMenu');
+
+        function toggleNav() {
+            quickNavBtn.classList.toggle('active');
+            navOverlay.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        }
+
+        quickNavBtn.addEventListener('click', toggleNav);
+        navOverlay.addEventListener('click', toggleNav);
+
+        // Close menu when clicking a link
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                toggleNav();
+            });
+        });
+
+        // Close menu on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                toggleNav();
+            }
+        });
+    </script>
 </body>
 </html>

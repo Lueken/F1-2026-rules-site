@@ -85,31 +85,7 @@
         <iframe id="iframe7" src="" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; border: none;"></iframe>
     </div>
 
-    <!-- Design indicator with debug info -->
-    <div style="position: fixed; top: 10px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.95); color: white; padding: 15px 25px; border-radius: 12px; font-family: monospace; font-size: 14px; z-index: 9999; backdrop-filter: blur(10px); text-align: center; min-width: 280px; box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
-        <div style="font-weight: bold; margin-bottom: 8px; font-size: 16px; color: #ff4444;">
-            <span id="design-name"></span>
-        </div>
-        <div style="font-size: 11px; color: #aaa; margin-top: 4px;">
-            Loaded: <span id="load-time"></span>
-        </div>
-        <div style="font-size: 10px; color: #888; margin-top: 4px;">
-            Press R to reload
-        </div>
-    </div>
-
     <script>
-        // Set design name for the indicator
-        const designNames = {
-            'design1': 'Modern Dark Racing',
-            'design2': 'Clean Editorial',
-            'design3': 'Retro Golden Era',
-            'design4': 'Neon Cyberpunk',
-            'design5': 'Brutalist/Industrial',
-            'design6': 'Art Deco Luxury',
-            'design7': 'Comic Pop Art'
-        };
-
         const designFiles = {
             'design1': 'index1.html',
             'design2': 'index2.html',
@@ -120,24 +96,11 @@
             'design7': 'index7.html'
         };
 
-        document.getElementById('design-name').textContent = designNames[window.selectedDesign];
-
-        // Show load time for debugging
-        const now = new Date();
-        const timeString = now.toLocaleTimeString('en-US', { hour12: false });
-        document.getElementById('load-time').textContent = timeString;
-
         // Load the selected design's iframe with cache-busting timestamp
         const designNumber = window.selectedDesign.replace('design', '');
         const iframe = document.getElementById(`iframe${designNumber}`);
-        const timestamp = now.getTime();
+        const timestamp = new Date().getTime();
         iframe.src = `${designFiles[window.selectedDesign]}?v=${timestamp}`;
-
-        console.log(`🎨 Loaded: ${designNames[window.selectedDesign]}`);
-        console.log(`📄 File: ${designFiles[window.selectedDesign]}`);
-        console.log(`🔗 iframe src: ${iframe.src}`);
-        console.log(`⏰ Time: ${timeString}`);
-        console.log('💡 Press R to reload and see a different design!');
 
         // Optional: Add reload button functionality
         // You can press 'R' key to reload and see a different random design
