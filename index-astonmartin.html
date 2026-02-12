@@ -445,14 +445,8 @@
 
         .terms-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
             gap: 2.5rem;
-        }
-
-        @media (max-width: 768px) {
-            .terms-grid {
-                grid-template-columns: 1fr;
-            }
         }
 
         .term-card {
@@ -500,14 +494,8 @@
         /* Content cards */
         .card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
             gap: 3rem;
-        }
-
-        @media (max-width: 768px) {
-            .card-grid {
-                grid-template-columns: 1fr;
-            }
         }
 
         .content-card {
@@ -873,9 +861,14 @@
                 width: 2px;
             }
 
+            .terms-grid,
+            .card-grid {
+                gap: 1.5rem;
+            }
+
             .term-card,
             .content-card {
-                padding: 2rem;
+                padding: 1.5rem;
             }
 
             .highlight-box {
