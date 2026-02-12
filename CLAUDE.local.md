@@ -42,6 +42,16 @@ F1 watch party website with 11 team-themed designs featuring the 2026 F1 regulat
    }
    ```
 
+4. **Prevent text overflow within cards:**
+   ```css
+   .term-card,
+   .content-card {
+       word-wrap: break-word;
+       overflow-wrap: break-word;
+       min-width: 0;
+   }
+   ```
+
 **Files Fixed:**
 - index-ferrari.html
 - index-mercedes.html

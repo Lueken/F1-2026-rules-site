@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 F1 Season Guide | Watch Party</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Russo+One&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Haas Brand Colors */
+            --steel-grey: #B6BABD;
+            --dark-grey: #8E8E8E;
+            --haas-red: #DC0000;
+            --bright-red: #ED1C24;
+            --white: #FFFFFF;
+            --black: #1a1a1a;
+            --industrial-dark: #2a2a2a;
+            --metal-light: #d4d8db;
+            --blue-accent: #2b5c9e;
+
+            /* Functional Colors */
+            --paper: #e8eaeb;
+            --ink: var(--black);
+            --accent: var(--haas-red);
+            --subtle: var(--dark-grey);
+            --border: var(--steel-grey);
+            --card-bg: var(--white);
+
+            /* Team Colors */
+            --mclaren: #ff8700;
+            --mercedes: #00d2be;
+            --williams: #005aff;
+            --alpine: #0090ff;
+            --ferrari: #dc0000;
+            --haas: #b6babd;
+            --cadillac: #666666;
+            --redbull: #0600ef;
+            --aston: #006f62;
+            --audi: #ff1e00;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #2a2a2a 0%, #3d3d3d 50%, #2a2a2a 100%);
+            background-attachment: fixed;
+            color: var(--white);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            position: relative;
+        }
+
+        /* Industrial texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(182, 186, 189, 0.03) 2px,
+                    rgba(182, 186, 189, 0.03) 4px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(182, 186, 189, 0.03) 2px,
+                    rgba(182, 186, 189, 0.03) 4px
+                );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Hero Header */
+        .hero {
+            text-align: center;
+            padding: 3rem 0 4rem;
+            border-bottom: 4px solid var(--haas-red);
+            margin-bottom: 4rem;
+            position: relative;
+            background: linear-gradient(180deg, rgba(182, 186, 189, 0.1) 0%, transparent 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--steel-grey), transparent);
+        }
+
+        .season-badge {
+            display: inline-block;
+            background: var(--haas-red);
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            position: relative;
+            clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+            box-shadow: 0 4px 12px rgba(220, 0, 0, 0.4);
+        }
+
+        h1 {
+            font-family: 'Russo One', sans-serif;
+            font-size: clamp(3.5rem, 10vw, 8rem);
+            font-weight: 400;
+            letter-spacing: 8px;
+            line-height: 0.9;
+            margin-bottom: 1rem;
+            color: var(--white);
+            text-transform: uppercase;
+            text-shadow:
+                0 0 20px rgba(220, 0, 0, 0.5),
+                0 2px 4px rgba(0, 0, 0, 0.8);
+            background: linear-gradient(180deg, #ffffff 0%, #b6babd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            font-weight: 500;
+            color: var(--steel-grey);
+            margin-bottom: 2rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .race-info-banner {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--industrial-dark) 0%, var(--black) 100%);
+            border: 2px solid var(--steel-grey);
+            border-left: 6px solid var(--haas-red);
+            margin-top: 2rem;
+            font-family: 'Oswald', sans-serif;
+            box-shadow:
+                0 4px 20px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .race-info-item {
+            text-align: center;
+        }
+
+        .race-info-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--steel-grey);
+            margin-bottom: 0.25rem;
+        }
+
+        .race-info-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            text-shadow: 0 0 10px rgba(220, 0, 0, 0.5);
+        }
+
+        /* Section Styling */
+        .section {
+            margin-bottom: 5rem;
+        }
+
+        .section-header {
+            margin-bottom: 2.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+            border-left: 6px solid var(--haas-red);
+        }
+
+        .section-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 400;
+            letter-spacing: 4px;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--steel-grey);
+            max-width: 600px;
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        /* Power Units Table */
+        .pu-table-wrapper {
+            background: linear-gradient(135deg, var(--industrial-dark) 0%, var(--black) 100%);
+            border: 2px solid var(--steel-grey);
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+        }
+
+        .pu-table-header {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            background: linear-gradient(135deg, var(--haas-red) 0%, var(--bright-red) 100%);
+            color: var(--white);
+            padding: 1rem 2rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .pu-table-header div:last-child {
+            text-align: right;
+        }
+
+        .pu-table-row {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            padding: 1.25rem 2rem;
+            border-bottom: 1px solid rgba(182, 186, 189, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .pu-table-row::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(90deg, var(--haas-red), transparent);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .pu-table-row:last-child {
+            border-bottom: none;
+        }
+
+        .pu-table-row:hover {
+            background: rgba(182, 186, 189, 0.1);
+            border-left: 4px solid var(--haas-red);
+            padding-left: calc(2rem - 4px);
+        }
+
+        .pu-table-row:hover::before {
+            width: 100%;
+            opacity: 0.1;
+        }
+
+        .team-nameplate {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 1rem;
+            background: rgba(42, 42, 42, 0.8);
+            border-left: 4px solid currentColor;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            box-shadow:
+                2px 2px 8px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .pu-supplier {
+            text-align: right;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--steel-grey);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        /* Team Colors */
+        .team-mclaren { color: var(--mclaren); border-color: var(--mclaren); }
+        .team-mercedes { color: var(--mercedes); border-color: var(--mercedes); }
+        .team-williams { color: var(--williams); border-color: var(--williams); }
+        .team-alpine { color: var(--alpine); border-color: var(--alpine); }
+        .team-ferrari { color: var(--ferrari); border-color: var(--ferrari); }
+        .team-haas { color: var(--haas); border-color: var(--haas); }
+        .team-cadillac { color: var(--cadillac); border-color: var(--cadillac); }
+        .team-redbull { color: var(--redbull); border-color: var(--redbull); }
+        .team-aston { color: var(--aston); border-color: var(--aston); }
+        .team-audi { color: var(--audi); border-color: var(--audi); }
+
+        /* Content Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .content-card {
+            background: linear-gradient(135deg, var(--industrial-dark) 0%, var(--black) 100%);
+            border: 2px solid var(--steel-grey);
+            border-top: 4px solid var(--haas-red);
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(220, 0, 0, 0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .content-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--haas-red);
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.7),
+                0 0 20px rgba(220, 0, 0, 0.3);
+        }
+
+        .content-card:hover::before {
+            opacity: 1;
+        }
+
+        .content-card h3 {
+            font-family: 'Russo One', sans-serif;
+            font-size: 2rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+            text-transform: uppercase;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .content-card p {
+            color: var(--steel-grey);
+            margin-bottom: 1rem;
+        }
+
+        .content-card ul {
+            list-style: none;
+        }
+
+        .content-card li {
+            padding: 0.75rem 0;
+            padding-left: 1.5rem;
+            border-bottom: 1px solid rgba(182, 186, 189, 0.2);
+            font-size: 0.95rem;
+            color: var(--metal-light);
+            position: relative;
+        }
+
+        .content-card li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--haas-red);
+            font-weight: bold;
+        }
+
+        .content-card li:last-child {
+            border-bottom: none;
+        }
+
+        .content-card strong {
+            color: var(--white);
+            font-weight: 700;
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, var(--industrial-dark) 0%, var(--black) 100%);
+            color: var(--white);
+            padding: 3rem;
+            margin: 4rem 0;
+            border: 3px solid var(--steel-grey);
+            border-left: 8px solid var(--haas-red);
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(182, 186, 189, 0.03) 10px,
+                    rgba(182, 186, 189, 0.03) 20px
+                );
+            pointer-events: none;
+        }
+
+        .highlight-box h3 {
+            font-family: 'Russo One', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--white);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .highlight-box p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            color: var(--metal-light);
+        }
+
+        .terms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .term-card {
+            padding: 1.5rem;
+            background: rgba(42, 42, 42, 0.8);
+            border-left: 4px solid var(--haas-red);
+            box-shadow:
+                2px 2px 8px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .term-card:hover {
+            background: rgba(42, 42, 42, 1);
+            border-left-width: 6px;
+            transform: translateX(4px);
+        }
+
+        .term-card strong {
+            display: block;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--white);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* GP Callout */
+        .gp-callout {
+            background: linear-gradient(135deg, var(--haas-red) 0%, var(--bright-red) 100%);
+            color: var(--white);
+            padding: 3rem;
+            text-align: center;
+            margin: 4rem 0;
+            box-shadow:
+                0 8px 32px rgba(220, 0, 0, 0.6),
+                inset 0 -4px 0 rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gp-callout::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 100%;
+            background:
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 20px,
+                    rgba(255, 255, 255, 0.05) 20px,
+                    rgba(255, 255, 255, 0.05) 40px
+                );
+            animation: slide 20s linear infinite;
+        }
+
+        @keyframes slide {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(50%); }
+        }
+
+        .gp-callout h3 {
+            font-family: 'Russo One', sans-serif;
+            font-size: 3rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 1;
+        }
+
+        .gp-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .gp-stat {
+            text-align: center;
+        }
+
+        .gp-stat-label {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        .gp-stat-value {
+            font-family: 'Russo One', sans-serif;
+            font-size: 3rem;
+            font-weight: 400;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .gp-callout p {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 5rem;
+            border-top: 4px solid var(--haas-red);
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.9rem;
+            color: var(--steel-grey);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Floating Quick Nav */
+        .quick-nav-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--haas-red) 0%, var(--bright-red) 100%);
+            border: 2px solid var(--steel-grey);
+            border-radius: 0;
+            color: var(--white);
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow:
+                0 4px 20px rgba(220, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%);
+        }
+
+        .quick-nav-btn:hover {
+            background: linear-gradient(135deg, var(--bright-red) 0%, var(--haas-red) 100%);
+            border-color: var(--white);
+            transform: translateY(-4px);
+            box-shadow:
+                0 8px 30px rgba(220, 0, 0, 0.7),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 26, 26, 0.95);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .nav-menu {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, var(--industrial-dark) 0%, var(--black) 100%);
+            border: 2px solid var(--steel-grey);
+            border-top: 4px solid var(--haas-red);
+            padding: 2rem;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            box-shadow:
+                0 10px 40px rgba(0, 0, 0, 0.7),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            min-width: 280px;
+        }
+
+        .nav-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .nav-menu h3 {
+            font-family: 'Russo One', sans-serif;
+            font-size: 2rem;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-menu a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: var(--steel-grey);
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            background: rgba(42, 42, 42, 0.6);
+            transition: all 0.3s ease;
+            border-left: 3px solid var(--dark-grey);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-menu a:hover {
+            background: var(--haas-red);
+            color: var(--white);
+            border-left-color: var(--white);
+            padding-left: 1.5rem;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+            }
+
+            .hero {
+                padding: 2rem 0 3rem;
+                margin-bottom: 3rem;
+            }
+
+            .season-badge {
+                padding: 0.4rem 1.25rem;
+                font-size: 0.75rem;
+                letter-spacing: 3px;
+                margin-bottom: 1rem;
+            }
+
+            h1 {
+                font-size: 3rem;
+                margin-bottom: 0.75rem;
+                letter-spacing: 4px;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+                letter-spacing: 2px;
+            }
+
+            .race-info-banner {
+                flex-direction: column;
+                gap: 1.5rem;
+                padding: 1.25rem;
+            }
+
+            .race-info-value {
+                font-size: 1.25rem;
+            }
+
+            .section {
+                margin-bottom: 3.5rem;
+            }
+
+            .section-header {
+                margin-bottom: 2rem;
+                padding-left: 1rem;
+                border-left-width: 4px;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+                margin-bottom: 0.75rem;
+                letter-spacing: 2px;
+            }
+
+            .section-subtitle {
+                font-size: 1rem;
+            }
+
+            .pu-table-header {
+                padding: 0.875rem 1.25rem;
+                font-size: 0.7rem;
+                letter-spacing: 3px;
+                grid-template-columns: 1.1fr 1fr;
+            }
+
+            .pu-table-row {
+                padding: 1rem 1.25rem;
+                grid-template-columns: 1.1fr 1fr;
+            }
+
+            .team-nameplate {
+                padding: 0.4rem 0.75rem;
+                font-size: 0.85rem;
+                border-left-width: 3px;
+            }
+
+            .pu-supplier {
+                font-size: 0.8rem;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+                gap: 1.75rem;
+            }
+
+            .content-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .content-card h3 {
+                font-size: 1.75rem;
+            }
+
+            .highlight-box {
+                padding: 2rem 1.5rem;
+                margin: 3rem 0;
+                border-left-width: 6px;
+            }
+
+            .highlight-box h3 {
+                font-size: 2rem;
+                margin-bottom: 1.25rem;
+                letter-spacing: 2px;
+            }
+
+            .highlight-box p {
+                font-size: 1rem;
+            }
+
+            .terms-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .term-card {
+                padding: 1.25rem;
+            }
+
+            .gp-callout {
+                padding: 2rem 1.5rem;
+                margin: 3rem 0;
+            }
+
+            .gp-callout h3 {
+                font-size: 2.25rem;
+                margin-bottom: 1.5rem;
+                letter-spacing: 2px;
+            }
+
+            .gp-stats {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .gp-stat-value {
+                font-size: 2.5rem;
+            }
+
+            footer {
+                padding: 2.5rem 0;
+                margin-top: 4rem;
+            }
+
+            .quick-nav-btn {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            .nav-menu {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                left: 1.5rem;
+                min-width: auto;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        @keyframes metalShine {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="hero">
+            <div class="season-badge">2026 Season</div>
+            <h1>THE NEW ERA</h1>
+            <div class="subtitle">Everything You Need to Know</div>
+            <div class="race-info-banner">
+                <div class="race-info-item">
+                    <div class="race-info-label">Race</div>
+                    <div class="race-info-value">Australian GP</div>
+                </div>
+                <div class="race-info-item">
+                    <div class="race-info-label">Laps</div>
+                    <div class="race-info-value">58</div>
+                </div>
+                <div class="race-info-item">
+                    <div class="race-info-label">Duration</div>
+                    <div class="race-info-value">~90 min</div>
+                </div>
+            </div>
+        </header>
+
+        <section class="section fade-in" id="power-units">
+            <div class="section-header">
+                <h2 class="section-title">2026 Power Units</h2>
+                <p class="section-subtitle">New engine partnerships for the most radical regulation change in F1 history</p>
+            </div>
+
+            <div class="pu-table-wrapper">
+                <div class="pu-table-header">
+                    <div>Team</div>
+                    <div>Power Unit</div>
+                </div>
+
+                <div class="pu-table-row">
+                    <div class="pu-team">
+                        <div class="team-nameplate team-mclaren">McLaren</div>
+                    </div>
+                    <div class="pu-supplier">Mercedes</div>
+                </div>
+
+                <div class="pu-table-row">
+                    <div class="pu-team">
+                        <div class="team-nameplate team-mercedes">Mercedes</div>
+                    </div>
+                    <div class="pu-supplier">Mercedes</div>
+                </div>
+
+                <div class="pu-table-row">
+                    <div class="pu-team">
+                        <div class="team-nameplate team-williams">Williams</div>
+                    </div>
+                    <div class="pu-supplier">Mercedes</div>
+                </div>
+
+                <div class="pu-table-row">
+                    <div class="pu-team">
+                        <div class="team-nameplate team-alpine">Alpine</div>
+                    </div>
+                    <div class="pu-supplier">Mercedes</div>
+                </div>
+
+                <div class="pu-table-row">
+                    <div class="pu-team">
+                        <div class="team-nameplate team-ferrari">Ferrari</div>
+                    </div>
+                    <div class="pu-supplier">Ferrari</div>
+                </div>
+
+                <div class="pu-table-row">
+                    <div class="pu-team">
+                        <div class="team-nameplate team-haas">Haas</div>
+                    </div>
+                    <div class="pu-supplier">Ferrari</div>
+                </div>
+
+                <div class="pu-table-row">
+                    <div class="pu-team">
+                        <div class="team-nameplate team-cadillac">Cadillac</div>
+                    </div>
+                    <div class="pu-supplier">Ferrari</div>
+                </div>
+
+                <div class="pu-table-row">
+                    <div class="pu-team">
+                        <div class="team-nameplate team-redbull">Red Bull</div>
+                    </div>
+                    <div class="pu-supplier">Red Bull Ford</div>
+                </div>
+
+                <div class="pu-table-row">
+                    <div class="pu-team">
+                        <div class="team-nameplate team-redbull">RB</div>
+                    </div>
+                    <div class="pu-supplier">Red Bull Ford</div>
+                </div>
+
+                <div class="pu-table-row">
+                    <div class="pu-team">
+                        <div class="team-nameplate team-aston">Aston Martin</div>
+                    </div>
+                    <div class="pu-supplier">Honda</div>
+                </div>
+
+                <div class="pu-table-row">
+                    <div class="pu-team">
+                        <div class="team-nameplate team-audi">Audi</div>
+                    </div>
+                    <div class="pu-supplier">Audi</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="highlight-box fade-in" id="basic-terms">
+            <h3>Basic F1 Terms</h3>
+            <div class="terms-grid">
+                <div class="term-card">
+                    <strong>Constructor</strong>
+                    The team that builds the car (Ferrari, Mercedes, Red Bull, etc.). Teams score points separately from drivers.
+                </div>
+                <div class="term-card">
+                    <strong>Pole Position</strong>
+                    Starting first on the grid because you had the fastest qualifying lap.
+                </div>
+                <div class="term-card">
+                    <strong>Box, Box</strong>
+                    Pulling into the pits during the race to change tires, fix damage, or adjust the car. Takes 2-3 seconds for a tire change. The fastest pit stop record is 1.8 seconds!
+                </div>
+                <div class="term-card">
+                    <strong>Qualifying</strong>
+                    Saturday session where drivers compete for grid position. Fastest lap wins pole position.
+                </div>
+                <div class="term-card">
+                    <strong>Grid</strong>
+                    The starting lineup formation. Better qualifying performance means starting closer to the front.
+                </div>
+                <div class="term-card">
+                    <strong>Undercut/Overcut</strong>
+                    Pit strategy where you either pit earlier than your rival (undercut) or stay out longer (overcut) to gain track position.
+                </div>
+                <div class="term-card">
+                    <strong>Safety Car</strong>
+                    Pace car deployed after crashes or debris. Field bunches up, no overtaking allowed until it leaves the track.
+                </div>
+            </div>
+        </div>
+
+        <section class="section fade-in" id="new-terminology">
+            <div class="section-header">
+                <h2 class="section-title">New 2026 Terminology</h2>
+            </div>
+
+            <div class="card-grid">
+                <div class="content-card">
+                    <h3>Active Aero</h3>
+                    <p>Replaces DRS. The driver now dynamically adjusts the wings between two modes:</p>
+                    <ul>
+                        <li><strong>Z-Mode (Cornering):</strong> High downforce for grip in corners</li>
+                        <li><strong>X-Mode (Straight):</strong> Low drag for top speed on straights</li>
+                    </ul>
+                </div>
+
+                <div class="content-card">
+                    <h3>Boost Mode</h3>
+                    <p>Driver-controlled power bursts adding <strong>470 HP</strong> instantly. Available anytime for creative attacks/defense, not just on straights. Drains battery quickly.</p>
+                </div>
+
+                <div class="content-card">
+                    <h3>Overtake Mode (OT)</h3>
+                    <p>A system "unlock" that triggers automatically when within <strong>1 second</strong> of the car ahead at the detection point.</p>
+                    <ul>
+                        <li><strong>The Effect:</strong> Raises the speed limit where electric power is throttled from 180 mph to 209 mph</li>
+                        <li><strong>Availability:</strong> Lasts the entire lap once triggered. Freely available during Practice and Qualifying</li>
+                    </ul>
+                </div>
+
+                <div class="content-card">
+                    <h3>Recharge (4 Ways)</h3>
+                    <p>Drivers now harvest energy in four distinct ways:</p>
+                    <ul>
+                        <li><strong>Braking:</strong> Standard harvesting</li>
+                        <li><strong>Lifting Early:</strong> Coasting into corners</li>
+                        <li><strong>Corner Overloading:</strong> Managing throttle in corners to charge</li>
+                        <li><strong>Super Clipping:</strong> Harvesting at 100% throttle (end of straights)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section fade-in" id="whats-different">
+            <div class="section-header">
+                <h2 class="section-title">What's Different in 2026</h2>
+            </div>
+
+            <div class="card-grid">
+                <div class="content-card">
+                    <h3>Power Changes</h3>
+                    <ul>
+                        <li><strong>Power Split:</strong> Cars now run 50/50 electric and combustion engine power</li>
+                        <li><strong>MGU-K Upgrade:</strong> Power output increased from 120kW to 350kW (~160.9 HP to ~469.4 HP)</li>
+                        <li><strong>No More MGU-H:</strong> The heat recovery system is gone</li>
+                        <li><strong>Sustainable Fuel:</strong> First year running 100% advanced sustainable fuel</li>
+                    </ul>
+                </div>
+
+                <div class="content-card">
+                    <h3>Chassis Changes</h3>
+                    <ul>
+                        <li><strong>Smaller:</strong> 20cm shorter and 10cm narrower</li>
+                        <li><strong>Lighter:</strong> Minimum weight reduced by ~30kg</li>
+                        <li><strong>Narrower Tires:</strong> Front tires reduced by 25mm, rears by 30mm to reduce drag</li>
+                    </ul>
+                </div>
+
+                <div class="content-card">
+                    <h3>New Features</h3>
+                    <ul>
+                        <li><strong>Driver Cooling:</strong> Mandatory cooling system (vest/shirt) active when ambient temp hits ~31°C (88°F)</li>
+                        <li><strong>Safety Lights:</strong> New lights on rear wing endplates to signal if the car is electrically safe to touch</li>
+                    </ul>
+                </div>
+
+                <div class="content-card">
+                    <h3>Race Day Changes</h3>
+                    <ul>
+                        <li><strong>DRS Zones Gone:</strong> Old system restricted passing aids to specific zones. Now, drivers manage Active Aero and Boost constantly around the whole track</li>
+                        <li><strong>Fastest Lap:</strong> Bonus point awarded to whoever sets the fastest single lap. Must finish in top 10 to claim it</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="gp-callout fade-in" id="australian-gp">
+            <h3>Australian Grand Prix</h3>
+            <div class="gp-stats">
+                <div class="gp-stat">
+                    <div class="gp-stat-label">Lap Count</div>
+                    <div class="gp-stat-value">58</div>
+                </div>
+                <div class="gp-stat">
+                    <div class="gp-stat-label">Race Length</div>
+                    <div class="gp-stat-value">~90min</div>
+                </div>
+            </div>
+            <p><strong>Track Note:</strong> High evolution track; grip improves significantly as the race goes on.</p>
+        </div>
+
+        <footer>
+            <p>Lights Out and Away We Go!</p>
+        </footer>
+    </div>
+
+    <!-- Quick Nav Button and Menu -->
+    <button class="quick-nav-btn" id="quickNavBtn" aria-label="Quick Navigation">☰</button>
+    <div class="nav-overlay" id="navOverlay"></div>
+    <nav class="nav-menu" id="navMenu">
+        <h3>Quick Nav</h3>
+        <ul>
+            <li><a href="#power-units">2026 Power Units</a></li>
+            <li><a href="#basic-terms">Basic F1 Terms</a></li>
+            <li><a href="#new-terminology">New 2026 Terminology</a></li>
+            <li><a href="#whats-different">What's Different in 2026</a></li>
+            <li><a href="#australian-gp">Australian GP</a></li>
+        </ul>
+    </nav>
+
+    <script>
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section, .highlight-box, .gp-callout').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Quick Nav functionality
+        const quickNavBtn = document.getElementById('quickNavBtn');
+        const navOverlay = document.getElementById('navOverlay');
+        const navMenu = document.getElementById('navMenu');
+
+        // Smooth scrolling
+        document.documentElement.style.scrollBehavior = 'smooth';
+
+        function toggleNav() {
+            quickNavBtn.classList.toggle('active');
+            navOverlay.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        }
+
+        quickNavBtn.addEventListener('click', toggleNav);
+        navOverlay.addEventListener('click', toggleNav);
+
+        // Close menu when clicking a link
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                toggleNav();
+            });
+        });
+
+        // Close menu on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                toggleNav();
+            }
+        });
+    </script>
+</body>
+</html>
