@@ -3,25 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2026 F1 Season Guide | Watch Party</title>
+    <title>2026 F1 Season Guide | BWT Alpine F1 Team</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Bebas+Neue&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Alpine Brand Colors */
             --alpine-blue: #0090FF;
-            --alpine-blue-dark: #2E4C8D;
-            --alpine-pink: #FF1E5A;
-            --alpine-pink-light: #FE86BC;
+            --alpine-blue-deep: #0062B3;
+            --alpine-pink: #FF87BC;
+            --alpine-pink-hot: #FF1E7E;
+            --alpine-navy: #0B1428;
+            --alpine-navy-light: #122244;
+            --alpine-white: #F0F4FA;
+            --alpine-frost: #C8D8F0;
             --french-blue: #002395;
+            --french-white: #FFFFFF;
             --french-red: #ED2939;
-            --alpine-white: #FFFFFF;
-            --alpine-black: #0A0E27;
-            --alpine-gray: #A8B3C7;
-            --mountain-mist: #E8EDF5;
+            --summit-glow: rgba(0, 144, 255, 0.15);
 
-            /* Team Colors */
+            /* Team Colors for PU table */
             --mclaren: #ff8700;
             --mercedes: #00d2be;
             --williams: #005aff;
@@ -32,6 +33,7 @@
             --redbull: #0600ef;
             --aston: #006f62;
             --audi: #ff1e00;
+            --rb: #6692FF;
         }
 
         * {
@@ -41,124 +43,214 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #0A0E27 0%, #1a2547 50%, #2E4C8D 100%);
-            background-attachment: fixed;
+            font-family: 'Outfit', sans-serif;
+            background: var(--alpine-navy);
             color: var(--alpine-white);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-            position: relative;
             overflow-x: hidden;
+            position: relative;
+            width: 100%;
+            max-width: 100vw;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Mountain Silhouette Background */
+        /* ========================================
+           MEMORABLE ELEMENT: Diagonal French Tricolor Sash
+           A bold ribbon cutting diagonally across the page
+           ======================================== */
         body::before {
             content: '';
             position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 40vh;
-            background: linear-gradient(to top, rgba(46, 76, 141, 0.4) 0%, transparent 100%);
+            top: -20%;
+            left: -10%;
+            width: 140%;
+            height: 140%;
+            background: linear-gradient(
+                135deg,
+                transparent 0%,
+                transparent 42%,
+                rgba(0, 35, 149, 0.06) 42%,
+                rgba(0, 35, 149, 0.06) 44%,
+                rgba(255, 255, 255, 0.04) 44%,
+                rgba(255, 255, 255, 0.04) 46%,
+                rgba(237, 41, 57, 0.06) 46%,
+                rgba(237, 41, 57, 0.06) 48%,
+                transparent 48%
+            );
             pointer-events: none;
             z-index: 0;
         }
 
+        /* Subtle mountain atmosphere gradient at bottom */
         body::after {
             content: '';
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 30vh;
-            background:
-                polygon(0% 100%, 15% 40%, 25% 60%, 35% 30%, 50% 70%, 65% 35%, 80% 65%, 100% 45%, 100% 100%);
-            clip-path: polygon(0% 100%, 15% 40%, 25% 60%, 35% 30%, 50% 70%, 65% 35%, 80% 65%, 100% 45%, 100% 100%);
-            background: linear-gradient(to top, rgba(0, 144, 255, 0.15) 0%, rgba(46, 76, 141, 0.1) 100%);
+            height: 50vh;
+            background: linear-gradient(
+                to top,
+                rgba(0, 144, 255, 0.08) 0%,
+                rgba(0, 144, 255, 0.03) 40%,
+                transparent 100%
+            );
             pointer-events: none;
             z-index: 0;
         }
 
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
             position: relative;
             z-index: 1;
+            max-width: min(1400px, 100%);
+            margin: 0 auto;
+            padding: 0 3rem;
+            overflow-x: hidden;
         }
 
-        /* Hero Header */
+        /* ========================================
+           HERO - Mountain Ridge Silhouette
+           ======================================== */
         .hero {
             text-align: center;
-            padding: 3rem 0 4rem;
-            border-bottom: 3px solid var(--alpine-pink);
-            margin-bottom: 4rem;
+            padding: 4rem 0 6rem;
             position: relative;
+            margin-bottom: 0;
         }
 
-        /* French Flag Accent */
+        /* Mountain ridge silhouette at bottom of hero */
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -5%;
+            width: 110%;
+            height: 80px;
+            background: var(--alpine-navy);
+            clip-path: polygon(
+                0% 100%,
+                0% 60%,
+                5% 55%,
+                8% 30%,
+                12% 50%,
+                16% 45%,
+                20% 15%,
+                24% 35%,
+                28% 25%,
+                32% 40%,
+                36% 20%,
+                40% 10%,
+                44% 30%,
+                48% 35%,
+                52% 5%,
+                56% 25%,
+                60% 30%,
+                64% 15%,
+                68% 35%,
+                72% 20%,
+                76% 40%,
+                80% 25%,
+                84% 10%,
+                88% 35%,
+                92% 45%,
+                96% 30%,
+                100% 50%,
+                100% 100%
+            );
+            z-index: 2;
+        }
+
+        /* Gradient sky behind hero */
         .hero::before {
             content: '';
             position: absolute;
             top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120px;
-            height: 6px;
-            background: linear-gradient(to right, #002395 33.33%, #FFFFFF 33.33%, #FFFFFF 66.66%, #ED2939 66.66%);
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                180deg,
+                rgba(0, 144, 255, 0.12) 0%,
+                rgba(255, 135, 188, 0.06) 50%,
+                var(--alpine-navy) 100%
+            );
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .hero > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* French tricolor bar above title */
+        .tricolor-bar {
+            width: 100px;
+            height: 5px;
+            margin: 0 auto 2rem;
+            background: linear-gradient(to right,
+                var(--french-blue) 33.33%,
+                var(--french-white) 33.33%,
+                var(--french-white) 66.66%,
+                var(--french-red) 66.66%
+            );
             border-radius: 3px;
         }
 
         .season-badge {
             display: inline-block;
-            background: linear-gradient(135deg, var(--alpine-blue) 0%, var(--alpine-blue-dark) 100%);
-            color: var(--alpine-white);
-            padding: 0.5rem 1.5rem;
-            font-size: 0.875rem;
-            font-weight: 700;
-            letter-spacing: 3px;
+            background: transparent;
+            color: var(--alpine-blue);
+            padding: 0.4rem 1.5rem;
+            font-family: 'Source Code Pro', monospace;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 4px;
             text-transform: uppercase;
             margin-bottom: 1.5rem;
-            border-radius: 30px;
-            box-shadow: 0 4px 20px rgba(0, 144, 255, 0.4);
-            border: 2px solid var(--alpine-pink);
+            border: 2px solid var(--alpine-blue);
+            border-radius: 0;
         }
 
         h1 {
-            font-family: 'Bebas Neue', sans-serif;
+            font-family: 'Syne', sans-serif;
             font-size: clamp(3.5rem, 10vw, 8rem);
-            font-weight: 400;
-            letter-spacing: 4px;
+            font-weight: 800;
+            letter-spacing: -2px;
             line-height: 0.9;
             margin-bottom: 1rem;
+            color: var(--french-white);
+            text-transform: uppercase;
+        }
+
+        h1 .accent {
+            display: block;
             background: linear-gradient(135deg, var(--alpine-blue) 0%, var(--alpine-pink) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 40px rgba(0, 144, 255, 0.3);
+            font-size: 0.55em;
+            letter-spacing: 6px;
+            font-weight: 700;
         }
 
         .subtitle {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(1.2rem, 3vw, 1.5rem);
-            font-weight: 500;
-            color: var(--alpine-gray);
-            margin-bottom: 2rem;
-            letter-spacing: 2px;
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            font-weight: 300;
+            color: var(--alpine-frost);
+            margin-bottom: 2.5rem;
+            letter-spacing: 1px;
         }
 
         .race-info-banner {
-            display: flex;
-            justify-content: center;
+            display: inline-flex;
             gap: 3rem;
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 2px solid var(--alpine-blue);
-            border-radius: 15px;
-            margin-top: 2rem;
-            font-family: 'Montserrat', sans-serif;
-            box-shadow: 0 8px 32px rgba(0, 144, 255, 0.2);
+            padding: 1.25rem 2.5rem;
+            background: rgba(0, 144, 255, 0.08);
+            border: 1px solid rgba(0, 144, 255, 0.25);
+            border-radius: 4px;
+            font-family: 'Source Code Pro', monospace;
         }
 
         .race-info-item {
@@ -166,24 +258,34 @@
         }
 
         .race-info-label {
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 2px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 3px;
             text-transform: uppercase;
             color: var(--alpine-pink);
             margin-bottom: 0.25rem;
         }
 
         .race-info-value {
-            font-size: 1.5rem;
+            font-family: 'Syne', sans-serif;
+            font-size: 1.3rem;
             font-weight: 700;
-            color: var(--alpine-white);
-            text-shadow: 0 2px 10px rgba(0, 144, 255, 0.5);
+            color: var(--french-white);
         }
 
-        /* Section Styling */
+        /* ========================================
+           SECTIONS
+           ======================================== */
         .section {
             margin-bottom: 5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .section-header {
@@ -191,13 +293,24 @@
             position: relative;
         }
 
+        .section-number {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--alpine-pink);
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
         .section-title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 400;
-            letter-spacing: 2px;
-            color: var(--alpine-white);
-            margin-bottom: 0.5rem;
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: var(--french-white);
+            text-transform: uppercase;
             position: relative;
             display: inline-block;
         }
@@ -205,39 +318,39 @@
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: -8px;
+            bottom: -6px;
             left: 0;
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(to right, var(--alpine-pink), var(--alpine-pink-light));
-            border-radius: 2px;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(to right, var(--alpine-blue), var(--alpine-pink));
         }
 
         .section-subtitle {
-            font-size: 1.1rem;
-            color: var(--alpine-gray);
+            font-size: 1rem;
+            color: var(--alpine-frost);
             max-width: 600px;
             margin-top: 1rem;
+            font-weight: 300;
         }
 
-        /* Power Units Table */
+        /* ========================================
+           POWER UNITS TABLE
+           ======================================== */
         .pu-table-wrapper {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 2px solid var(--alpine-blue);
-            border-radius: 15px;
+            background: rgba(0, 144, 255, 0.04);
+            border: 1px solid rgba(0, 144, 255, 0.2);
+            border-radius: 4px;
             overflow: hidden;
-            box-shadow: 0 8px 32px rgba(0, 144, 255, 0.15);
         }
 
         .pu-table-header {
             display: grid;
             grid-template-columns: 1.2fr 1fr;
-            background: linear-gradient(135deg, var(--alpine-blue) 0%, var(--alpine-blue-dark) 100%);
-            color: var(--alpine-white);
+            background: linear-gradient(135deg, var(--alpine-blue) 0%, var(--alpine-blue-deep) 100%);
+            color: var(--french-white);
             padding: 1rem 2rem;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.75rem;
+            font-family: 'Source Code Pro', monospace;
+            font-size: 0.7rem;
             font-weight: 700;
             letter-spacing: 3px;
             text-transform: uppercase;
@@ -250,9 +363,9 @@
         .pu-table-row {
             display: grid;
             grid-template-columns: 1.2fr 1fr;
-            padding: 1.25rem 2rem;
-            border-bottom: 1px solid rgba(0, 144, 255, 0.2);
-            transition: all 0.3s ease;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid rgba(0, 144, 255, 0.1);
+            transition: all 0.25s ease;
         }
 
         .pu-table-row:last-child {
@@ -260,101 +373,105 @@
         }
 
         .pu-table-row:hover {
-            background: rgba(255, 30, 90, 0.1);
-            transform: translateX(5px);
+            background: rgba(0, 144, 255, 0.08);
         }
 
         .team-nameplate {
             display: inline-flex;
             align-items: center;
             gap: 0.75rem;
-            padding: 0.5rem 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-left: 4px solid currentColor;
-            border-radius: 8px;
-            font-family: 'Montserrat', sans-serif;
+            padding: 0.4rem 0.75rem;
+            border-left: 3px solid currentColor;
+            font-family: 'Syne', sans-serif;
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 0.9rem;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            transition: all 0.25s ease;
         }
 
         .pu-table-row:hover .team-nameplate {
-            background: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 15px rgba(0, 144, 255, 0.3);
+            padding-left: 1.25rem;
         }
 
         .pu-supplier {
             text-align: right;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            font-size: 0.95rem;
-            color: var(--alpine-gray);
+            font-family: 'Source Code Pro', monospace;
+            font-weight: 500;
+            font-size: 0.85rem;
+            color: var(--alpine-frost);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
             display: flex;
             align-items: center;
             justify-content: flex-end;
         }
 
         /* Team Colors */
-        .team-mclaren { color: var(--mclaren); border-color: var(--mclaren); }
-        .team-mercedes { color: var(--mercedes); border-color: var(--mercedes); }
-        .team-williams { color: var(--williams); border-color: var(--williams); }
-        .team-alpine { color: var(--alpine); border-color: var(--alpine); }
-        .team-ferrari { color: var(--ferrari); border-color: var(--ferrari); }
-        .team-haas { color: var(--haas); border-color: var(--haas); }
-        .team-cadillac { color: var(--cadillac); border-color: var(--cadillac); }
-        .team-redbull { color: var(--redbull); border-color: var(--redbull); }
-        .team-aston { color: var(--aston); border-color: var(--aston); }
-        .team-audi { color: var(--audi); border-color: var(--audi); }
+        .team-mclaren { color: var(--mclaren); }
+        .team-mercedes { color: var(--mercedes); }
+        .team-williams { color: var(--williams); }
+        .team-alpine { color: var(--alpine); }
+        .team-ferrari { color: var(--ferrari); }
+        .team-haas { color: var(--haas); }
+        .team-cadillac { color: var(--cadillac); }
+        .team-redbull { color: var(--redbull); }
+        .team-rb { color: var(--rb); }
+        .team-aston { color: var(--aston); }
+        .team-audi { color: var(--audi); }
 
-        /* Content Cards */
+        /* ========================================
+           CONTENT CARDS
+           ======================================== */
         .card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
 
         .content-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 2px solid var(--alpine-blue);
-            border-radius: 15px;
+            background: rgba(0, 144, 255, 0.04);
+            border: 1px solid rgba(0, 144, 255, 0.15);
+            border-radius: 4px;
             padding: 2.5rem;
             transition: all 0.3s ease;
             position: relative;
-            overflow: hidden;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            min-width: 0;
         }
 
+        /* Subtle mountain ridge top edge on hover */
         .content-card::before {
             content: '';
             position: absolute;
             top: 0;
-            right: 0;
-            width: 80px;
-            height: 80px;
-            background: radial-gradient(circle, rgba(255, 30, 90, 0.2) 0%, transparent 70%);
-            border-radius: 50%;
-            transform: translate(30%, -30%);
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--alpine-blue), var(--alpine-pink), var(--alpine-blue));
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .content-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--alpine-pink);
-            box-shadow: 0 12px 40px rgba(255, 30, 90, 0.3);
-            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-4px);
+            border-color: rgba(0, 144, 255, 0.35);
+            box-shadow: 0 16px 48px rgba(0, 144, 255, 0.12);
+        }
+
+        .content-card:hover::before {
+            opacity: 1;
         }
 
         .content-card h3 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 2rem;
-            font-weight: 400;
-            letter-spacing: 2px;
-            margin-bottom: 1.5rem;
-            color: var(--alpine-white);
+            font-family: 'Syne', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 1.25rem;
+            color: var(--french-white);
             text-transform: uppercase;
         }
 
@@ -363,10 +480,10 @@
         }
 
         .content-card li {
-            padding: 0.75rem 0;
-            border-bottom: 1px solid rgba(0, 144, 255, 0.2);
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(0, 144, 255, 0.08);
             font-size: 0.95rem;
-            color: var(--alpine-gray);
+            color: var(--alpine-frost);
         }
 
         .content-card li:last-child {
@@ -375,58 +492,75 @@
 
         .content-card strong {
             color: var(--alpine-blue);
-            font-weight: 700;
+            font-weight: 600;
         }
 
         .content-card p {
-            color: var(--alpine-gray);
+            color: var(--alpine-frost);
             line-height: 1.8;
             margin-bottom: 1rem;
         }
 
-        /* Highlight Box */
+        /* ========================================
+           HIGHLIGHT BOX - Basic Terms
+           ======================================== */
         .highlight-box {
-            background: linear-gradient(135deg, rgba(0, 144, 255, 0.15) 0%, rgba(46, 76, 141, 0.15) 100%);
-            backdrop-filter: blur(10px);
+            background: linear-gradient(
+                135deg,
+                rgba(0, 144, 255, 0.08) 0%,
+                rgba(255, 135, 188, 0.05) 100%
+            );
+            border: 1px solid rgba(0, 144, 255, 0.2);
             color: var(--alpine-white);
             padding: 3rem;
-            margin: 4rem 0;
-            border: 2px solid var(--alpine-blue);
-            border-radius: 20px;
-            box-shadow: 0 12px 40px rgba(0, 144, 255, 0.2);
+            margin: 5rem 0;
+            border-radius: 4px;
             position: relative;
             overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
+        .highlight-box.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Diagonal tricolor stripe across the top corner */
         .highlight-box::before {
             content: '';
             position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 30, 90, 0.1) 0%, transparent 50%);
-            animation: pulse 8s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.1); opacity: 0.8; }
+            top: -30px;
+            right: -30px;
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(
+                135deg,
+                var(--french-blue) 30%,
+                var(--french-white) 30%,
+                var(--french-white) 50%,
+                var(--french-red) 50%,
+                var(--french-red) 70%,
+                transparent 70%
+            );
+            opacity: 0.15;
+            transform: rotate(0deg);
         }
 
         .highlight-box h3 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 400;
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
             margin-bottom: 1.5rem;
-            letter-spacing: 2px;
+            letter-spacing: -1px;
             text-transform: uppercase;
             position: relative;
             z-index: 1;
         }
 
         .highlight-box p {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             line-height: 1.8;
             margin-bottom: 1rem;
             position: relative;
@@ -435,8 +569,8 @@
 
         .terms-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+            gap: 1.5rem;
             margin-top: 2rem;
             position: relative;
             z-index: 1;
@@ -444,69 +578,95 @@
 
         .term-card {
             padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(5px);
-            border-left: 4px solid var(--alpine-pink);
-            border-radius: 10px;
-            transition: all 0.3s ease;
+            background: rgba(0, 144, 255, 0.06);
+            border-left: 3px solid var(--alpine-pink);
+            border-radius: 2px;
+            transition: all 0.25s ease;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            min-width: 0;
         }
 
         .term-card:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateX(8px);
-            box-shadow: 0 6px 20px rgba(255, 30, 90, 0.3);
+            background: rgba(0, 144, 255, 0.1);
+            transform: translateX(6px);
         }
 
         .term-card strong {
             display: block;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.1rem;
+            font-family: 'Syne', sans-serif;
+            font-size: 1rem;
             font-weight: 700;
-            margin-bottom: 0.75rem;
-            color: var(--alpine-white);
+            margin-bottom: 0.5rem;
+            color: var(--french-white);
+            letter-spacing: 0.5px;
         }
 
-        /* GP Callout */
+        .term-card span {
+            color: var(--alpine-frost);
+            font-size: 0.9rem;
+        }
+
+        /* ========================================
+           GP CALLOUT
+           ======================================== */
         .gp-callout {
-            background: linear-gradient(135deg, var(--alpine-pink) 0%, var(--alpine-pink-light) 100%);
-            color: var(--alpine-white);
-            padding: 3rem;
+            background: linear-gradient(135deg, var(--alpine-blue) 0%, var(--alpine-blue-deep) 100%);
+            color: var(--french-white);
+            padding: 3.5rem;
             text-align: center;
-            margin: 4rem 0;
-            border-radius: 20px;
-            box-shadow: 0 12px 40px rgba(255, 30, 90, 0.4);
+            margin: 5rem 0;
+            border-radius: 4px;
             position: relative;
             overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
-        .gp-callout::before {
+        .gp-callout.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mountain ridge pattern at bottom of GP callout */
+        .gp-callout::after {
             content: '';
             position: absolute;
-            top: 0;
+            bottom: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background:
-                repeating-linear-gradient(
-                    45deg,
-                    transparent,
-                    transparent 10px,
-                    rgba(255, 255, 255, 0.05) 10px,
-                    rgba(255, 255, 255, 0.05) 20px
-                );
-            pointer-events: none;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.15);
+            clip-path: polygon(
+                0% 100%,
+                0% 70%,
+                8% 50%,
+                15% 30%,
+                22% 55%,
+                30% 20%,
+                38% 45%,
+                46% 10%,
+                54% 40%,
+                62% 25%,
+                70% 50%,
+                78% 15%,
+                86% 35%,
+                94% 60%,
+                100% 40%,
+                100% 100%
+            );
         }
 
         .gp-callout h3 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 3rem;
-            font-weight: 400;
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
             margin-bottom: 2rem;
-            letter-spacing: 3px;
+            letter-spacing: -1px;
             text-transform: uppercase;
             position: relative;
             z-index: 1;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
         .gp-stats {
@@ -523,220 +683,78 @@
         }
 
         .gp-stat-label {
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 2px;
+            font-family: 'Source Code Pro', monospace;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            opacity: 0.9;
+            opacity: 0.8;
             margin-bottom: 0.5rem;
-            font-family: 'Montserrat', sans-serif;
         }
 
         .gp-stat-value {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 3rem;
-            font-weight: 400;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            font-family: 'Syne', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
         }
 
-        .gp-callout p {
+        .gp-callout > p {
             position: relative;
             z-index: 1;
+            max-width: 500px;
+            margin: 0 auto;
+            font-size: 0.95rem;
+            opacity: 0.9;
         }
 
-        /* Footer */
+        /* ========================================
+           FOOTER
+           ======================================== */
         footer {
             text-align: center;
             padding: 3rem 0;
             margin-top: 5rem;
-            border-top: 2px solid var(--alpine-blue);
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.9rem;
-            color: var(--alpine-gray);
+            border-top: 1px solid rgba(0, 144, 255, 0.15);
+            font-family: 'Source Code Pro', monospace;
+            font-size: 0.8rem;
+            color: var(--alpine-frost);
+            letter-spacing: 2px;
         }
 
-        /* Mobile Styles */
-        @media (max-width: 768px) {
-            .container {
-                padding: 1.5rem;
-            }
-
-            .hero {
-                padding: 2rem 0 3rem;
-                margin-bottom: 3rem;
-            }
-
-            .season-badge {
-                padding: 0.4rem 1.25rem;
-                font-size: 0.75rem;
-                letter-spacing: 2px;
-                margin-bottom: 1rem;
-            }
-
-            h1 {
-                font-size: 3rem;
-                margin-bottom: 0.75rem;
-            }
-
-            .subtitle {
-                font-size: 1rem;
-                margin-bottom: 1.5rem;
-            }
-
-            .race-info-banner {
-                flex-direction: column;
-                gap: 1.5rem;
-                padding: 1.25rem;
-            }
-
-            .race-info-value {
-                font-size: 1.25rem;
-            }
-
-            .section {
-                margin-bottom: 3.5rem;
-            }
-
-            .section-header {
-                margin-bottom: 2rem;
-            }
-
-            .section-title {
-                font-size: 2.5rem;
-                margin-bottom: 0.75rem;
-            }
-
-            .section-subtitle {
-                font-size: 1rem;
-            }
-
-            .pu-table-header {
-                padding: 0.875rem 1.25rem;
-                font-size: 0.7rem;
-                letter-spacing: 2px;
-                grid-template-columns: 1.1fr 1fr;
-            }
-
-            .pu-table-row {
-                padding: 1rem 1.25rem;
-                grid-template-columns: 1.1fr 1fr;
-            }
-
-            .team-nameplate {
-                padding: 0.4rem 0.75rem;
-                font-size: 0.85rem;
-                border-left-width: 3px;
-            }
-
-            .pu-supplier {
-                font-size: 0.8rem;
-            }
-
-            .card-grid {
-                grid-template-columns: 1fr;
-                gap: 1.75rem;
-            }
-
-            .content-card {
-                padding: 2rem 1.5rem;
-            }
-
-            .content-card h3 {
-                font-size: 1.75rem;
-            }
-
-            .highlight-box {
-                padding: 2rem 1.5rem;
-                margin: 3rem 0;
-            }
-
-            .highlight-box h3 {
-                font-size: 2rem;
-                margin-bottom: 1.25rem;
-            }
-
-            .highlight-box p {
-                font-size: 1rem;
-            }
-
-            .terms-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .term-card {
-                padding: 1.25rem;
-            }
-
-            .gp-callout {
-                padding: 2rem 1.5rem;
-                margin: 3rem 0;
-            }
-
-            .gp-callout h3 {
-                font-size: 2.25rem;
-                margin-bottom: 1.5rem;
-            }
-
-            .gp-stats {
-                flex-direction: column;
-                gap: 2rem;
-            }
-
-            .gp-stat-value {
-                font-size: 2.5rem;
-            }
-
-            footer {
-                padding: 2.5rem 0;
-                margin-top: 4rem;
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in {
-            animation: fadeInUp 0.6s ease-out forwards;
-        }
-
-        /* Floating Quick Nav */
+        /* ========================================
+           FLOATING QUICK NAV - Mountain peak shape
+           ======================================== */
         .quick-nav-btn {
             position: fixed;
             bottom: 2rem;
             right: 2rem;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--alpine-blue) 0%, var(--alpine-blue-dark) 100%);
-            border: 2px solid var(--alpine-pink);
-            border-radius: 50%;
-            color: var(--alpine-white);
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--alpine-blue) 0%, var(--alpine-pink-hot) 100%);
+            border: none;
+            color: var(--french-white);
+            font-family: 'Syne', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
             cursor: pointer;
             z-index: 999;
-            box-shadow: 0 4px 20px rgba(255, 30, 90, 0.4);
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
+            clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+            padding-top: 12px;
         }
 
         .quick-nav-btn:hover {
-            background: linear-gradient(135deg, var(--alpine-pink) 0%, var(--alpine-pink-light) 100%);
-            border-color: var(--alpine-blue);
-            transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 8px 30px rgba(255, 30, 90, 0.6);
+            transform: translateY(-4px) scale(1.1);
+            box-shadow: 0 12px 30px rgba(0, 144, 255, 0.5);
+        }
+
+        .quick-nav-btn.active {
+            clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+            padding-top: 0;
+            padding-bottom: 12px;
         }
 
         .nav-overlay {
@@ -745,12 +763,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(10, 14, 39, 0.95);
+            background: rgba(11, 20, 40, 0.92);
             z-index: 998;
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(8px);
         }
 
         .nav-overlay.active {
@@ -762,18 +780,17 @@
             position: fixed;
             bottom: 2rem;
             right: 2rem;
-            background: linear-gradient(135deg, rgba(0, 144, 255, 0.15) 0%, rgba(46, 76, 141, 0.15) 100%);
-            backdrop-filter: blur(10px);
-            border: 2px solid var(--alpine-blue);
-            border-radius: 15px;
+            background: rgba(11, 20, 40, 0.95);
+            border: 1px solid rgba(0, 144, 255, 0.3);
+            border-radius: 4px;
             padding: 2rem;
             z-index: 999;
             opacity: 0;
             visibility: hidden;
             transform: translateY(20px);
             transition: all 0.3s ease;
-            box-shadow: 0 10px 40px rgba(0, 144, 255, 0.3);
             min-width: 280px;
+            backdrop-filter: blur(12px);
         }
 
         .nav-menu.active {
@@ -783,10 +800,11 @@
         }
 
         .nav-menu h3 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 2rem;
-            color: var(--alpine-white);
-            margin-bottom: 1.5rem;
+            font-family: 'Syne', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--french-white);
+            margin-bottom: 1.25rem;
             text-transform: uppercase;
             letter-spacing: 2px;
         }
@@ -798,39 +816,165 @@
         }
 
         .nav-menu li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
         }
 
         .nav-menu a {
             display: block;
-            padding: 0.75rem 1rem;
-            color: var(--alpine-white);
+            padding: 0.65rem 1rem;
+            color: var(--alpine-frost);
             text-decoration: none;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            font-size: 0.95rem;
-            background: rgba(255, 255, 255, 0.05);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 500;
+            font-size: 0.9rem;
+            border-left: 2px solid transparent;
             transition: all 0.2s ease;
-            border-left: 3px solid var(--alpine-blue);
-            border-radius: 8px;
+            border-radius: 2px;
         }
 
         .nav-menu a:hover {
-            background: linear-gradient(135deg, var(--alpine-pink) 0%, var(--alpine-pink-light) 100%);
-            color: var(--alpine-white);
-            border-left-color: var(--alpine-white);
+            color: var(--french-white);
+            background: rgba(0, 144, 255, 0.1);
+            border-left-color: var(--alpine-pink);
             padding-left: 1.5rem;
-            transform: translateX(8px);
-            box-shadow: 0 4px 15px rgba(255, 30, 90, 0.4);
         }
 
+        /* ========================================
+           MOBILE RESPONSIVE
+           ======================================== */
         @media (max-width: 768px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .hero {
+                padding: 3rem 0 5rem;
+            }
+
+            .hero::after {
+                height: 50px;
+            }
+
+            h1 {
+                font-size: clamp(2.8rem, 12vw, 4rem);
+                letter-spacing: -1px;
+            }
+
+            h1 .accent {
+                letter-spacing: 3px;
+            }
+
+            .season-badge {
+                font-size: 0.7rem;
+                padding: 0.3rem 1rem;
+                letter-spacing: 3px;
+            }
+
+            .subtitle {
+                font-size: 0.95rem;
+            }
+
+            .race-info-banner {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem 1.5rem;
+                display: flex;
+                width: 100%;
+            }
+
+            .race-info-value {
+                font-size: 1.1rem;
+            }
+
+            .section {
+                margin-bottom: 3.5rem;
+            }
+
+            .section-title {
+                font-size: clamp(1.8rem, 6vw, 2.5rem);
+            }
+
+            .pu-table-header {
+                padding: 0.75rem 1rem;
+                font-size: 0.65rem;
+                grid-template-columns: 1.1fr 1fr;
+            }
+
+            .pu-table-row {
+                padding: 0.75rem 1rem;
+                grid-template-columns: 1.1fr 1fr;
+            }
+
+            .team-nameplate {
+                font-size: 0.8rem;
+                padding: 0.3rem 0.5rem;
+                border-left-width: 2px;
+            }
+
+            .pu-supplier {
+                font-size: 0.75rem;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .content-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .content-card h3 {
+                font-size: 1.4rem;
+            }
+
+            .highlight-box {
+                padding: 2rem 1.5rem;
+                margin: 3.5rem 0;
+            }
+
+            .highlight-box h3 {
+                font-size: 1.8rem;
+            }
+
+            .terms-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .term-card {
+                padding: 1.25rem;
+            }
+
+            .term-card strong {
+                font-size: 0.95rem;
+                letter-spacing: 0.5px;
+            }
+
+            .gp-callout {
+                padding: 2.5rem 1.5rem;
+                margin: 3.5rem 0;
+            }
+
+            .gp-callout h3 {
+                font-size: 1.8rem;
+            }
+
+            .gp-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .gp-stat-value {
+                font-size: 2rem;
+            }
+
             .quick-nav-btn {
                 bottom: 1.5rem;
                 right: 1.5rem;
-                width: 50px;
-                height: 50px;
-                font-size: 1.2rem;
+                width: 48px;
+                height: 48px;
+                font-size: 1.1rem;
             }
 
             .nav-menu {
@@ -839,15 +983,36 @@
                 left: 1.5rem;
                 min-width: auto;
             }
+
+            footer {
+                padding: 2rem 0;
+                margin-top: 4rem;
+            }
         }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero::after {
+                height: 35px;
+            }
+        }
+
     </style>
 </head>
 <body>
     <div class="container">
         <header class="hero">
+            <div class="tricolor-bar"></div>
             <div class="season-badge">2026 Season</div>
-            <h1>THE NEW ERA</h1>
-            <div class="subtitle">Everything You Need to Know</div>
+            <h1>The New Era<span class="accent">Everything You Need to Know</span></h1>
+            <div class="subtitle">Your guide to the most radical regulation change in F1 history</div>
             <div class="race-info-banner">
                 <div class="race-info-item">
                     <div class="race-info-label">Race</div>
@@ -864,8 +1029,9 @@
             </div>
         </header>
 
-        <section class="section fade-in" id="power-units">
+        <section class="section" id="power-units">
             <div class="section-header">
+                <span class="section-number">01 &mdash; Engine Partnerships</span>
                 <h2 class="section-title">2026 Power Units</h2>
                 <p class="section-subtitle">New engine partnerships for the most radical regulation change in F1 history</p>
             </div>
@@ -877,120 +1043,89 @@
                 </div>
 
                 <div class="pu-table-row">
-                    <div class="pu-team">
-                        <div class="team-nameplate team-mclaren">McLaren</div>
-                    </div>
+                    <div class="pu-team"><div class="team-nameplate team-mclaren">McLaren</div></div>
                     <div class="pu-supplier">Mercedes</div>
                 </div>
-
                 <div class="pu-table-row">
-                    <div class="pu-team">
-                        <div class="team-nameplate team-mercedes">Mercedes</div>
-                    </div>
+                    <div class="pu-team"><div class="team-nameplate team-mercedes">Mercedes</div></div>
                     <div class="pu-supplier">Mercedes</div>
                 </div>
-
                 <div class="pu-table-row">
-                    <div class="pu-team">
-                        <div class="team-nameplate team-williams">Williams</div>
-                    </div>
+                    <div class="pu-team"><div class="team-nameplate team-williams">Williams</div></div>
                     <div class="pu-supplier">Mercedes</div>
                 </div>
-
                 <div class="pu-table-row">
-                    <div class="pu-team">
-                        <div class="team-nameplate team-alpine">Alpine</div>
-                    </div>
+                    <div class="pu-team"><div class="team-nameplate team-alpine">Alpine</div></div>
                     <div class="pu-supplier">Mercedes</div>
                 </div>
-
                 <div class="pu-table-row">
-                    <div class="pu-team">
-                        <div class="team-nameplate team-ferrari">Ferrari</div>
-                    </div>
+                    <div class="pu-team"><div class="team-nameplate team-ferrari">Ferrari</div></div>
                     <div class="pu-supplier">Ferrari</div>
                 </div>
-
                 <div class="pu-table-row">
-                    <div class="pu-team">
-                        <div class="team-nameplate team-haas">Haas</div>
-                    </div>
+                    <div class="pu-team"><div class="team-nameplate team-haas">Haas</div></div>
                     <div class="pu-supplier">Ferrari</div>
                 </div>
-
                 <div class="pu-table-row">
-                    <div class="pu-team">
-                        <div class="team-nameplate team-cadillac">Cadillac</div>
-                    </div>
+                    <div class="pu-team"><div class="team-nameplate team-cadillac">Cadillac</div></div>
                     <div class="pu-supplier">Ferrari</div>
                 </div>
-
                 <div class="pu-table-row">
-                    <div class="pu-team">
-                        <div class="team-nameplate team-redbull">Red Bull</div>
-                    </div>
+                    <div class="pu-team"><div class="team-nameplate team-redbull">Red Bull</div></div>
                     <div class="pu-supplier">Red Bull Ford</div>
                 </div>
-
                 <div class="pu-table-row">
-                    <div class="pu-team">
-                        <div class="team-nameplate team-redbull">RB</div>
-                    </div>
+                    <div class="pu-team"><div class="team-nameplate team-rb">RB</div></div>
                     <div class="pu-supplier">Red Bull Ford</div>
                 </div>
-
                 <div class="pu-table-row">
-                    <div class="pu-team">
-                        <div class="team-nameplate team-aston">Aston Martin</div>
-                    </div>
+                    <div class="pu-team"><div class="team-nameplate team-aston">Aston Martin</div></div>
                     <div class="pu-supplier">Honda</div>
                 </div>
-
                 <div class="pu-table-row">
-                    <div class="pu-team">
-                        <div class="team-nameplate team-audi">Audi</div>
-                    </div>
+                    <div class="pu-team"><div class="team-nameplate team-audi">Audi</div></div>
                     <div class="pu-supplier">Audi</div>
                 </div>
             </div>
         </section>
 
-        <div class="highlight-box fade-in" id="basic-terms">
+        <div class="highlight-box" id="basic-terms">
             <h3>Basic F1 Terms</h3>
             <div class="terms-grid">
                 <div class="term-card">
                     <strong>Constructor</strong>
-                    The team that builds the car (Ferrari, Mercedes, Red Bull, etc.). Teams score points separately from drivers.
+                    <span>The team that builds the car (Ferrari, Mercedes, Red Bull, etc.). Teams score points separately from drivers.</span>
                 </div>
                 <div class="term-card">
                     <strong>Pole Position</strong>
-                    Starting first on the grid because you had the fastest qualifying lap.
+                    <span>Starting first on the grid because you had the fastest qualifying lap.</span>
                 </div>
                 <div class="term-card">
                     <strong>Box, Box</strong>
-                    Pulling into the pits during the race to change tires, fix damage, or adjust the car. Takes 2-3 seconds for a tire change. The fastest pit stop record is 1.8 seconds!
+                    <span>Pulling into the pits during the race to change tires, fix damage, or adjust the car. Takes 2-3 seconds for a tire change. The fastest pit stop record is 1.8 seconds!</span>
                 </div>
                 <div class="term-card">
                     <strong>Qualifying</strong>
-                    Saturday session where drivers compete for grid position. Fastest lap wins pole position.
+                    <span>Saturday session where drivers compete for grid position. Fastest lap wins pole position.</span>
                 </div>
                 <div class="term-card">
                     <strong>Grid</strong>
-                    The starting lineup formation. Better qualifying performance means starting closer to the front.
+                    <span>The starting lineup formation. Better qualifying performance means starting closer to the front.</span>
                 </div>
                 <div class="term-card">
                     <strong>Undercut/Overcut</strong>
-                    Pit strategy where you either pit earlier than your rival (undercut) or stay out longer (overcut) to gain track position.
+                    <span>Pit strategy where you either pit earlier than your rival (undercut) or stay out longer (overcut) to gain track position.</span>
                 </div>
                 <div class="term-card">
                     <strong>Safety Car</strong>
-                    Pace car deployed after crashes or debris. Field bunches up, no overtaking allowed until it leaves the track.
+                    <span>Pace car deployed after crashes or debris. Field bunches up, no overtaking allowed until it leaves the track.</span>
                 </div>
             </div>
         </div>
 
-        <section class="section fade-in" id="new-terminology">
+        <section class="section" id="new-terminology">
             <div class="section-header">
+                <span class="section-number">02 &mdash; New Concepts</span>
                 <h2 class="section-title">New 2026 Terminology</h2>
             </div>
 
@@ -1031,8 +1166,9 @@
             </div>
         </section>
 
-        <section class="section fade-in" id="whats-different">
+        <section class="section" id="whats-different">
             <div class="section-header">
+                <span class="section-number">03 &mdash; Rule Changes</span>
                 <h2 class="section-title">What's Different in 2026</h2>
             </div>
 
@@ -1059,7 +1195,7 @@
                 <div class="content-card">
                     <h3>New Features</h3>
                     <ul>
-                        <li><strong>Driver Cooling:</strong> Mandatory cooling system (vest/shirt) active when ambient temp hits ~31°C (88°F)</li>
+                        <li><strong>Driver Cooling:</strong> Mandatory cooling system (vest/shirt) active when ambient temp hits ~31&deg;C (88&deg;F)</li>
                         <li><strong>Safety Lights:</strong> New lights on rear wing endplates to signal if the car is electrically safe to touch</li>
                     </ul>
                 </div>
@@ -1074,7 +1210,7 @@
             </div>
         </section>
 
-        <div class="gp-callout fade-in" id="australian-gp">
+        <div class="gp-callout" id="australian-gp">
             <h3>Australian Grand Prix</h3>
             <div class="gp-stats">
                 <div class="gp-stat">
@@ -1095,7 +1231,7 @@
     </div>
 
     <!-- Quick Nav Button and Menu -->
-    <button class="quick-nav-btn" id="quickNavBtn" aria-label="Quick Navigation">☰</button>
+    <button class="quick-nav-btn" id="quickNavBtn" aria-label="Quick Navigation">&#9650;</button>
     <div class="nav-overlay" id="navOverlay"></div>
     <nav class="nav-menu" id="navMenu">
         <h3>Quick Nav</h3>
@@ -1109,7 +1245,7 @@
     </nav>
 
     <script>
-        // Intersection Observer for animations
+        // Intersection Observer for scroll animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -1118,7 +1254,7 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
+                    entry.target.classList.add('visible');
                 }
             });
         }, observerOptions);
@@ -1132,7 +1268,6 @@
         const navOverlay = document.getElementById('navOverlay');
         const navMenu = document.getElementById('navMenu');
 
-        // Smooth scrolling
         document.documentElement.style.scrollBehavior = 'smooth';
 
         function toggleNav() {
@@ -1144,14 +1279,12 @@
         quickNavBtn.addEventListener('click', toggleNav);
         navOverlay.addEventListener('click', toggleNav);
 
-        // Close menu when clicking a link
         navMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 toggleNav();
             });
         });
 
-        // Close menu on escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && navMenu.classList.contains('active')) {
                 toggleNav();
