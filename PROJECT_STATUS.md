@@ -9,7 +9,7 @@ Creating 11 team-specific F1 watch party page designs for the 2026 season. Each 
 - **Testing:** Mobile viewport 390x844 (iPhone 12 Pro)
 - **Deployment:** Netlify auto-deploy from GitHub main branch
 
-## Teams Completed (5/11)
+## Teams Completed (6/11)
 
 ### ✅ 1. McLaren - "Speed Slice"
 - **File:** `index-mclaren.html`
@@ -46,13 +46,14 @@ Creating 11 team-specific F1 watch party page designs for the 2026 season. Each 
 - **Memorable Element:** Hexagonal nav button + wing silhouette
 - **Status:** Complete, mobile optimized, text overflow fixed
 
-## Teams Remaining (6/11)
+### ✅ 6. Alpine - "Altitude Bleue"
+- **File:** `index-alpine.html`
+- **Colors:** Alpine blue (#0090FF), hot pink (#FF87BC/#FF1E7E), deep navy (#0B1428), French tricolor
+- **Typography:** Syne (French-designed geometric display), Outfit (modern body), Source Code Pro (technical monospace)
+- **Memorable Element:** Mountain ridge clip-path hero silhouette + diagonal French tricolor sash + mountain-peak shaped nav button
+- **Status:** Complete, mobile optimized, all overflow protections applied
 
-### 6. Alpine
-- **Expected Theme:** "French Racing Elegance"
-- **Colors:** French blue (#0090FF), pink/fuchsia (#FF1E7E), white
-- **Concept:** Mountain heritage meets French sophistication, sporty elegance
-- **Design Notes:** Tricolor accents, alpine aesthetics, modern European racing
+## Teams Remaining (5/11)
 
 ### 7. Williams
 - **Expected Theme:** "Classic British Heritage"
