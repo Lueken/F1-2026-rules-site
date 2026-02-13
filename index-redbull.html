@@ -6,18 +6,32 @@
     <title>2026 F1 Season Guide | Red Bull Racing</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Teko:wght@500;600;700&family=Quantico:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --navy: #0600EF;
-            --navy-dark: #1E1E5C;
-            --navy-deep: #0a0a2e;
-            --red: #DC0000;
-            --red-bright: #FF0040;
-            --yellow: #FFC906;
-            --yellow-bright: #FFD700;
+            /* 2026 RB22 Heritage Gloss - Blue dominant */
+            --rb-blue: #1E3A8A;
+            --rb-blue-bright: #2563EB;
+            --rb-blue-ford: #0066B1;
+            --rb-blue-light: #60A5FA;
+            --rb-navy: #0F172A;
             --white: #FFFFFF;
+            --red-accent: #FF1801;
+            --yellow-accent: #FFE500;
             --black: #000000;
+
+            /* Team Colors for PU table */
+            --mclaren: #ff8700;
+            --mercedes: #00d2be;
+            --williams: #005aff;
+            --alpine: #0090ff;
+            --ferrari: #dc0000;
+            --haas: #b6babd;
+            --cadillac: #666666;
+            --redbull: #1E3A8A;
+            --aston: #006f62;
+            --audi: #ff1e00;
+            --rb: #6692FF;
         }
 
         * {
@@ -27,283 +41,262 @@
         }
 
         body {
-            font-family: 'Quantico', sans-serif;
-            background: var(--navy-deep);
+            font-family: 'Barlow', sans-serif;
+            background: linear-gradient(180deg, var(--rb-blue) 0%, var(--rb-navy) 100%);
             color: var(--white);
             overflow-x: hidden;
             position: relative;
             width: 100%;
             max-width: 100vw;
+            min-height: 100vh;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .container {
-            max-width: 100%;
-            overflow-x: hidden;
-        }
-
-        /* Aggressive diagonal energy burst */
+        /* ========================================
+           MEMORABLE ELEMENT: Jacquard Pattern
+           Lighter blue woven texture like RB22 bodywork
+           ======================================== */
         body::before {
             content: '';
             position: fixed;
-            top: -50%;
-            right: -20%;
-            width: 150%;
-            height: 200%;
-            background: repeating-linear-gradient(
-                -45deg,
-                transparent,
-                transparent 80px,
-                rgba(220, 0, 0, 0.03) 80px,
-                rgba(220, 0, 0, 0.03) 160px
-            );
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 15px,
+                    rgba(96, 165, 250, 0.06) 15px,
+                    rgba(96, 165, 250, 0.06) 30px
+                ),
+                repeating-linear-gradient(
+                    -45deg,
+                    transparent,
+                    transparent 15px,
+                    rgba(96, 165, 250, 0.06) 15px,
+                    rgba(96, 165, 250, 0.06) 30px
+                );
             pointer-events: none;
             z-index: 0;
-            animation: energyShift 20s linear infinite;
         }
 
-        @keyframes energyShift {
-            0% { transform: translateX(0) translateY(0); }
-            100% { transform: translateX(-160px) translateY(160px); }
-        }
-
-        /* Championship stars background */
+        /* Glossy shine sweep effect */
         body::after {
-            content: '★ ★ ★ ★';
+            content: '';
             position: fixed;
-            bottom: 10%;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 8rem;
-            color: rgba(255, 201, 6, 0.03);
-            letter-spacing: 4rem;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.03),
+                rgba(255, 255, 255, 0.08),
+                rgba(255, 255, 255, 0.03),
+                transparent
+            );
+            animation: glossSweep 12s ease-in-out infinite;
             pointer-events: none;
             z-index: 0;
+        }
+
+        @keyframes glossSweep {
+            0%, 100% { left: -100%; }
+            50% { left: 150%; }
         }
 
         .container {
             position: relative;
             z-index: 1;
-            max-width: 1400px;
+            max-width: min(1200px, 100%);
             margin: 0 auto;
             padding: 0 3rem;
+            overflow-x: hidden;
         }
 
-        /* Hero - championship aggression */
+        /* ========================================
+           HERO - Glossy Blue Premium
+           ======================================== */
         .hero {
+            text-align: center;
+            padding: 5rem 0 4rem;
             position: relative;
-            padding: 6rem 0 5rem;
-            margin-bottom: 6rem;
-            overflow: hidden;
+            margin-bottom: 4rem;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -10%;
-            width: 120%;
-            height: 100%;
-            background: linear-gradient(135deg,
-                transparent 0%,
-                rgba(220, 0, 0, 0.2) 50%,
-                transparent 100%
-            );
-            transform: skewY(-3deg);
-            pointer-events: none;
-        }
-
+        /* White accent line - heritage branding outline */
         .hero::after {
             content: '';
             position: absolute;
             bottom: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg,
-                var(--red) 0%,
-                var(--yellow) 50%,
-                var(--red) 100%
-            );
-            box-shadow: 0 0 20px var(--red);
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 2px;
+            background: var(--white);
+            opacity: 0.4;
         }
 
-        .season-badge {
-            font-family: 'Teko', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            letter-spacing: 8px;
+        .ford-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            padding: 0.6rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: var(--white);
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            color: var(--navy-deep);
-            background: var(--yellow);
-            display: inline-block;
-            padding: 0.8rem 3.5rem;
-            margin-bottom: 2rem;
-            position: relative;
-            transform: skewX(-10deg);
-            box-shadow: 0 4px 15px rgba(255, 201, 6, 0.4);
+            backdrop-filter: blur(10px);
         }
 
-        .season-badge::before {
+        .ford-badge::before {
             content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--red);
+            width: 8px;
+            height: 8px;
+            background: var(--yellow-accent);
+            border-radius: 50%;
         }
 
         h1 {
-            font-family: 'Russo One', sans-serif;
-            font-size: clamp(4rem, 15vw, 13rem);
-            font-weight: 400;
-            line-height: 0.85;
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(3.5rem, 12vw, 9rem);
+            font-weight: 700;
+            line-height: 0.9;
             color: var(--white);
             text-transform: uppercase;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             letter-spacing: -0.02em;
-            text-shadow:
-                0 0 30px rgba(220, 0, 0, 0.8),
-                0 0 60px rgba(220, 0, 0, 0.5),
-                4px 4px 0 var(--red-bright);
-            position: relative;
-            z-index: 1;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
         }
 
         .subtitle {
-            font-family: 'Teko', sans-serif;
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
-            font-weight: 600;
-            color: var(--yellow);
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            margin-bottom: 3rem;
+            font-family: 'Barlow', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--white);
+            opacity: 0.8;
+            margin-bottom: 2.5rem;
+            letter-spacing: 1px;
         }
 
         .race-info-banner {
             display: flex;
-            gap: 4rem;
+            gap: 2rem;
             justify-content: center;
             flex-wrap: wrap;
-            position: relative;
-            z-index: 1;
         }
 
         .race-info-item {
             text-align: center;
-            background: rgba(220, 0, 0, 0.2);
-            padding: 1.5rem 2.5rem;
-            border: 3px solid var(--red);
-            border-top-width: 6px;
-            border-bottom-width: 6px;
-            transform: skewX(-5deg);
+            padding: 1.25rem 2rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
             transition: all 0.3s ease;
         }
 
         .race-info-item:hover {
-            background: var(--red);
-            transform: skewX(-5deg) scale(1.05);
-            box-shadow: 0 8px 25px rgba(220, 0, 0, 0.6);
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
         }
 
         .race-info-label {
-            font-family: 'Teko', sans-serif;
-            font-size: 0.8rem;
-            letter-spacing: 3px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            color: var(--yellow);
+            color: var(--yellow-accent);
             margin-bottom: 0.5rem;
-            font-weight: 600;
+            font-weight: 500;
         }
 
         .race-info-value {
-            font-family: 'Russo One', sans-serif;
-            font-size: 2.5rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
             color: var(--white);
-            line-height: 1;
         }
 
-        /* Sections */
+        /* ========================================
+           SECTIONS
+           ======================================== */
         .section {
-            padding: 5rem 0;
-            margin-bottom: 3rem;
+            padding: 4rem 0;
+            margin-bottom: 2rem;
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .section.fade-in {
+        .section.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
         .section-header {
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
             position: relative;
-            padding-bottom: 2rem;
         }
 
-        .section-header::after {
+        .section-header::before {
             content: '';
             position: absolute;
-            bottom: 0;
             left: 0;
-            width: 120px;
-            height: 6px;
-            background: linear-gradient(90deg, var(--red) 0%, var(--yellow) 100%);
-            transform: skewX(-20deg);
+            top: -1rem;
+            width: 50px;
+            height: 3px;
+            background: var(--yellow-accent);
         }
 
         .section-title {
-            font-family: 'Russo One', sans-serif;
-            font-size: clamp(3rem, 7vw, 6rem);
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
             color: var(--white);
             text-transform: uppercase;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.01em;
-            line-height: 1;
-            text-shadow: 3px 3px 0 var(--red);
+            margin-bottom: 1rem;
+            letter-spacing: 0.02em;
         }
 
         .section-subtitle {
-            font-family: 'Quantico', sans-serif;
-            font-size: 1.15rem;
-            color: rgba(255, 255, 255, 0.7);
-            max-width: 700px;
-            line-height: 1.7;
+            font-size: 1.05rem;
+            color: var(--white);
+            opacity: 0.75;
+            max-width: 600px;
         }
 
-        /* Power Units Table - aggressive borders */
+        /* ========================================
+           POWER UNITS TABLE - Glossy Glass Effect
+           ======================================== */
         .pu-table-wrapper {
-            background: var(--navy-dark);
-            border: 4px solid var(--red);
-            border-left-width: 8px;
-            padding: 0;
-            position: relative;
-            box-shadow: 0 15px 50px rgba(220, 0, 0, 0.3);
-        }
-
-        .pu-table-wrapper::before {
-            content: '';
-            position: absolute;
-            top: -4px;
-            left: -8px;
-            right: -4px;
-            height: 8px;
-            background: var(--yellow);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         }
 
         .pu-table-header {
             display: grid;
             grid-template-columns: 1.3fr 1fr;
             gap: 2rem;
-            padding: 1.8rem 2.5rem;
-            background: linear-gradient(135deg, var(--red) 0%, var(--red-bright) 100%);
+            padding: 1.25rem 2rem;
+            background: rgba(255, 255, 255, 0.1);
             color: var(--white);
-            font-family: 'Teko', sans-serif;
-            font-weight: 700;
-            font-size: 1.1rem;
-            letter-spacing: 4px;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
             text-transform: uppercase;
         }
 
@@ -311,118 +304,84 @@
             display: grid;
             grid-template-columns: 1.3fr 1fr;
             gap: 2rem;
-            padding: 1.8rem 2.5rem;
-            border-bottom: 2px solid rgba(220, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            position: relative;
+            padding: 1.25rem 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.2s ease;
         }
 
-        .pu-table-row::before {
-            content: '▸';
-            position: absolute;
-            left: 0.8rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--yellow);
-            font-size: 1.5rem;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+        .pu-table-row:last-child {
+            border-bottom: none;
         }
 
         .pu-table-row:hover {
-            background: rgba(220, 0, 0, 0.15);
-            border-left: 6px solid var(--yellow);
-            padding-left: calc(2.5rem - 6px);
-        }
-
-        .pu-table-row:hover::before {
-            opacity: 1;
+            background: rgba(255, 255, 255, 0.05);
         }
 
         .team-nameplate {
-            font-family: 'Teko', sans-serif;
-            font-weight: 700;
-            padding: 0.7rem 1.5rem;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
             display: inline-block;
             color: var(--white);
-            font-size: 1.1rem;
-            letter-spacing: 2px;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
             text-transform: uppercase;
         }
 
-        .team-mclaren { background: #ff8700; color: #000; }
-        .team-mercedes { background: #00d2be; color: #000; }
-        .team-williams { background: #005aff; }
-        .team-alpine { background: #0090ff; }
-        .team-ferrari { background: #dc0000; }
-        .team-haas { background: #b6babd; color: #000; }
-        .team-cadillac { background: #666666; }
-        .team-redbull { background: #0600ef; }
-        .team-aston { background: #006f62; }
-        .team-audi { background: #ff1e00; }
+        .team-mclaren { background: var(--mclaren); color: #000; }
+        .team-mercedes { background: var(--mercedes); color: #000; }
+        .team-williams { background: var(--williams); }
+        .team-alpine { background: var(--alpine); }
+        .team-ferrari { background: var(--ferrari); }
+        .team-haas { background: var(--haas); color: #000; }
+        .team-cadillac { background: var(--cadillac); }
+        .team-redbull { background: var(--rb-blue-bright); }
+        .team-aston { background: var(--aston); }
+        .team-audi { background: var(--audi); }
 
         .pu-supplier {
             display: flex;
             align-items: center;
-            font-family: 'Quantico', sans-serif;
-            font-weight: 700;
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
             color: var(--white);
         }
 
-        /* Highlight box - energy burst */
+        /* ========================================
+           HIGHLIGHT BOX - Yellow Accent (Red Bull branding)
+           ======================================== */
         .highlight-box {
-            background: linear-gradient(135deg, var(--red-bright) 0%, var(--red) 100%);
-            padding: 5rem 3.5rem;
-            margin: 6rem 0;
-            border: 5px solid var(--yellow);
+            background: linear-gradient(135deg, var(--yellow-accent) 0%, #FFC700 100%);
+            padding: 4rem 3rem;
+            margin: 4rem 0;
+            color: var(--black);
             opacity: 0;
-            transform: translateY(30px) skewY(-1deg);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow:
-                0 0 50px rgba(220, 0, 0, 0.5),
-                0 20px 60px rgba(0, 0, 0, 0.6);
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         }
 
-        .highlight-box::before,
-        .highlight-box::after {
-            content: '';
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            background: var(--yellow);
-        }
-
-        .highlight-box::before {
-            top: -5px;
-            left: -5px;
-            clip-path: polygon(0 0, 100% 0, 0 100%);
-        }
-
-        .highlight-box::after {
-            bottom: -5px;
-            right: -5px;
-            clip-path: polygon(100% 0, 100% 100%, 0 100%);
-        }
-
-        .highlight-box.fade-in {
+        .highlight-box.visible {
             opacity: 1;
-            transform: translateY(0) skewY(0);
+            transform: translateY(0);
         }
 
         .highlight-box h3 {
-            font-family: 'Russo One', sans-serif;
-            font-size: clamp(3rem, 7vw, 5rem);
-            color: var(--white);
-            margin-bottom: 3.5rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 2.5rem;
             text-transform: uppercase;
-            text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3);
+            letter-spacing: 0.02em;
+            color: var(--rb-navy);
         }
 
         .terms-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+            gap: 1.5rem;
         }
 
         @media (max-width: 768px) {
@@ -432,101 +391,97 @@
         }
 
         .term-card {
-            background: rgba(0, 0, 0, 0.4);
-            padding: 2.5rem;
-            border: 3px solid rgba(255, 201, 6, 0.6);
-            border-left-width: 6px;
+            background: rgba(0, 0, 0, 0.08);
+            padding: 2rem;
+            border-left: 4px solid var(--rb-navy);
             line-height: 1.8;
-            transition: all 0.4s ease;
-            position: relative;
-        }
-
-        .term-card::before {
-            content: '★';
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            font-size: 2rem;
-            color: var(--yellow);
-            opacity: 0;
-            transform: rotate(-15deg);
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            min-width: 0;
         }
 
         .term-card:hover {
-            background: rgba(255, 201, 6, 0.1);
-            border-color: var(--yellow);
-            transform: translateX(8px);
-        }
-
-        .term-card:hover::before {
-            opacity: 1;
-            transform: rotate(0deg);
+            background: rgba(0, 0, 0, 0.12);
+            transform: translateX(4px);
         }
 
         .term-card strong {
             display: block;
-            font-family: 'Teko', sans-serif;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: var(--yellow-bright);
-            letter-spacing: 2px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+            color: var(--rb-navy);
+            letter-spacing: 1.5px;
             text-transform: uppercase;
-            font-weight: 700;
+            font-weight: 600;
         }
 
-        /* Content cards */
+        /* ========================================
+           CONTENT CARDS - Glassmorphic
+           ======================================== */
         .card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .content-card {
-            background: var(--navy-dark);
-            padding: 3rem;
-            border: 3px solid var(--red);
-            border-top-width: 8px;
+            background: rgba(255, 255, 255, 0.06);
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
             position: relative;
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            transform: skewY(-1deg);
+            transition: all 0.3s ease;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            min-width: 0;
         }
 
-        .content-card::after {
+        .content-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 8px;
-            background: var(--yellow);
-            transform-origin: left;
+            height: 3px;
+            background: linear-gradient(90deg, var(--yellow-accent), var(--rb-blue-light));
             transform: scaleX(0);
-            transition: transform 0.5s ease;
+            transform-origin: left;
+            transition: transform 0.3s ease;
         }
 
         .content-card:hover {
-            transform: skewY(0) translateY(-10px);
-            border-color: var(--yellow);
-            box-shadow: 0 25px 50px rgba(220, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-4px);
         }
 
-        .content-card:hover::after {
+        .content-card:hover::before {
             transform: scaleX(1);
         }
 
         .content-card h3 {
-            font-family: 'Russo One', sans-serif;
-            font-size: 2rem;
-            color: var(--yellow);
-            margin-bottom: 1.8rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--yellow-accent);
+            margin-bottom: 1.25rem;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .content-card p {
-            line-height: 1.9;
-            margin-bottom: 1.8rem;
-            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+            margin-bottom: 1.25rem;
+            color: var(--white);
+            opacity: 0.9;
         }
 
         .content-card ul {
@@ -535,38 +490,42 @@
         }
 
         .content-card li {
-            padding-left: 2rem;
-            margin-bottom: 1.2rem;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
             position: relative;
-            line-height: 1.8;
-            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.7;
+            color: var(--white);
+            opacity: 0.9;
         }
 
         .content-card li::before {
-            content: '▸';
+            content: '';
             position: absolute;
             left: 0;
-            color: var(--red-bright);
-            font-size: 1.2rem;
+            top: 0.6em;
+            width: 6px;
+            height: 6px;
+            background: var(--yellow-accent);
         }
 
         .content-card strong {
-            color: var(--yellow-bright);
+            color: var(--white);
             font-weight: 700;
         }
 
-        /* GP Callout */
+        /* ========================================
+           GP CALLOUT - Red Bull Red accent
+           ======================================== */
         .gp-callout {
-            background: linear-gradient(135deg, var(--yellow) 0%, #FFB000 100%);
-            padding: 4.5rem 3.5rem;
-            margin: 6rem 0;
-            border: 6px solid var(--red);
-            color: var(--navy-deep);
+            background: linear-gradient(135deg, var(--red-accent) 0%, #CC1400 100%);
+            padding: 3.5rem;
+            margin: 4rem 0;
+            color: var(--white);
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
-            box-shadow: 0 20px 60px rgba(255, 201, 6, 0.4);
+            box-shadow: 0 20px 60px rgba(255, 24, 1, 0.3);
         }
 
         .gp-callout::before {
@@ -574,93 +533,254 @@
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            height: 10px;
-            background: var(--red);
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.1) 0%,
+                transparent 50%
+            );
+            pointer-events: none;
         }
 
-        .gp-callout.fade-in {
+        .gp-callout.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
         .gp-callout h3 {
-            font-family: 'Russo One', sans-serif;
-            font-size: clamp(3rem, 7vw, 5rem);
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            color: var(--white);
             text-transform: uppercase;
-            margin-bottom: 2.5rem;
-            text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            letter-spacing: 0.02em;
         }
 
         .gp-stats {
             display: flex;
-            gap: 5rem;
-            margin-bottom: 2.5rem;
+            gap: 4rem;
+            margin-bottom: 2rem;
             flex-wrap: wrap;
         }
 
         .gp-stat-label {
-            font-family: 'Teko', sans-serif;
-            font-size: 0.9rem;
-            letter-spacing: 3px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            font-weight: 700;
-            margin-bottom: 0.8rem;
-            opacity: 0.8;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            opacity: 0.85;
         }
 
         .gp-stat-value {
-            font-family: 'Russo One', sans-serif;
-            font-size: 4rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--white);
             line-height: 1;
         }
 
-        .gp-callout p {
-            font-size: 1.2rem;
+        .gp-callout > p {
+            font-size: 1.05rem;
             line-height: 1.8;
+            opacity: 0.95;
+        }
+
+        .gp-callout > p strong {
+            color: var(--yellow-accent);
+        }
+
+        /* ========================================
+           FOOTER
+           ======================================== */
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 2rem;
+        }
+
+        /* ========================================
+           TEAM SELECTOR
+           ======================================== */
+        .team-selector-btn {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            height: 40px;
+            padding: 0 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: var(--white);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            z-index: 1001;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .team-selector-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .team-selector-btn.active {
+            background: var(--yellow-accent);
+            border-color: var(--yellow-accent);
+            color: var(--rb-navy);
+        }
+
+        .team-selector-btn .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--yellow-accent);
+        }
+
+        .team-selector-btn.active .dot {
+            background: var(--rb-navy);
+        }
+
+        .team-selector-btn .chevron {
+            transition: transform 0.25s ease;
+            font-size: 0.6rem;
+        }
+
+        .team-selector-btn.active .chevron {
+            transform: rotate(180deg);
+        }
+
+        .team-selector-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.8);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.25s ease;
+            backdrop-filter: blur(8px);
+        }
+
+        .team-selector-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .team-selector-menu {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: var(--rb-navy);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 1rem 0;
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px);
+            transition: all 0.25s ease;
+            min-width: 220px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .team-selector-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .team-selector-menu .menu-header {
+            padding: 0.5rem 1.25rem 0.75rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--yellow-accent);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 0.25rem;
+        }
+
+        .team-selector-menu a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.55rem 1.25rem;
+            color: var(--white);
+            text-decoration: none;
+            font-family: 'Barlow', sans-serif;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: all 0.15s ease;
+        }
+
+        .team-selector-menu a:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .team-selector-menu a.current {
+            color: var(--yellow-accent);
+            background: rgba(255, 229, 0, 0.1);
             font-weight: 700;
         }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 5rem 3rem;
-            font-family: 'Russo One', sans-serif;
-            font-size: 2.5rem;
-            color: var(--red);
-            text-transform: uppercase;
-            text-shadow: 2px 2px 0 var(--yellow);
+        .team-selector-menu a .team-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
         }
 
-        /* Quick Nav - aggressive angular */
+        /* ========================================
+           QUICK NAV - Round Blue Button
+           ======================================== */
         .quick-nav-btn {
             position: fixed;
             bottom: 2rem;
             right: 2rem;
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--red) 0%, var(--red-bright) 100%);
-            color: var(--white);
-            border: 4px solid var(--yellow);
-            font-size: 2.2rem;
+            width: 60px;
+            height: 60px;
+            background: var(--yellow-accent);
+            color: var(--rb-navy);
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
             cursor: pointer;
             z-index: 1000;
-            transition: all 0.4s ease;
-            transform: rotate(45deg);
-            box-shadow: 0 8px 30px rgba(220, 0, 0, 0.6);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(255, 229, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .quick-nav-btn::before {
             content: '☰';
-            display: block;
-            transform: rotate(-45deg);
         }
 
         .quick-nav-btn:hover {
-            background: var(--yellow);
-            color: var(--navy-deep);
-            transform: rotate(45deg) scale(1.15);
-            box-shadow: 0 12px 40px rgba(255, 201, 6, 0.7);
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(255, 229, 0, 0.5);
         }
 
         .nav-overlay {
@@ -669,12 +789,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.95);
+            background: rgba(15, 23, 42, 0.85);
             z-index: 998;
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(8px);
         }
 
         .nav-overlay.active {
@@ -686,42 +806,34 @@
             position: fixed;
             bottom: 2rem;
             right: 2rem;
-            background: var(--navy-dark);
-            border: 5px solid var(--red);
-            border-top-width: 10px;
-            padding: 3.5rem;
+            background: var(--rb-navy);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
             z-index: 999;
             opacity: 0;
             visibility: hidden;
-            transform: translateY(20px) skewY(-2deg);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            min-width: 380px;
-            box-shadow: 0 20px 60px rgba(220, 0, 0, 0.6);
-        }
-
-        .nav-menu::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: 0;
-            right: 0;
-            height: 10px;
-            background: var(--yellow);
+            transform: translateY(10px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            min-width: 280px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
         }
 
         .nav-menu.active {
             opacity: 1;
             visibility: visible;
-            transform: translateY(0) skewY(0);
+            transform: translateY(0);
         }
 
         .nav-menu h3 {
-            font-family: 'Russo One', sans-serif;
-            font-size: 2.8rem;
-            color: var(--yellow);
-            margin-bottom: 2.5rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--yellow-accent);
+            margin-bottom: 1.5rem;
             text-transform: uppercase;
-            text-shadow: 2px 2px 0 var(--red);
+            letter-spacing: 1px;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--yellow-accent);
         }
 
         .nav-menu ul {
@@ -731,169 +843,93 @@
         }
 
         .nav-menu li {
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
 
         .nav-menu a {
             display: block;
-            padding: 1.3rem 1.8rem;
+            padding: 0.75rem 1rem;
             color: var(--white);
             text-decoration: none;
-            font-family: 'Teko', sans-serif;
-            font-weight: 700;
-            font-size: 1.3rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            background: rgba(220, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            border-left: 5px solid transparent;
+            font-family: 'Barlow', sans-serif;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
         }
 
         .nav-menu a:hover {
-            background: var(--red);
-            color: var(--yellow);
-            border-left-color: var(--yellow);
-            transform: translateX(10px);
+            background: rgba(255, 229, 0, 0.1);
+            color: var(--yellow-accent);
+            padding-left: 1.5rem;
         }
 
+        /* ========================================
+           MOBILE RESPONSIVE
+           ======================================== */
         @media (max-width: 768px) {
             .container {
                 padding: 0 1.5rem;
             }
 
             .hero {
-                padding: 3rem 0 2.5rem;
-                margin-bottom: 3rem;
-            }
-
-            .season-badge {
-                padding: 0.7rem 2.5rem;
-                font-size: 0.85rem;
-                letter-spacing: 6px;
-            }
-
-            h1 {
-                font-size: clamp(3rem, 12vw, 6rem);
-                margin-bottom: 1rem;
-                text-shadow:
-                    0 0 20px rgba(220, 0, 0, 0.8),
-                    2px 2px 0 var(--red-bright);
-            }
-
-            .subtitle {
-                font-size: clamp(1rem, 2.5vw, 1.4rem);
-                margin-bottom: 2rem;
-                letter-spacing: 4px;
-            }
-
-            .race-info-banner {
-                gap: 1.5rem;
-            }
-
-            .race-info-item {
-                padding: 1.2rem 2rem;
-                transform: skewX(-3deg);
-            }
-
-            .race-info-value {
-                font-size: 2rem;
-            }
-
-            .section {
                 padding: 3rem 0;
                 margin-bottom: 2rem;
             }
 
-            .section-header {
-                margin-bottom: 2.5rem;
-                padding-bottom: 1.5rem;
+            h1 {
+                font-size: clamp(2.5rem, 10vw, 4rem);
             }
 
-            .section-header::after {
-                width: 80px;
-                height: 4px;
+            .race-info-banner {
+                gap: 1rem;
+            }
+
+            .race-info-item {
+                padding: 1rem 1.5rem;
+            }
+
+            .section {
+                padding: 3rem 0;
             }
 
             .section-title {
-                font-size: clamp(2.5rem, 10vw, 4rem);
-                text-shadow: 2px 2px 0 var(--red);
-            }
-
-            .section-subtitle {
-                font-size: 1rem;
-            }
-
-            .pu-table-wrapper {
-                border-left-width: 6px;
-            }
-
-            .pu-table-wrapper::before {
-                height: 6px;
+                font-size: clamp(1.75rem, 6vw, 2.5rem);
             }
 
             .terms-grid,
             .card-grid {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: 1.5rem;
             }
 
             .term-card,
             .content-card {
-                padding: 2rem;
-            }
-
-            .content-card {
-                transform: skewY(0);
+                padding: 1.75rem;
             }
 
             .highlight-box {
-                padding: 3.5rem 2rem;
-                margin: 4rem 0;
-                transform: translateY(30px) skewY(0);
-            }
-
-            .highlight-box.fade-in {
-                transform: translateY(0) skewY(0);
-            }
-
-            .highlight-box::before,
-            .highlight-box::after {
-                width: 30px;
-                height: 30px;
-            }
-
-            .highlight-box h3 {
-                font-size: clamp(2.5rem, 9vw, 3.5rem);
-                margin-bottom: 2.5rem;
+                padding: 2.5rem 1.75rem;
+                margin: 3rem 0;
             }
 
             .gp-callout {
-                padding: 3rem 2rem;
-                margin: 4rem 0;
-                border-width: 4px;
-            }
-
-            .gp-callout::before {
-                height: 8px;
-            }
-
-            .gp-callout h3 {
-                font-size: clamp(2.5rem, 9vw, 3.5rem);
+                padding: 2.5rem 1.75rem;
+                margin: 3rem 0;
             }
 
             .gp-stats {
-                gap: 3rem;
+                gap: 2rem;
             }
 
             .gp-stat-value {
-                font-size: 3.5rem;
+                font-size: 2.5rem;
             }
 
             .quick-nav-btn {
                 bottom: 1.5rem;
                 right: 1.5rem;
-                width: 65px;
-                height: 65px;
+                width: 55px;
+                height: 55px;
             }
 
             .nav-menu {
@@ -901,30 +937,26 @@
                 right: 1.5rem;
                 left: 1.5rem;
                 min-width: auto;
-                padding: 3rem 2rem;
-                transform: translateY(20px) skewY(0);
             }
 
-            .nav-menu.active {
-                transform: translateY(0) skewY(0);
+            .team-selector-btn {
+                top: 1rem;
+                right: 1rem;
+                height: 36px;
+                padding: 0 0.75rem;
+                font-size: 0.65rem;
             }
 
-            .nav-menu::before {
-                height: 8px;
-            }
-
-            .nav-menu h3 {
-                font-size: 2.2rem;
-            }
-
-            .nav-menu a {
-                padding: 1.1rem 1.5rem;
-                font-size: 1.15rem;
+            .team-selector-menu {
+                top: 1rem;
+                right: 1rem;
+                left: 1rem;
+                min-width: auto;
             }
 
             footer {
-                padding: 3rem 2rem;
-                font-size: 2rem;
+                padding: 3rem 1.5rem;
+                font-size: 1.2rem;
             }
         }
     </style>
@@ -932,8 +964,8 @@
 <body>
     <div class="container">
         <header class="hero">
-            <div class="season-badge">2026 Season</div>
-            <h1>THE NEW ERA</h1>
+            <div class="ford-badge">Red Bull Ford Powertrains • 2026</div>
+            <h1>The New Era</h1>
             <div class="subtitle">Everything You Need to Know</div>
             <div class="race-info-banner">
                 <div class="race-info-item">
@@ -951,7 +983,7 @@
             </div>
         </header>
 
-        <section class="section fade-in" id="power-units">
+        <section class="section" id="power-units">
             <div class="section-header">
                 <h2 class="section-title">2026 Power Units</h2>
                 <p class="section-subtitle">New engine partnerships for the most radical regulation change in F1 history</p>
@@ -1042,7 +1074,7 @@
             </div>
         </section>
 
-        <div class="highlight-box fade-in" id="basic-terms">
+        <div class="highlight-box" id="basic-terms">
             <h3>Basic F1 Terms</h3>
             <div class="terms-grid">
                 <div class="term-card">
@@ -1076,7 +1108,7 @@
             </div>
         </div>
 
-        <section class="section fade-in" id="new-terminology">
+        <section class="section" id="new-terminology">
             <div class="section-header">
                 <h2 class="section-title">New 2026 Terminology</h2>
             </div>
@@ -1118,7 +1150,7 @@
             </div>
         </section>
 
-        <section class="section fade-in" id="whats-different">
+        <section class="section" id="whats-different">
             <div class="section-header">
                 <h2 class="section-title">What's Different in 2026</h2>
             </div>
@@ -1161,7 +1193,7 @@
             </div>
         </section>
 
-        <div class="gp-callout fade-in" id="australian-gp">
+        <div class="gp-callout" id="australian-gp">
             <h3>Australian Grand Prix</h3>
             <div class="gp-stats">
                 <div class="gp-stat">
@@ -1181,6 +1213,28 @@
         </footer>
     </div>
 
+    <!-- Team Selector -->
+    <button class="team-selector-btn" id="teamSelectorBtn" aria-label="Select Team Design">
+        <span class="dot"></span>
+        <span>Red Bull</span>
+        <span class="chevron">&#9660;</span>
+    </button>
+    <div class="team-selector-overlay" id="teamSelectorOverlay"></div>
+    <nav class="team-selector-menu" id="teamSelectorMenu">
+        <div class="menu-header">Team Designs</div>
+        <a href="index-mclaren.html"><span class="team-dot" style="background:#ff8700"></span>McLaren</a>
+        <a href="index-ferrari.html"><span class="team-dot" style="background:#dc0000"></span>Ferrari</a>
+        <a href="index-mercedes.html"><span class="team-dot" style="background:#00d2be"></span>Mercedes</a>
+        <a href="index-redbull.html" class="current"><span class="team-dot" style="background:#1E3A8A"></span>Red Bull</a>
+        <a href="index-astonmartin.html"><span class="team-dot" style="background:#006f62"></span>Aston Martin</a>
+        <a href="index-alpine.html"><span class="team-dot" style="background:#0090ff"></span>Alpine</a>
+        <a href="index-williams.html"><span class="team-dot" style="background:#005aff"></span>Williams</a>
+        <a href="index-audi.html"><span class="team-dot" style="background:#ff1e00"></span>Audi</a>
+        <a href="index-haas.html"><span class="team-dot" style="background:#b6babd"></span>Haas</a>
+        <a href="index-rb.html"><span class="team-dot" style="background:#6692ff"></span>Racing Bulls</a>
+        <a href="index-cadillac.html"><span class="team-dot" style="background:#666666"></span>Cadillac</a>
+    </nav>
+
     <!-- Quick Nav Button and Menu -->
     <button class="quick-nav-btn" id="quickNavBtn" aria-label="Quick Navigation"></button>
     <div class="nav-overlay" id="navOverlay"></div>
@@ -1196,7 +1250,7 @@
     </nav>
 
     <script>
-        // Intersection Observer for animations
+        // Intersection Observer for scroll animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -1205,7 +1259,7 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
+                    entry.target.classList.add('visible');
                 }
             });
         }, observerOptions);
@@ -1219,7 +1273,6 @@
         const navOverlay = document.getElementById('navOverlay');
         const navMenu = document.getElementById('navMenu');
 
-        // Smooth scrolling
         document.documentElement.style.scrollBehavior = 'smooth';
 
         function toggleNav() {
@@ -1231,19 +1284,35 @@
         quickNavBtn.addEventListener('click', toggleNav);
         navOverlay.addEventListener('click', toggleNav);
 
-        // Close menu when clicking a link
         navMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 toggleNav();
             });
         });
 
-        // Close menu on escape key
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
-                toggleNav();
+            if (e.key === 'Escape') {
+                if (teamSelectorMenu.classList.contains('active')) {
+                    toggleTeamSelector();
+                } else if (navMenu.classList.contains('active')) {
+                    toggleNav();
+                }
             }
         });
+
+        // Team Selector functionality
+        const teamSelectorBtn = document.getElementById('teamSelectorBtn');
+        const teamSelectorOverlay = document.getElementById('teamSelectorOverlay');
+        const teamSelectorMenu = document.getElementById('teamSelectorMenu');
+
+        function toggleTeamSelector() {
+            teamSelectorBtn.classList.toggle('active');
+            teamSelectorOverlay.classList.toggle('active');
+            teamSelectorMenu.classList.toggle('active');
+        }
+
+        teamSelectorBtn.addEventListener('click', toggleTeamSelector);
+        teamSelectorOverlay.addEventListener('click', toggleTeamSelector);
     </script>
 </body>
 </html>

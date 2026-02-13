@@ -3,30 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2026 F1 Season Guide | Watch Party</title>
+    <title>2026 F1 Season Guide | Haas F1 Team</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Russo+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Haas Brand Colors */
-            --steel-grey: #B6BABD;
-            --dark-grey: #8E8E8E;
-            --haas-red: #DC0000;
-            --bright-red: #ED1C24;
+            /* Haas Brand Colors - Clean American Precision */
             --white: #FFFFFF;
-            --black: #1a1a1a;
-            --industrial-dark: #2a2a2a;
-            --metal-light: #d4d8db;
-            --blue-accent: #2b5c9e;
-
-            /* Functional Colors */
-            --paper: #e8eaeb;
-            --ink: var(--black);
-            --accent: var(--haas-red);
-            --subtle: var(--dark-grey);
-            --border: var(--steel-grey);
-            --card-bg: var(--white);
+            --off-white: #F8F9FA;
+            --light-grey: #E9ECEF;
+            --mid-grey: #6C757D;
+            --dark-grey: #343A40;
+            --black: #1A1A1A;
+            --haas-red: #E10600;
+            --haas-red-dark: #B80500;
 
             /* Team Colors */
             --mclaren: #ff8700;
@@ -34,7 +25,7 @@
             --williams: #005aff;
             --alpine: #0090ff;
             --ferrari: #dc0000;
-            --haas: #b6babd;
+            --haas: #E10600;
             --cadillac: #666666;
             --redbull: #0600ef;
             --aston: #006f62;
@@ -48,16 +39,17 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #2a2a2a 0%, #3d3d3d 50%, #2a2a2a 100%);
-            background-attachment: fixed;
-            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            background: var(--white);
+            color: var(--black);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
-            position: relative;
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
         }
 
-        /* Industrial texture overlay */
+        /* Subtle grid background */
         body::before {
             content: '';
             position: fixed;
@@ -65,52 +57,77 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background:
-                repeating-linear-gradient(
-                    0deg,
-                    transparent,
-                    transparent 2px,
-                    rgba(182, 186, 189, 0.03) 2px,
-                    rgba(182, 186, 189, 0.03) 4px
-                ),
-                repeating-linear-gradient(
-                    90deg,
-                    transparent,
-                    transparent 2px,
-                    rgba(182, 186, 189, 0.03) 2px,
-                    rgba(182, 186, 189, 0.03) 4px
-                );
+            background-image:
+                linear-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
             pointer-events: none;
-            z-index: 1;
+            z-index: 0;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: min(1400px, 100%);
             margin: 0 auto;
             padding: 2rem;
             position: relative;
-            z-index: 2;
+            z-index: 1;
+            overflow-x: hidden;
+        }
+
+        /* Team Selector */
+        .team-selector {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1000;
+        }
+
+        .team-selector select {
+            background: var(--white);
+            color: var(--dark-grey);
+            border: 2px solid var(--light-grey);
+            padding: 0.5rem 2rem 0.5rem 1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23343A40' d='M6 8L2 4h8z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            transition: all 0.2s ease;
+        }
+
+        .team-selector select:hover {
+            border-color: var(--haas-red);
+        }
+
+        .team-selector select:focus {
+            outline: none;
+            border-color: var(--haas-red);
+        }
+
+        /* Red accent line - top of page */
+        .top-accent {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--haas-red);
+            z-index: 1000;
         }
 
         /* Hero Header */
         .hero {
             text-align: center;
-            padding: 3rem 0 4rem;
-            border-bottom: 4px solid var(--haas-red);
+            padding: 5rem 2rem;
             margin-bottom: 4rem;
+            background: var(--off-white);
+            border-bottom: 1px solid var(--light-grey);
             position: relative;
-            background: linear-gradient(180deg, rgba(182, 186, 189, 0.1) 0%, transparent 100%);
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--steel-grey), transparent);
         }
 
         .season-badge {
@@ -118,58 +135,42 @@
             background: var(--haas-red);
             color: var(--white);
             padding: 0.5rem 1.5rem;
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.875rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
             font-weight: 700;
-            letter-spacing: 4px;
+            letter-spacing: 2px;
             text-transform: uppercase;
             margin-bottom: 1.5rem;
-            position: relative;
-            clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
-            box-shadow: 0 4px 12px rgba(220, 0, 0, 0.4);
         }
 
         h1 {
-            font-family: 'Russo One', sans-serif;
-            font-size: clamp(3.5rem, 10vw, 8rem);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(4rem, 12vw, 10rem);
             font-weight: 400;
-            letter-spacing: 8px;
+            letter-spacing: 4px;
             line-height: 0.9;
             margin-bottom: 1rem;
-            color: var(--white);
+            color: var(--black);
             text-transform: uppercase;
-            text-shadow:
-                0 0 20px rgba(220, 0, 0, 0.5),
-                0 2px 4px rgba(0, 0, 0, 0.8);
-            background: linear-gradient(180deg, #ffffff 0%, #b6babd 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
         .subtitle {
-            font-family: 'Oswald', sans-serif;
-            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
             font-weight: 500;
-            color: var(--steel-grey);
-            margin-bottom: 2rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
+            color: var(--mid-grey);
+            margin-bottom: 2.5rem;
+            letter-spacing: 1px;
         }
 
         .race-info-banner {
-            display: flex;
+            display: inline-flex;
             justify-content: center;
             gap: 3rem;
-            padding: 1.5rem;
-            background: linear-gradient(135deg, var(--industrial-dark) 0%, var(--black) 100%);
-            border: 2px solid var(--steel-grey);
-            border-left: 6px solid var(--haas-red);
-            margin-top: 2rem;
-            font-family: 'Oswald', sans-serif;
-            box-shadow:
-                0 4px 20px rgba(0, 0, 0, 0.5),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            padding: 1.5rem 3rem;
+            background: var(--white);
+            border: 1px solid var(--light-grey);
+            font-family: 'Montserrat', sans-serif;
         }
 
         .race-info-item {
@@ -177,72 +178,72 @@
         }
 
         .race-info-label {
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             font-weight: 700;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            color: var(--steel-grey);
+            color: var(--mid-grey);
             margin-bottom: 0.25rem;
         }
 
         .race-info-value {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 700;
-            color: var(--white);
-            text-shadow: 0 0 10px rgba(220, 0, 0, 0.5);
+            color: var(--black);
         }
 
         /* Section Styling */
         .section {
             margin-bottom: 5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .section-header {
             margin-bottom: 2.5rem;
-            position: relative;
-            padding-left: 1.5rem;
-            border-left: 6px solid var(--haas-red);
         }
 
         .section-title {
-            font-family: 'Russo One', sans-serif;
+            font-family: 'Bebas Neue', sans-serif;
             font-size: clamp(2.5rem, 6vw, 4rem);
             font-weight: 400;
-            letter-spacing: 4px;
-            color: var(--white);
+            letter-spacing: 2px;
+            color: var(--black);
             margin-bottom: 0.5rem;
             text-transform: uppercase;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .section-subtitle {
-            font-size: 1.1rem;
-            color: var(--steel-grey);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            color: var(--mid-grey);
             max-width: 600px;
-            font-family: 'Oswald', sans-serif;
-            letter-spacing: 1px;
         }
 
         /* Power Units Table */
         .pu-table-wrapper {
-            background: linear-gradient(135deg, var(--industrial-dark) 0%, var(--black) 100%);
-            border: 2px solid var(--steel-grey);
+            background: var(--white);
+            border: 1px solid var(--light-grey);
             overflow: hidden;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
         }
 
         .pu-table-header {
             display: grid;
             grid-template-columns: 1.2fr 1fr;
-            background: linear-gradient(135deg, var(--haas-red) 0%, var(--bright-red) 100%);
+            background: var(--black);
             color: var(--white);
             padding: 1rem 2rem;
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.75rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
             font-weight: 700;
-            letter-spacing: 4px;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.3);
         }
 
         .pu-table-header div:last-child {
@@ -252,22 +253,9 @@
         .pu-table-row {
             display: grid;
             grid-template-columns: 1.2fr 1fr;
-            padding: 1.25rem 2rem;
-            border-bottom: 1px solid rgba(182, 186, 189, 0.2);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .pu-table-row::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 0;
-            height: 100%;
-            background: linear-gradient(90deg, var(--haas-red), transparent);
-            opacity: 0;
-            transition: all 0.3s ease;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--light-grey);
+            transition: all 0.2s ease;
         }
 
         .pu-table-row:last-child {
@@ -275,41 +263,31 @@
         }
 
         .pu-table-row:hover {
-            background: rgba(182, 186, 189, 0.1);
-            border-left: 4px solid var(--haas-red);
-            padding-left: calc(2rem - 4px);
-        }
-
-        .pu-table-row:hover::before {
-            width: 100%;
-            opacity: 0.1;
+            background: var(--off-white);
         }
 
         .team-nameplate {
             display: inline-flex;
             align-items: center;
             gap: 0.75rem;
-            padding: 0.5rem 1rem;
-            background: rgba(42, 42, 42, 0.8);
-            border-left: 4px solid currentColor;
-            font-family: 'Oswald', sans-serif;
+            padding: 0.4rem 0.75rem;
+            background: var(--off-white);
+            border-left: 3px solid currentColor;
+            font-family: 'Montserrat', sans-serif;
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            box-shadow:
-                2px 2px 8px rgba(0, 0, 0, 0.5),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            letter-spacing: 0.5px;
         }
 
         .pu-supplier {
             text-align: right;
-            font-family: 'Oswald', sans-serif;
-            font-weight: 600;
-            font-size: 0.95rem;
-            color: var(--steel-grey);
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 500;
+            font-size: 0.8rem;
+            color: var(--mid-grey);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             display: flex;
             align-items: center;
             justify-content: flex-end;
@@ -321,7 +299,7 @@
         .team-williams { color: var(--williams); border-color: var(--williams); }
         .team-alpine { color: var(--alpine); border-color: var(--alpine); }
         .team-ferrari { color: var(--ferrari); border-color: var(--ferrari); }
-        .team-haas { color: var(--haas); border-color: var(--haas); }
+        .team-haas { color: var(--haas-red); border-color: var(--haas-red); }
         .team-cadillac { color: var(--cadillac); border-color: var(--cadillac); }
         .team-redbull { color: var(--redbull); border-color: var(--redbull); }
         .team-aston { color: var(--aston); border-color: var(--aston); }
@@ -330,60 +308,57 @@
         /* Content Cards */
         .card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+            gap: 1.5rem;
             margin-top: 2rem;
         }
 
         .content-card {
-            background: linear-gradient(135deg, var(--industrial-dark) 0%, var(--black) 100%);
-            border: 2px solid var(--steel-grey);
-            border-top: 4px solid var(--haas-red);
-            padding: 2.5rem;
+            background: var(--white);
+            border: 1px solid var(--light-grey);
+            padding: 2rem;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
             position: relative;
-            overflow: hidden;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            min-width: 0;
         }
 
         .content-card::before {
             content: '';
             position: absolute;
             top: 0;
-            right: 0;
-            width: 100px;
-            height: 100px;
-            background: radial-gradient(circle, rgba(220, 0, 0, 0.2), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .content-card:hover {
-            transform: translateY(-6px);
-            border-color: var(--haas-red);
-            box-shadow:
-                0 8px 32px rgba(0, 0, 0, 0.7),
-                0 0 20px rgba(220, 0, 0, 0.3);
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--haas-red);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
         }
 
         .content-card:hover::before {
-            opacity: 1;
+            transform: scaleX(1);
+        }
+
+        .content-card:hover {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
 
         .content-card h3 {
-            font-family: 'Russo One', sans-serif;
-            font-size: 2rem;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.75rem;
             font-weight: 400;
-            letter-spacing: 2px;
-            margin-bottom: 1.5rem;
-            color: var(--white);
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            color: var(--black);
             text-transform: uppercase;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .content-card p {
-            color: var(--steel-grey);
+            color: var(--mid-grey);
             margin-bottom: 1rem;
+            font-size: 0.95rem;
         }
 
         .content-card ul {
@@ -391,20 +366,10 @@
         }
 
         .content-card li {
-            padding: 0.75rem 0;
-            padding-left: 1.5rem;
-            border-bottom: 1px solid rgba(182, 186, 189, 0.2);
-            font-size: 0.95rem;
-            color: var(--metal-light);
-            position: relative;
-        }
-
-        .content-card li::before {
-            content: '▸';
-            position: absolute;
-            left: 0;
-            color: var(--haas-red);
-            font-weight: bold;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid var(--light-grey);
+            font-size: 0.9rem;
+            color: var(--dark-grey);
         }
 
         .content-card li:last-child {
@@ -412,24 +377,25 @@
         }
 
         .content-card strong {
-            color: var(--white);
+            color: var(--black);
             font-weight: 700;
-            font-family: 'Oswald', sans-serif;
-            letter-spacing: 0.5px;
         }
 
         /* Highlight Box */
         .highlight-box {
-            background: linear-gradient(135deg, var(--industrial-dark) 0%, var(--black) 100%);
+            background: var(--black);
             color: var(--white);
             padding: 3rem;
             margin: 4rem 0;
-            border: 3px solid var(--steel-grey);
-            border-left: 8px solid var(--haas-red);
-            box-shadow:
-                0 8px 32px rgba(0, 0, 0, 0.6),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
             position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .highlight-box.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .highlight-box::before {
@@ -437,118 +403,78 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
+            width: 4px;
             height: 100%;
-            background:
-                repeating-linear-gradient(
-                    45deg,
-                    transparent,
-                    transparent 10px,
-                    rgba(182, 186, 189, 0.03) 10px,
-                    rgba(182, 186, 189, 0.03) 20px
-                );
-            pointer-events: none;
+            background: var(--haas-red);
         }
 
         .highlight-box h3 {
-            font-family: 'Russo One', sans-serif;
+            font-family: 'Bebas Neue', sans-serif;
             font-size: 2.5rem;
             font-weight: 400;
             margin-bottom: 1.5rem;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             text-transform: uppercase;
             color: var(--white);
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .highlight-box p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 1rem;
-            color: var(--metal-light);
         }
 
         .terms-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+            gap: 1.5rem;
             margin-top: 2rem;
         }
 
         .term-card {
             padding: 1.5rem;
-            background: rgba(42, 42, 42, 0.8);
-            border-left: 4px solid var(--haas-red);
-            box-shadow:
-                2px 2px 8px rgba(0, 0, 0, 0.5),
-                inset 0 1px 0 rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
-        }
-
-        .term-card:hover {
-            background: rgba(42, 42, 42, 1);
-            border-left-width: 6px;
-            transform: translateX(4px);
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 3px solid var(--haas-red);
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            min-width: 0;
         }
 
         .term-card strong {
             display: block;
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
             font-weight: 700;
             margin-bottom: 0.75rem;
             color: var(--white);
-            letter-spacing: 1px;
             text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .term-card {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
         }
 
         /* GP Callout */
         .gp-callout {
-            background: linear-gradient(135deg, var(--haas-red) 0%, var(--bright-red) 100%);
+            background: var(--haas-red);
             color: var(--white);
             padding: 3rem;
             text-align: center;
             margin: 4rem 0;
-            box-shadow:
-                0 8px 32px rgba(220, 0, 0, 0.6),
-                inset 0 -4px 0 rgba(0, 0, 0, 0.2);
             position: relative;
-            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
         }
 
-        .gp-callout::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -50%;
-            width: 200%;
-            height: 100%;
-            background:
-                repeating-linear-gradient(
-                    45deg,
-                    transparent,
-                    transparent 20px,
-                    rgba(255, 255, 255, 0.05) 20px,
-                    rgba(255, 255, 255, 0.05) 40px
-                );
-            animation: slide 20s linear infinite;
-        }
-
-        @keyframes slide {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(50%); }
+        .gp-callout.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .gp-callout h3 {
-            font-family: 'Russo One', sans-serif;
-            font-size: 3rem;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2rem, 6vw, 3rem);
             font-weight: 400;
             margin-bottom: 2rem;
-            letter-spacing: 4px;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-            position: relative;
-            z-index: 1;
         }
 
         .gp-stats {
@@ -556,8 +482,6 @@
             justify-content: center;
             gap: 4rem;
             margin-bottom: 2rem;
-            position: relative;
-            z-index: 1;
         }
 
         .gp-stat {
@@ -565,25 +489,25 @@
         }
 
         .gp-stat-label {
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.75rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.65rem;
             font-weight: 700;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            opacity: 0.9;
+            opacity: 0.8;
             margin-bottom: 0.5rem;
         }
 
         .gp-stat-value {
-            font-family: 'Russo One', sans-serif;
+            font-family: 'Bebas Neue', sans-serif;
             font-size: 3rem;
             font-weight: 400;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            letter-spacing: 2px;
         }
 
         .gp-callout p {
-            position: relative;
-            z-index: 1;
+            font-size: 0.95rem;
+            opacity: 0.9;
         }
 
         /* Footer */
@@ -591,47 +515,36 @@
             text-align: center;
             padding: 3rem 0;
             margin-top: 5rem;
-            border-top: 4px solid var(--haas-red);
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.9rem;
-            color: var(--steel-grey);
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            border-top: 1px solid var(--light-grey);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            color: var(--mid-grey);
+            letter-spacing: 1px;
         }
 
-        /* Floating Quick Nav */
+        /* Quick Nav Button */
         .quick-nav-btn {
             position: fixed;
             bottom: 2rem;
             right: 2rem;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--haas-red) 0%, var(--bright-red) 100%);
-            border: 2px solid var(--steel-grey);
-            border-radius: 0;
+            width: 56px;
+            height: 56px;
+            background: var(--black);
+            border: none;
             color: var(--white);
-            font-family: 'Russo One', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.25rem;
             cursor: pointer;
             z-index: 999;
-            box-shadow:
-                0 4px 20px rgba(220, 0, 0, 0.5),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%);
         }
 
         .quick-nav-btn:hover {
-            background: linear-gradient(135deg, var(--bright-red) 0%, var(--haas-red) 100%);
-            border-color: var(--white);
-            transform: translateY(-4px);
-            box-shadow:
-                0 8px 30px rgba(220, 0, 0, 0.7),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            background: var(--haas-red);
+            transform: translateY(-2px);
         }
 
         .nav-overlay {
@@ -640,12 +553,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(26, 26, 26, 0.95);
+            background: rgba(0, 0, 0, 0.5);
             z-index: 998;
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
         }
 
         .nav-overlay.active {
@@ -657,19 +569,16 @@
             position: fixed;
             bottom: 2rem;
             right: 2rem;
-            background: linear-gradient(135deg, var(--industrial-dark) 0%, var(--black) 100%);
-            border: 2px solid var(--steel-grey);
-            border-top: 4px solid var(--haas-red);
+            background: var(--white);
+            border: 1px solid var(--light-grey);
             padding: 2rem;
             z-index: 999;
             opacity: 0;
             visibility: hidden;
-            transform: translateY(20px);
+            transform: translateY(10px);
             transition: all 0.3s ease;
-            box-shadow:
-                0 10px 40px rgba(0, 0, 0, 0.7),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
             min-width: 280px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
         }
 
         .nav-menu.active {
@@ -679,46 +588,41 @@
         }
 
         .nav-menu h3 {
-            font-family: 'Russo One', sans-serif;
-            font-size: 2rem;
-            color: var(--white);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            color: var(--black);
             margin-bottom: 1.5rem;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            letter-spacing: 2px;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--haas-red);
         }
 
         .nav-menu ul {
             list-style: none;
-            padding: 0;
-            margin: 0;
         }
 
         .nav-menu li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
         }
 
         .nav-menu a {
             display: block;
             padding: 0.75rem 1rem;
-            color: var(--steel-grey);
+            color: var(--dark-grey);
             text-decoration: none;
-            font-family: 'Oswald', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-weight: 600;
-            font-size: 0.95rem;
-            background: rgba(42, 42, 42, 0.6);
-            transition: all 0.3s ease;
-            border-left: 3px solid var(--dark-grey);
+            font-size: 0.8rem;
+            transition: all 0.2s ease;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
 
         .nav-menu a:hover {
-            background: var(--haas-red);
-            color: var(--white);
-            border-left-color: var(--white);
+            background: var(--off-white);
+            color: var(--haas-red);
             padding-left: 1.5rem;
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
         }
 
         /* Mobile Styles */
@@ -727,151 +631,128 @@
                 padding: 1.5rem;
             }
 
+            .team-selector {
+                top: 0.75rem;
+                right: 0.75rem;
+            }
+
+            .team-selector select {
+                padding: 0.4rem 1.75rem 0.4rem 0.75rem;
+                font-size: 0.7rem;
+            }
+
             .hero {
-                padding: 2rem 0 3rem;
+                padding: 4rem 1.5rem;
                 margin-bottom: 3rem;
             }
 
-            .season-badge {
-                padding: 0.4rem 1.25rem;
-                font-size: 0.75rem;
-                letter-spacing: 3px;
-                margin-bottom: 1rem;
-            }
-
             h1 {
-                font-size: 3rem;
-                margin-bottom: 0.75rem;
-                letter-spacing: 4px;
+                font-size: 3.5rem;
+                letter-spacing: 2px;
             }
 
             .subtitle {
-                font-size: 1rem;
-                margin-bottom: 1.5rem;
-                letter-spacing: 2px;
+                font-size: 0.95rem;
             }
 
             .race-info-banner {
                 flex-direction: column;
-                gap: 1.5rem;
-                padding: 1.25rem;
+                gap: 1.25rem;
+                padding: 1.25rem 2rem;
             }
 
             .race-info-value {
-                font-size: 1.25rem;
+                font-size: 1.1rem;
             }
 
             .section {
                 margin-bottom: 3.5rem;
             }
 
-            .section-header {
-                margin-bottom: 2rem;
-                padding-left: 1rem;
-                border-left-width: 4px;
-            }
-
             .section-title {
-                font-size: 2.5rem;
-                margin-bottom: 0.75rem;
-                letter-spacing: 2px;
-            }
-
-            .section-subtitle {
-                font-size: 1rem;
+                font-size: 2.25rem;
             }
 
             .pu-table-header {
                 padding: 0.875rem 1.25rem;
-                font-size: 0.7rem;
-                letter-spacing: 3px;
+                font-size: 0.65rem;
                 grid-template-columns: 1.1fr 1fr;
             }
 
             .pu-table-row {
-                padding: 1rem 1.25rem;
+                padding: 0.875rem 1.25rem;
                 grid-template-columns: 1.1fr 1fr;
             }
 
             .team-nameplate {
-                padding: 0.4rem 0.75rem;
-                font-size: 0.85rem;
-                border-left-width: 3px;
+                padding: 0.35rem 0.6rem;
+                font-size: 0.75rem;
+                border-left-width: 2px;
             }
 
             .pu-supplier {
-                font-size: 0.8rem;
+                font-size: 0.7rem;
             }
 
             .card-grid {
                 grid-template-columns: 1fr;
-                gap: 1.75rem;
+                gap: 1.25rem;
             }
 
             .content-card {
-                padding: 2rem 1.5rem;
+                padding: 1.5rem;
             }
 
             .content-card h3 {
-                font-size: 1.75rem;
+                font-size: 1.5rem;
             }
 
             .highlight-box {
                 padding: 2rem 1.5rem;
                 margin: 3rem 0;
-                border-left-width: 6px;
             }
 
             .highlight-box h3 {
                 font-size: 2rem;
-                margin-bottom: 1.25rem;
-                letter-spacing: 2px;
-            }
-
-            .highlight-box p {
-                font-size: 1rem;
             }
 
             .terms-grid {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
+                gap: 1rem;
             }
 
             .term-card {
                 padding: 1.25rem;
             }
 
+            .term-card strong {
+                font-size: 0.8rem;
+            }
+
             .gp-callout {
-                padding: 2rem 1.5rem;
+                padding: 2.5rem 1.5rem;
                 margin: 3rem 0;
             }
 
             .gp-callout h3 {
-                font-size: 2.25rem;
+                font-size: 2rem;
                 margin-bottom: 1.5rem;
-                letter-spacing: 2px;
             }
 
             .gp-stats {
                 flex-direction: column;
-                gap: 2rem;
+                gap: 1.5rem;
             }
 
             .gp-stat-value {
                 font-size: 2.5rem;
             }
 
-            footer {
-                padding: 2.5rem 0;
-                margin-top: 4rem;
-            }
-
             .quick-nav-btn {
                 bottom: 1.5rem;
                 right: 1.5rem;
-                width: 50px;
-                height: 50px;
-                font-size: 1.2rem;
+                width: 48px;
+                height: 48px;
             }
 
             .nav-menu {
@@ -880,31 +761,48 @@
                 left: 1.5rem;
                 min-width: auto;
             }
+
+            footer {
+                padding: 2.5rem 0;
+                margin-top: 4rem;
+            }
         }
 
         /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-
-        .fade-in {
-            animation: fadeInUp 0.6s ease-out forwards;
-        }
-
-        @keyframes metalShine {
-            0% { background-position: -200% center; }
-            100% { background-position: 200% center; }
-        }
     </style>
 </head>
 <body>
+    <!-- Red accent line -->
+    <div class="top-accent"></div>
+
+    <!-- Team Selector -->
+    <div class="team-selector">
+        <select onchange="if(this.value) window.location.href=this.value">
+            <option value="">Select Team</option>
+            <option value="index-mclaren.html">McLaren</option>
+            <option value="index-ferrari.html">Ferrari</option>
+            <option value="index-mercedes.html">Mercedes</option>
+            <option value="index-redbull.html">Red Bull</option>
+            <option value="index-astonmartin.html">Aston Martin</option>
+            <option value="index-alpine.html">Alpine</option>
+            <option value="index-williams.html">Williams</option>
+            <option value="index-audi.html">Audi</option>
+            <option value="index-haas.html" selected>Haas</option>
+            <option value="index-rb.html">Racing Bulls</option>
+            <option value="index-cadillac.html">Cadillac</option>
+        </select>
+    </div>
+
     <div class="container">
         <header class="hero">
             <div class="season-badge">2026 Season</div>
@@ -926,7 +824,7 @@
             </div>
         </header>
 
-        <section class="section fade-in" id="power-units">
+        <section class="section" id="power-units">
             <div class="section-header">
                 <h2 class="section-title">2026 Power Units</h2>
                 <p class="section-subtitle">New engine partnerships for the most radical regulation change in F1 history</p>
@@ -1017,7 +915,7 @@
             </div>
         </section>
 
-        <div class="highlight-box fade-in" id="basic-terms">
+        <div class="highlight-box" id="basic-terms">
             <h3>Basic F1 Terms</h3>
             <div class="terms-grid">
                 <div class="term-card">
@@ -1051,7 +949,7 @@
             </div>
         </div>
 
-        <section class="section fade-in" id="new-terminology">
+        <section class="section" id="new-terminology">
             <div class="section-header">
                 <h2 class="section-title">New 2026 Terminology</h2>
             </div>
@@ -1093,7 +991,7 @@
             </div>
         </section>
 
-        <section class="section fade-in" id="whats-different">
+        <section class="section" id="whats-different">
             <div class="section-header">
                 <h2 class="section-title">What's Different in 2026</h2>
             </div>
@@ -1136,7 +1034,7 @@
             </div>
         </section>
 
-        <div class="gp-callout fade-in" id="australian-gp">
+        <div class="gp-callout" id="australian-gp">
             <h3>Australian Grand Prix</h3>
             <div class="gp-stats">
                 <div class="gp-stat">
@@ -1157,7 +1055,7 @@
     </div>
 
     <!-- Quick Nav Button and Menu -->
-    <button class="quick-nav-btn" id="quickNavBtn" aria-label="Quick Navigation">☰</button>
+    <button class="quick-nav-btn" id="quickNavBtn" aria-label="Quick Navigation">&#9776;</button>
     <div class="nav-overlay" id="navOverlay"></div>
     <nav class="nav-menu" id="navMenu">
         <h3>Quick Nav</h3>
@@ -1180,7 +1078,7 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
+                    entry.target.classList.add('visible');
                 }
             });
         }, observerOptions);

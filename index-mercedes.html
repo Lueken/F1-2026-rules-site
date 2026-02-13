@@ -664,6 +664,148 @@
             letter-spacing: 0.15em;
         }
 
+        /* ========================================
+           TEAM SELECTOR
+           ======================================== */
+        .team-selector-btn {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            height: 40px;
+            padding: 0 1rem;
+            background: linear-gradient(135deg, var(--silver-dark) 0%, var(--silver) 100%);
+            border: 1px solid var(--petronas);
+            color: var(--black);
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            z-index: 1001;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(0, 210, 190, 0.2);
+        }
+
+        .team-selector-btn:hover {
+            background: linear-gradient(135deg, var(--silver) 0%, var(--silver-light) 100%);
+            box-shadow: 0 4px 20px rgba(0, 210, 190, 0.4);
+        }
+
+        .team-selector-btn.active {
+            background: var(--grey-deep);
+            border-color: var(--petronas);
+            color: var(--petronas);
+        }
+
+        .team-selector-btn .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--petronas);
+        }
+
+        .team-selector-btn.active .dot {
+            background: var(--petronas);
+        }
+
+        .team-selector-btn .chevron {
+            transition: transform 0.25s ease;
+            font-size: 0.6rem;
+        }
+
+        .team-selector-btn.active .chevron {
+            transform: rotate(180deg);
+        }
+
+        .team-selector-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.25s ease;
+            backdrop-filter: blur(4px);
+        }
+
+        .team-selector-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .team-selector-menu {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: var(--grey-deep);
+            border: 1px solid var(--petronas);
+            padding: 1rem 0;
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px);
+            transition: all 0.25s ease;
+            min-width: 220px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 15px 50px rgba(0, 210, 190, 0.15);
+        }
+
+        .team-selector-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .team-selector-menu .menu-header {
+            padding: 0.5rem 1.25rem 0.75rem;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--petronas);
+            border-bottom: 1px solid rgba(0, 210, 190, 0.3);
+            margin-bottom: 0.25rem;
+        }
+
+        .team-selector-menu a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.55rem 1.25rem;
+            color: var(--silver-light);
+            text-decoration: none;
+            font-family: 'Saira', sans-serif;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: all 0.15s ease;
+        }
+
+        .team-selector-menu a:hover {
+            background: rgba(0, 210, 190, 0.1);
+        }
+
+        .team-selector-menu a.current {
+            color: var(--petronas);
+            background: rgba(0, 210, 190, 0.15);
+            font-weight: 700;
+        }
+
+        .team-selector-menu a .team-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
         /* Quick Nav - hexagonal precision */
         .quick-nav-btn {
             position: fixed;
@@ -940,6 +1082,21 @@
                 font-size: 1.8rem;
             }
 
+            .team-selector-btn {
+                top: 1rem;
+                right: 1rem;
+                height: 36px;
+                padding: 0 0.75rem;
+                font-size: 0.7rem;
+            }
+
+            .team-selector-menu {
+                top: 1rem;
+                right: 1rem;
+                left: 1rem;
+                min-width: auto;
+            }
+
             footer {
                 padding: 3rem 2rem;
                 font-size: 1.8rem;
@@ -1199,6 +1356,28 @@
         </footer>
     </div>
 
+    <!-- Team Selector -->
+    <button class="team-selector-btn" id="teamSelectorBtn" aria-label="Select Team Design">
+        <span class="dot"></span>
+        <span>Mercedes</span>
+        <span class="chevron">&#9660;</span>
+    </button>
+    <div class="team-selector-overlay" id="teamSelectorOverlay"></div>
+    <nav class="team-selector-menu" id="teamSelectorMenu">
+        <div class="menu-header">Team Designs</div>
+        <a href="index-mclaren.html"><span class="team-dot" style="background:#ff8700"></span>McLaren</a>
+        <a href="index-ferrari.html"><span class="team-dot" style="background:#dc0000"></span>Ferrari</a>
+        <a href="index-mercedes.html" class="current"><span class="team-dot" style="background:#00d2be"></span>Mercedes</a>
+        <a href="index-redbull.html"><span class="team-dot" style="background:#0600ef"></span>Red Bull</a>
+        <a href="index-astonmartin.html"><span class="team-dot" style="background:#006f62"></span>Aston Martin</a>
+        <a href="index-alpine.html"><span class="team-dot" style="background:#0090ff"></span>Alpine</a>
+        <a href="index-williams.html"><span class="team-dot" style="background:#005aff"></span>Williams</a>
+        <a href="index-audi.html"><span class="team-dot" style="background:#ff1e00"></span>Audi</a>
+        <a href="index-haas.html"><span class="team-dot" style="background:#b6babd"></span>Haas</a>
+        <a href="index-rb.html"><span class="team-dot" style="background:#6692ff"></span>Racing Bulls</a>
+        <a href="index-cadillac.html"><span class="team-dot" style="background:#666666"></span>Cadillac</a>
+    </nav>
+
     <!-- Quick Nav Button and Menu -->
     <button class="quick-nav-btn" id="quickNavBtn" aria-label="Quick Navigation">☰</button>
     <div class="nav-overlay" id="navOverlay"></div>
@@ -1258,10 +1437,28 @@
 
         // Close menu on escape key
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
-                toggleNav();
+            if (e.key === 'Escape') {
+                if (teamSelectorMenu.classList.contains('active')) {
+                    toggleTeamSelector();
+                } else if (navMenu.classList.contains('active')) {
+                    toggleNav();
+                }
             }
         });
+
+        // Team Selector functionality
+        const teamSelectorBtn = document.getElementById('teamSelectorBtn');
+        const teamSelectorOverlay = document.getElementById('teamSelectorOverlay');
+        const teamSelectorMenu = document.getElementById('teamSelectorMenu');
+
+        function toggleTeamSelector() {
+            teamSelectorBtn.classList.toggle('active');
+            teamSelectorOverlay.classList.toggle('active');
+            teamSelectorMenu.classList.toggle('active');
+        }
+
+        teamSelectorBtn.addEventListener('click', toggleTeamSelector);
+        teamSelectorOverlay.addEventListener('click', toggleTeamSelector);
     </script>
 </body>
 </html>
